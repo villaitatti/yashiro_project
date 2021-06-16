@@ -1,41 +1,35 @@
-[[> "https://collection.itatti.harvard.edu/resource/yashiro/header"]]
+[[> "https://yashiro.itatti.harvard.edu/resource/yashiro/header"]]
 <!-- main container open -->
 <div id="main-container" class="container">
-    <!-- /main container open -->
+  <!-- /main container open -->
 
-<link rel="stylesheet" href="../../assets/styles/template.css">
-    <header>
-        <h1>People</h1>
-    </header>
+  <link rel="stylesheet" href="../../assets/styles/template.css" />
+  <header>
+    <h1>People</h1>
+  </header>
 
-        <semantic-search
-
-                categories='{}'
-
-                relations = '{}'
-
-                search-profile='{}'
-        >
-            <semantic-search-query-constant
-                    domain='<crm:E21_Person>'
-                    query="
+  <semantic-search categories="{}" relations="{}" search-profile="{}">
+    <semantic-search-query-constant
+      domain="<crm:E21_Person>"
+      query="
           SELECT ?subject WHERE {
             ?subject a crm:E21_Person .
-          }">
-            </semantic-search-query-constant>
+          }"
+    >
+    </semantic-search-query-constant>
 
-            <div data-flex-layout="row stretch-stretch">
-                <!--div data-flex-self="size-1of3" style="flex: 0 0 20px;">
+    <div data-flex-layout="row stretch-stretch">
+      <!--div data-flex-self="size-1of3" style="flex: 0 0 20px;">
                     <semantic-search-facet open-by-default="true"></semantic-search-facet>
                 </div-->
 
-                <semantic-search-result-holder>
-                    <div data-flex-self="md-full">
-                        <bs-tabs unmount-on-exit=true id='search-results' animation=false>
-                            <bs-tab event-key="1" title="table">
-                                <semantic-table
-                                        id="table-result"
-                                        query='
+      <semantic-search-result-holder>
+        <div data-flex-self="md-full">
+          <bs-tabs unmount-on-exit="true" id="search-results" animation="false">
+            <bs-tab event-key="1" title="table">
+              <semantic-table
+                id="table-result"
+                query="
                                           SELECT ?sub ?name ?subtitle ?filename WHERE {
                                           ?sub a crm:E21_Person .
 
@@ -46,41 +40,38 @@
                                           ?subtitle_node rdf:value ?subtitle .
 
                                           $sub crm:P138i_has_representation ?filename
-                                        }'
-                                        column-configuration='[
+                                        }"
+                column-configuration='[
                       {"cellTemplate": "<a href=\"{{ sub.value }}\"><img src={{filename.value }} class=\"personImg\" /></a>",  "displayName": "Photo"},
                       {"variableName": "sub",    "displayName": "Person"},
                       {"variableName": "subtitle",  "displayName": "Summary"}
                     ]'
-                                >
-                                <!--                       {"variableName": "name", "displayName": "Name"}, -->
-                                </semantic-table>
-                            </bs-tab>
-                        </bs-tabs>
-                    </div>
-                </semantic-search-result-holder>
-
-            </div>
-        </semantic-search>
-<style>
+              >
+                <!--                       {"variableName": "name", "displayName": "Name"}, -->
+              </semantic-table>
+            </bs-tab>
+          </bs-tabs>
+        </div>
+      </semantic-search-result-holder>
+    </div>
+  </semantic-search>
+  <style>
     .personImg {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
     }
 
     .nav-tabs {
-        display:none;
+      display: none;
     }
 
-    th[data-title^='mp-custom-column']:first-child {
-        width: 50px !important;
+    th[data-title^="mp-custom-column"]:first-child {
+      width: 50px !important;
     }
+  </style>
 
-</style>
-
-
-        <!-- main container end -->
-    </div>
-    <!-- /main container end -->
-    [[> "https://collection.itatti.harvard.edu/resource/yashiro/footer"]]
+  <!-- main container end -->
+</div>
+<!-- /main container end -->
+[[> "https://yashiro.itatti.harvard.edu/resource/yashiro/footer"]]
