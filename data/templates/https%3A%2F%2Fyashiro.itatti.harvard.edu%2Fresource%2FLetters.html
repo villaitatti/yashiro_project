@@ -1,21 +1,20 @@
-<link rel="stylesheet" href="../../assets/styles/template.css">
+<link rel="stylesheet" href="../../assets/styles/template.css" />
 [[> "https://yashiro.itatti.harvard.edu/resource/header"]]
 <!-- main container open -->
-<div id="main-container" class="container-fluid" style="height:500px;">
+<div id="main-container" class="container-fluid" style="height: 500px">
   <!-- /main container open -->
 
   <link href="/assets/styles/annotation.css" rel="stylesheet" />
 
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <header>
-          <h1>Letters</h1>
-        </header>
-      </div>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <header>
+        <h1>Letters</h1>
+      </header>
     </div>
+  </div>
 
-    <semantic-search
-    
+  <semantic-search
     categories='{
         "<http://www.w3.org/2001/XMLSchema#date>": [{
           "kind": "date-range",
@@ -27,9 +26,8 @@
               FILTER(?date >= ?__dateBeginValue__) .
             }"
           }]
-        }'    
-
-      relations = '{
+        }'
+    relations='{
           "<mpp:letter_sender>": [
             {
               "kind": "resource",
@@ -88,8 +86,7 @@
             }
           ]
         }'
-      
-      search-profile='{ 
+    search-profile='{ 
         "categories": [
           {
             "iri": "<https://www.researchspace.org/resource/TextDocuments>",
@@ -139,10 +136,10 @@
           }
         ]
       }'
-    >
-      <semantic-search-query-constant 
-        domain='<https://www.researchspace.org/resource/TextDocuments>'
-        query='
+  >
+    <semantic-search-query-constant
+      domain="<https://www.researchspace.org/resource/TextDocuments>"
+      query='
         SELECT DISTINCT ?subject ?sender ?receiver ?date ?place_label ?contentvalue WHERE {
 
           ?subject crm:P1_is_identified_by ?letter.
@@ -170,23 +167,24 @@
           ?letter crm:P128_carries ?content.
           ?content rdf:value ?contentvalue.
           BIND(str(?contentvalue) as ?contentvalue).
-        }'>
-      </semantic-search-query-constant>
+        }'
+    >
+    </semantic-search-query-constant>
 
-      <div style="height:500px;" class="row">
-        <div class="col-sm-2" style="margin-top: 8px;">
-          <h4>Filters</h4>
-            <semantic-search-facet open-by-default="true"></semantic-search-facet>
-        </div>
-        <div class="col-sm-7">
-          <semantic-search-result-holder>
-            <bs-tabs unmount-on-exit=true id='search-results' animation=false>
-              <bs-tab event-key="2" title="Grid">
-                <semantic-search-result>
-                  <semantic-table
-                          id='grid-result'
-                          number-of-displayed-rows='9'
-                          query='
+    <div style="height: 500px" class="row">
+      <div class="col-sm-2" style="margin-top: 8px">
+        <h4>Filters</h4>
+        <semantic-search-facet open-by-default="true"></semantic-search-facet>
+      </div>
+      <div class="col-sm-7">
+        <semantic-search-result-holder>
+          <bs-tabs unmount-on-exit="true" id="search-results" animation="false">
+            <bs-tab event-key="2" title="Grid">
+              <semantic-search-result>
+                <semantic-table
+                  id="grid-result"
+                  number-of-displayed-rows="9"
+                  query='
                           SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue WHERE {
                           
                                                   ?subject crm:P1_is_identified_by ?letter.
@@ -220,82 +218,77 @@
                                                   BIND(str(?contentvalue) as ?contentvalue).
                                                 }
                                 ORDER BY ?date '
-                          tuple-template='{{>tupleTemplate}}'>
+                  tuple-template="{{>tupleTemplate}}"
+                >
+                  <template id="tupleTemplate">
+                    <div class="rs-grid-element panel panel-default">
+                      <div class="panel-body">
+                        <bs-col md="2">
+                          <div class="grid-demo">
+                            <mp-resource-thumbnail
+                              iri="{{subject.value}}"
+                              no-image-uri="../../assets/images/yashiro.jpg"
+                              class="thumbnail"
+                            />
+                          </div>
+                        </bs-col>
+                        <bs-col md="10">
+                          <div data-flex-layout="row md-column center-stretch">
+                            <bs-row>
+                              <bs-col md="12">
+                                <h4>
+                                  <semantic-link iri="{{subject.value}}"
+                                    >{{title_label.value}}</semantic-link
+                                  >
+                                </h4>
+                              </bs-col>
 
-                    <template id='tupleTemplate'>
+                              <div>
+                                <bs-col md="6">
+                                  <div class="grid-demo">
+                                    <b>Sent at: </b>{{dateTimeFormat date.value
+                                    "DD MMM YYYY"}}
+                                  </div>
 
-                      <div class="rs-grid-element panel panel-default">
-
-                        <div class="panel-body">
-
-
-                          <bs-col md="2">
-                            <div class="grid-demo">
-                              <mp-resource-thumbnail iri='{{subject.value}}' no-image-uri='../../assets/images/yashiro.jpg' class="thumbnail"/>
-                            </div>
-                          </bs-col>
-                          <bs-col md="10">
-                            <div data-flex-layout="row md-column center-stretch">
-                              <bs-row>
-                                <bs-col md="12">
-                                  <h4><semantic-link iri="{{subject.value}}">{{title_label.value}}</semantic-link></h4>
+                                  <div class="grid-demo">
+                                    <b>In: </b>{{place_label.value}}
+                                  </div>
                                 </bs-col>
 
-                                <div>
-                                  <bs-col md="6">
-                                    <div class="grid-demo">
-                                      <b>Sent at: </b>{{dateTimeFormat date.value "DD MMM YYYY"}}
-                                    </div>
+                                <bs-col md="6">
+                                  <div class="grid-demo">
+                                    <b>From: </b>{{sender.value}}
+                                  </div>
 
-                                    <div class="grid-demo">
-                                      <b>In: </b>{{place_label.value}}
-                                    </div>
-                                  </bs-col>
-
-                                  <bs-col md="6">
-                                    <div class="grid-demo">
-                                      <b>From: </b>{{sender.value}}
-                                    </div>
-
-                                    <div class="grid-demo">
-                                      <b>To: </b>{{receiver.value}}
-                                    </div>
-                                  </bs-col>
-                                </div>
-                                <div>
-                                  <bs-col md="12">
-                                    <div class="grid-demo contentExcerpt">
-                                      <b>Content Excerpt: </b> {{ contentvalue.value }}
-                                    </div>
-                                  </bs-col>
-                                </div>
-
-
-
-                              </bs-row>
-
-                            </div>
-                          </bs-col>
-
-
-
-
-                        </div>
-
+                                  <div class="grid-demo">
+                                    <b>To: </b>{{receiver.value}}
+                                  </div>
+                                </bs-col>
+                              </div>
+                              <div>
+                                <bs-col md="12">
+                                  <div class="grid-demo contentExcerpt">
+                                    <b>Content Excerpt: </b> {{
+                                    contentvalue.value }}
+                                  </div>
+                                </bs-col>
+                              </div>
+                            </bs-row>
+                          </div>
+                        </bs-col>
                       </div>
-
-                    </template>
-
-                  </semantic-table>
-                </semantic-search-result>
-              </bs-tab>
-            </bs-tabs>
-          </semantic-search-result-holder>
-        </div>
+                    </div>
+                  </template>
+                </semantic-table>
+              </semantic-search-result>
+            </bs-tab>
+          </bs-tabs>
+        </semantic-search-result-holder>
       </div>
-    </semantic-search>
+    </div>
+  </semantic-search>
 
-<!-- main container end -->
+  <!-- main container end -->
 </div>
 <!-- /main container end -->
 [[> "https://yashiro.itatti.harvard.edu/resource/footer"]]
@@ -305,13 +298,14 @@
     display: none;
   }
   .nav-tabs {
-    display:none;
+    display: none;
   }
-  .facet, .semantic-facet-holder {
-    width:100% !important;
+  .facet,
+  .semantic-facet-holder {
+    width: 100% !important;
     position: relative !important;
     border: none !important;
-    padding: 0 !Important;
+    padding: 0 !important;
   }
 
   .facet__category-selector-holder li {
@@ -344,7 +338,8 @@
     margin-top: 5px;
   }
 
-  .facet__relation__header:hover, .facet__relation__header:focus {
+  .facet__relation__header:hover,
+  .facet__relation__header:focus {
     text-decoration: none;
     color: #000000;
     background-color: rgba(162, 51, 56, 0.06);
@@ -372,12 +367,12 @@
   }
 
   .contentExcerpt:before {
-    content:'';
-    width:100%;
-    height:100%;
-    position:absolute;
-    left:0;
-    top:0;
-    background:linear-gradient(transparent 50px, white);
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(transparent 50px, white);
   }
 </style>
