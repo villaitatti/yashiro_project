@@ -8,63 +8,113 @@
   <div class="yashiro-editor-page">
     <div class="yashiro-editor-container">
       <bs-row id="editorRow">
-
-        <mp-splitpane min-size=35 dock=false>
-          <div data-flex-layout="column top-stretch" style="border-right: 1px solid #a2a2a2; background: #6b2226; height: auto">
+        <mp-splitpane min-size="35" dock="false">
+          <div
+            data-flex-layout="column top-stretch"
+            style="
+              border-right: 1px solid #a2a2a2;
+              background: #6b2226;
+              height: auto;
+            "
+          >
             <mp-splitpane-toggle-on>
-              <button style="border: none; background: transparent; padding: 15px 2px; outline: none; width: 100%; color: white;">
-                <i class="fa fa-angle-double-right" style="font-size: 20px;" aria-hidden="true"></i>
+              <button
+                style="
+                  border: none;
+                  background: transparent;
+                  padding: 15px 2px;
+                  outline: none;
+                  width: 100%;
+                  color: white;
+                "
+              >
+                <i
+                  class="fa fa-angle-double-right"
+                  style="font-size: 20px"
+                  aria-hidden="true"
+                ></i>
               </button>
             </mp-splitpane-toggle-on>
+
             <mp-splitpane-toggle-off>
-              <button data-flex-layout="row center-left" style="border: none; border-bottom: 1px solid rgb(115, 37, 40); background: #6b2226; padding: 15px; outline: none; width: 100%;">
-                <div class="fa fa-angle-double-left" style="font-size: 20px; margin-left: auto; color: white;" aria-hidden="true"></div>
+              <button
+                data-flex-layout="row center-left"
+                style="
+                  border: none;
+                  border-bottom: 1px solid rgb(115, 37, 40);
+                  background: #6b2226;
+                  padding: 15px;
+                  outline: none;
+                  width: 100%;
+                "
+              >
+                <div
+                  class="fa fa-angle-double-left"
+                  style="font-size: 20px; margin-left: auto; color: white"
+                  aria-hidden="true"
+                ></div>
               </button>
             </mp-splitpane-toggle-off>
-            <mp-splitpane-sidebar-open style="display: flex; flex-direction: column; flex: auto;">
+
+            <mp-splitpane-sidebar-open
+              style="display: flex; flex-direction: column; flex: auto"
+            >
               <div id="metadataColumn">
                 <div id="metadataContainer">
                   <mp-field-visualization
-                          subject="[[this]]"
-                          fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
-                          template="{{> metadata}}"
+                    subject="[[this]]"
+                    fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
+                    template="{{> metadata}}"
                   >
-
                     <template id="metadata">
                       <div>
                         <div data-flex-layout="row">
-                          <div>
-                          </div>
+                          <div></div>
                         </div>
-                        {{#each fields}}
-                        {{> field}}
-                        {{/each}}
+                        {{#each fields}} {{> field}} {{/each}}
+                        
                       </div>
                     </template>
                     <template id="field">
+
+                      {{log this}}
+
                       <!-- Title -->
-                      {{#ifCond this.label.0._value "===" "letter_title"}}
-                      {{> row lbl="Title" val=this.values.0.value._value}}
+                      {{#ifCond this.label.0._value "===" "letter_title"}} {{>
+                      row lbl="Title" val=this.values.0.value._value}}
                       {{/ifCond}}
 
                       <!-- Places -->
                       {{#ifCond this.label.0._value "===" "letter_places"}}
-                      {{#each this.values}}
-                      {{> row lbl="Sending place" val=value._value}}
-                      {{/each}}
-                      {{/ifCond}}
+                        {{#each this.values}} {{> row lbl="Sending place"
+                      val=value._value}} {{/each}} {{/ifCond}}
 
                       <!-- Date -->
-                      {{#ifCond this.label.0._value "===" "letter_date"}}
-                      {{> date-row lbl="Date" val=this.values.0.value._value date=this.values.0.label}}
-                      {{/ifCond}}
+                      {{#ifCond this.label.0._value "===" "letter_date"}} {{>
+                      date-row lbl="Date" val=this.values.0.value._value
+                      date=this.values.0.label}} {{/ifCond}}
 
                       <!-- People -->
                       {{#ifCond this.label.0._value "===" "letter_people"}}
-                      {{#each this.values}}
-                      {{> row lbl=label val=value._value}}
-                      {{/each}}
+                        {{#each this.values}} 
+                          {{> row lbl=label val=value._value}}
+                        {{/each}} 
                       {{/ifCond}}
+
+                      <!-- Image -->
+                      {{#ifCond this.label.0._value "===" "letter_images"}}
+                      <div id="imageContainer">
+                        <ol>
+                          {{#each this.values}}
+                            {{> image lbl=label val=value._value}}
+                          {{/each}} 
+                        </ol>
+                      </div>
+                        
+                      {{/ifCond}}
+                      
+                      
+
                     </template>
 
                     <template id="date-row">
@@ -73,7 +123,9 @@
                           <b class="metadataLabel">{{ lbl }}:</b>
                         </div>
                         <div data-flex-layout="row">
-                          <p class="metadataValue">{{dateTimeFormat date "MMM DD YYYY"}}</p>
+                          <p class="metadataValue">
+                            {{dateTimeFormat date "MMM DD YYYY"}}
+                          </p>
                         </div>
                       </div>
                     </template>
@@ -84,7 +136,10 @@
                           <b class="metadataLabel">{{ lbl }}:</b>
                         </div>
                         <div data-flex-layout="row">
-                          <semantic-link class="metadataValue" iri="{{ val }}"></semantic-link>
+                          <semantic-link
+                            class="metadataValue"
+                            iri="{{ val }}"
+                          ></semantic-link>
                         </div>
                       </div>
                     </template>
@@ -111,28 +166,41 @@
                       </div>
                     </template>
 
+                    <template id="image">
+ 
+                        <li>
+                          {{val}} {{lbl}}
+                        </li>
+
+                        <!--
+                        <rs-iiif-image-thumbnail
+                          image-or-region="{{val}}"
+                          image-id-pattern='BIND(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", "/info.json") as ?imageID)'
+                          iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2/"
+                          height="150"
+                          width="100"
+                        >
+                        </rs-iiif-image-thumbnail>-->
+                        
+                    </template>
+
                   </mp-field-visualization>
-                </div>
-                <div id="imageContainer">
-                  <img style="width: 100%" src="../../assets/images/yashiro.jpg" alt="">
                 </div>
               </div>
             </mp-splitpane-sidebar-open>
           </div>
-          <div  id="letterColumn">
+          <div id="letterColumn">
             <!-- Document body + annotation sidebar -->
             <semantic-context repository="default">
               <rs-text-annotation-workspace
-                      document-iri="[[this]]"
-                      storage="yashiro"
-                      annotation-subject-template="https://yashiro.itatti.harvard.edu/annotation/{{UUID}}"
-                      fallback-template="{{> fallback-template}}"
-                      annotation-tooltip="{{> annotation-tooltip}}"
+                document-iri="[[this]]"
+                storage="yashiro"
+                annotation-subject-template="https://yashiro.itatti.harvard.edu/annotation/{{UUID}}"
+                fallback-template="{{> fallback-template}}"
+                annotation-tooltip="{{> annotation-tooltip}}"
               >
                 <template id="fallback-template">
-
-                  {{#> Default:AnnotationTemplate}}
-                  Missing type for annotation
+                  {{#> Default:AnnotationTemplate}} Missing type for annotation
                   <semantic-link iri="{{ iri.value }}"></semantic-link>
                   {{/ Default:AnnotationTemplate}}
                 </template>
@@ -141,46 +209,58 @@
                   <div>
                     {{#if allowEdit}}
                     <button
-                            name="edit"
-                            class="btn btn-xs btn-default"
-                            data-annotation="{{ iri.value }}"
-                            title="Edit annotation"
+                      name="edit"
+                      class="btn btn-xs btn-default"
+                      data-annotation="{{ iri.value }}"
+                      title="Edit annotation"
                     >
-                      <span class="fa fa-pencil" style="pointer-events: none;"></span>
+                      <span
+                        class="fa fa-pencil"
+                        style="pointer-events: none"
+                      ></span>
                     </button>
                     {{else}}
                     <button
-                            name="edit"
-                            class="btn btn-xs btn-default"
-                            disabled
-                            title="Edit annotation"
+                      name="edit"
+                      class="btn btn-xs btn-default"
+                      disabled
+                      title="Edit annotation"
                     >
-                      <span class="fa fa-pencil" style="pointer-events: none;"></span>
+                      <span
+                        class="fa fa-pencil"
+                        style="pointer-events: none"
+                      ></span>
                     </button>
-                    {{/if}}
-                    {{#if allowDelete}}
+                    {{/if}} {{#if allowDelete}}
                     <button
-                            name="delete"
-                            class="btn btn-xs btn-default"
-                            data-annotation="{{ iri.value }}"
-                            title="Delete annotation"
+                      name="delete"
+                      class="btn btn-xs btn-default"
+                      data-annotation="{{ iri.value }}"
+                      title="Delete annotation"
                     >
-                      <span class="fa fa-trash" style="pointer-events: none;"></span>
+                      <span
+                        class="fa fa-trash"
+                        style="pointer-events: none"
+                      ></span>
                     </button>
                     {{else}}
                     <button
-                            name="delete"
-                            class="btn btn-xs btn-default"
-                            disabled
-                            title="Delete annotation"
+                      name="delete"
+                      class="btn btn-xs btn-default"
+                      disabled
+                      title="Delete annotation"
                     >
-                      <span class="fa fa-trash" style="pointer-events: none;"></span>
+                      <span
+                        class="fa fa-trash"
+                        style="pointer-events: none"
+                      ></span>
                     </button>
                     {{/if}}
                   </div>
                 </template>
 
-                [[> annotation-schema/Person ]] [[> annotation-schema/Place ]] [[> annotation-schema/Entity ]]
+                [[> annotation-schema/Person ]] [[> annotation-schema/Place ]]
+                [[> annotation-schema/Entity ]]
               </rs-text-annotation-workspace>
             </semantic-context>
           </div>
@@ -216,7 +296,7 @@
   }
 
   #metadataContainer a {
-    color: white !Important;
+    color: white !important;
   }
 
   #editorRow {
@@ -233,7 +313,7 @@
   }
 
   .metadataSingleContainer {
-    padding:4px
+    padding: 4px;
   }
 
   .metadataSingleContainer:nth-child(even) {
