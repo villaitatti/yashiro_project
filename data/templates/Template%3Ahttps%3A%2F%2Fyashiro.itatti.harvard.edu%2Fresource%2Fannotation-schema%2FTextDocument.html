@@ -77,8 +77,6 @@
                     </template>
                     <template id="field">
 
-                      {{log this}}
-
                       <!-- Title -->
                       {{#ifCond this.label.0._value "===" "letter_title"}} {{>
                       row lbl="Title" val=this.values.0.value._value}}
@@ -112,9 +110,7 @@
                       </div>
                         
                       {{/ifCond}}
-                      
-                      
-
+                    
                     </template>
 
                     <template id="date-row">
@@ -167,21 +163,17 @@
                     </template>
 
                     <template id="image">
- 
-                        <li>
-                          {{val}} {{lbl}}
-                        </li>
-
-                        <!--
+                       
+                      <div style='height: 700px; width:600px;'>   
                         <rs-iiif-image-thumbnail
-                          image-or-region="{{val}}"
-                          image-id-pattern='BIND(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", "/info.json") as ?imageID)'
-                          iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2/"
-                          height="150"
-                          width="100"
-                        >
-                        </rs-iiif-image-thumbnail>-->
-                        
+                            image-or-region="{{val}}"
+                            image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
+                                            BIND("image" AS ?type)
+                                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                            iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                            >
+                        </rs-iiif-image-thumbnail>
+                      </div>
                     </template>
 
                   </mp-field-visualization>
