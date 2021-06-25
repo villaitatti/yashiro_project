@@ -102,13 +102,36 @@
                       <!-- Image -->
                       {{#ifCond this.label.0._value "===" "letter_images"}}
                       <div id="imageContainer">
-                        <ol>
+
+
+                        {{#each this.values}}
+
+                          {{#if @first}}
+
+                            <div data-flex-layout="row center-stretch" style="height: 400px;">
+                              <rs-iiif-mirador
+                                image-or-region="{{value._value}}"
+                                image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
+                                                BIND("image" AS ?type)
+                                                BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                >
+                              </rs-iiif-mirador>
+                            </div>
+                          {{/if}}
+                        {{/each}} 
+
+                        <div data-flex-layout="row center-stretch">
+
                           {{#each this.values}}
-                            {{> image lbl=label val=value._value}}
+                            {{#if @first}}
+                            {{else}}
+                              {{> image lbl=label val=value._value}}
+                            {{/if}}
                           {{/each}} 
-                        </ol>
+                        </div>
+
                       </div>
-                        
                       {{/ifCond}}
                     
                     </template>
@@ -163,16 +186,18 @@
                     </template>
 
                     <template id="image">
-                       
-                      <div style='height: 700px; width:600px;'>   
+
+                      <div class="grid-demo">
+                      
                         <rs-iiif-image-thumbnail
-                            image-or-region="{{val}}"
-                            image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
-                                            BIND("image" AS ?type)
-                                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
-                            iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
-                            >
+                          image-or-region="{{val}}"
+                          image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
+                                          BIND("image" AS ?type)
+                                          BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                          iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                          >
                         </rs-iiif-image-thumbnail>
+
                       </div>
                     </template>
 
