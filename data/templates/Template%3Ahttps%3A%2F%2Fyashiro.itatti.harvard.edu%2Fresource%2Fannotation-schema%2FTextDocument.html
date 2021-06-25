@@ -61,6 +61,8 @@
             >
               <div id="metadataColumn">
                 <div id="metadataContainer">
+
+                  <!--  -->
                   <mp-field-visualization
                     subject="[[this]]"
                     fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
@@ -68,47 +70,17 @@
                   >
                     <template id="metadata">
                       <div>
-                        <div data-flex-layout="row">
-                          <div></div>
-                        </div>
                         {{#each fields}} {{> field}} {{/each}}
-                        
                       </div>
                     </template>
                     <template id="field">
 
-                      <!-- Title -->
-                      {{#ifCond this.label.0._value "===" "letter_title"}} {{>
-                      row lbl="Title" val=this.values.0.value._value}}
-                      {{/ifCond}}
-
-                      <!-- Places -->
-                      {{#ifCond this.label.0._value "===" "letter_places"}}
-                        {{#each this.values}} {{> row lbl="Sending place"
-                      val=value._value}} {{/each}} {{/ifCond}}
-
-                      <!-- Date -->
-                      {{#ifCond this.label.0._value "===" "letter_date"}} {{>
-                      date-row lbl="Date" val=this.values.0.value._value
-                      date=this.values.0.label}} {{/ifCond}}
-
-                      <!-- People -->
-                      {{#ifCond this.label.0._value "===" "letter_people"}}
-                        {{#each this.values}} 
-                          {{> row lbl=label val=value._value}}
-                        {{/each}} 
-                      {{/ifCond}}
-
                       <!-- Image -->
                       {{#ifCond this.label.0._value "===" "letter_images"}}
                       <div id="imageContainer">
-
-
                         {{#each this.values}}
-
                           {{#if @first}}
-
-                            <div data-flex-layout="row center-stretch" style="height: 400px;">
+                            <div data-flex-layout="row center-stretch" style="height: 800px;">
                               <rs-iiif-mirador
                                 image-or-region='{"{{value._value}}":["{{value._value}}"]}'
                                 image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
@@ -121,6 +93,7 @@
                           {{/if}}
                         {{/each}} 
 
+                        <!--
                         <div data-flex-layout="row center-stretch">
 
                           {{#each this.values}}
@@ -130,65 +103,15 @@
                             {{/if}}
                           {{/each}} 
                         </div>
+                        -->
 
                       </div>
                       {{/ifCond}}
                     
                     </template>
 
-                    <template id="date-row">
-                      <div class="metadataSingleContainer">
-                        <div data-flex-layout="row">
-                          <b class="metadataLabel">{{ lbl }}:</b>
-                        </div>
-                        <div data-flex-layout="row">
-                          <p class="metadataValue">
-                            {{dateTimeFormat date "MMM DD YYYY"}}
-                          </p>
-                        </div>
-                      </div>
-                    </template>
-
-                    <template id="row">
-                      <div class="metadataSingleContainer">
-                        <div data-flex-layout="row">
-                          <b class="metadataLabel">{{ lbl }}:</b>
-                        </div>
-                        <div data-flex-layout="row">
-                          <semantic-link
-                            class="metadataValue"
-                            iri="{{ val }}"
-                          ></semantic-link>
-                        </div>
-                      </div>
-                    </template>
-
-                    <template id="date-row-old">
-                      <div data-flex-layout="row">
-                        <bs-col sm="4" md="5">
-                          <b>{{ lbl }}:</b>
-                        </bs-col>
-                        <bs-col sm="8" md="7">
-                          {{dateTimeFormat date "MMM DD YYYY"}}
-                        </bs-col>
-                      </div>
-                    </template>
-
-                    <template id="row-old">
-                      <div data-flex-layout="row">
-                        <bs-col sm="4" md="4">
-                          <b>{{ lbl }}:</b>
-                        </bs-col>
-                        <bs-col sm="8" md="8">
-                          <semantic-link iri="{{ val }}"></semantic-link>
-                        </bs-col>
-                      </div>
-                    </template>
-
                     <template id="image">
-
                       <div class="grid-demo">
-                      
                         <rs-iiif-image-thumbnail
                           image-or-region="{{val}}"
                           image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
@@ -197,7 +120,6 @@
                           iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                           >
                         </rs-iiif-image-thumbnail>
-
                       </div>
                     </template>
 
@@ -206,7 +128,74 @@
               </div>
             </mp-splitpane-sidebar-open>
           </div>
+          
+          
           <div id="letterColumn">
+
+            <!-- LETTER METADATA -->
+            <mp-field-visualization
+              subject="[[this]]"
+              fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
+              template="{{> metadata}}"
+            >
+            
+              <template id="metadata">
+
+                <div style="border-bottom: 2px solid black;" data-flex-layout="row stretch-stretch">
+                  {{#each fields}} {{> field}} {{/each}}
+                </div>
+
+              </template>
+
+              <template id="field">
+                <!-- Title -->
+                <!--
+                {{#ifCond this.label.0._value "===" "letter_title"}} {{>
+                row lbl="Title" val=this.values.0.value._value}}
+                {{/ifCond}}
+                -->
+
+                <!-- Places -->
+                {{#ifCond this.label.0._value "===" "letter_places"}}
+                  {{#each this.values}} {{> row lbl="Sending place"
+                val=value._value}} {{/each}} {{/ifCond}}
+
+                <!-- Date -->
+                {{#ifCond this.label.0._value "===" "letter_date"}} {{>
+                date-row lbl="Date" val=this.values.0.value._value
+                date=this.values.0.label}} {{/ifCond}}
+
+                <!-- People -->
+                {{#ifCond this.label.0._value "===" "letter_people"}}
+                  {{#each this.values}} 
+                    {{> row lbl=label val=value._value}}
+                  {{/each}} 
+                {{/ifCond}}
+              </template>
+
+              <template id="date-row">
+                
+                <div data-flex-layout="column top-stretch">
+                  <div class="grid-demo"><strong>{{ lbl }}:</strong></div>
+                  <div class="grid-demo">{{dateTimeFormat date "MMM DD YYYY"}}</div>
+                </div>
+
+              </template>
+
+              <template id="row">
+                <div data-flex-layout="column top-stretch">
+                  <div class="grid-demo"><strong>{{ lbl }}:</strong></div>
+                  <div class="grid-demo">
+                    <semantic-link
+                      class="metadataValue"
+                      iri="{{ val }}"
+                    ></semantic-link>
+                  </div>
+                </div>
+              </template>
+
+            </mp-field-visualization>
+
             <!-- Document body + annotation sidebar -->
             <semantic-context repository="default">
               <rs-text-annotation-workspace
@@ -291,6 +280,11 @@
 [[> "https://yashiro.itatti.harvard.edu/resource/footer"]]
 
 <style>
+
+  .TextAnnotationWorkspace--component {
+    margin: 50px 0 0 50px;
+  }
+
   #main-container {
     margin-top: -21px;
   }
