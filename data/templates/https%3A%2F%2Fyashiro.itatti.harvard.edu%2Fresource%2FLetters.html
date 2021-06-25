@@ -185,13 +185,20 @@
                   id="grid-result"
                   number-of-displayed-rows="9"
                   query='
-                          SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue WHERE {
+                          SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue ?pic WHERE {
                           
                                                   ?subject crm:P1_is_identified_by ?letter.
                                                   ?activity crm:P16_used_specific_object ?letter.
-                                
-                                          ?letter crm:P48_has_preferred_identifier ?title.
-                                        ?title rdfs:label ?title_label.
+
+                                                  optional{
+    
+                                                    ?pic a crm:E38_Image;
+                                                      crm:P165i_is_incorporated_in ?letter;
+                                                      rso:image_index 1
+                                                  }
+                                  
+                                                  ?letter crm:P48_has_preferred_identifier ?title.
+                                                  ?title rdfs:label ?title_label.
                                           
                           
                                                   ?sending crm:P9i_forms_part_of ?activity.
@@ -225,11 +232,20 @@
                       <div class="panel-body">
                         <bs-col md="2">
                           <div class="grid-demo">
-                            <mp-resource-thumbnail
-                              iri="{{subject.value}}"
-                              no-image-uri="../../assets/images/yashiro.jpg"
-                              class="thumbnail"
-                            />
+
+                            {{#if pic}}
+
+                              <rs-iiif-image-thumbnail
+                                image-or-region="{{pic.value}}"
+                                image-id-pattern='BIND( <{{pic.value}}> AS ?imageIRI)
+                                                BIND("image" AS ?type)
+                                                BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                ></rs-iiif-image-thumbnail>
+
+                            {{/if}}
+
+
                           </div>
                         </bs-col>
                         <bs-col md="10">

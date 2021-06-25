@@ -110,7 +110,7 @@
 
                             <div data-flex-layout="row center-stretch" style="height: 400px;">
                               <rs-iiif-mirador
-                                image-or-region="{{value._value}}"
+                                image-or-region='{"{{value._value}}":["{{value._value}}"]}'
                                 image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
                                                 BIND("image" AS ?type)
                                                 BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
