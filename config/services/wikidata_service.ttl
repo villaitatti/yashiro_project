@@ -1,0 +1,112 @@
+
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX spin: <http://spinrdf.org/spin#>
+PREFIX spl: <http://spinrdf.org/spl#>
+PREFIX : <http://www.researchspace.org/resource/system/service/custom#>
+PREFIX rssqlsail: <http://www.researchspace.org/resource/system/sql#>
+PREFIX ephedra: <http://www.researchspace.org/resource/system/ephedra#>
+PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#>
+
+:wikidata a ephedra:Service ;
+	<http://www.openrdf.org/config/sail#sailType> "researchspace:SQL" ;
+	rdfs:label "A wrapper for the Wikidata service." ;
+	ephedra:hasSPARQLPattern (
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasAction ;
+			sp:object :_action
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasFormat ;
+			sp:object :_format
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasSites ;
+			sp:object :_sites
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasTitles ;
+			sp:object :_titles
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasProps ;
+			sp:object :_props
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasLanguages ;
+			sp:object :_languages
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate wikidata:hasId ;
+			sp:object :_id
+		]
+	) ;
+	spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_action ;
+		spl:valueType xsd:string;
+        spl:defaultValue "wbgetentities"
+    ] ;
+  	spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_format ;
+		spl:valueType xsd:string ;
+        spl:defaultValue "json" 
+    ] ;
+  	spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_sites ;
+		spl:valueType xsd:string ;
+        spl:defaultValue "enwiki"
+    ] ;
+  	spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_titles ;
+		spl:valueType xsd:string
+    ] ;
+  	spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_props ;
+		spl:valueType xsd:string ;
+        spl:defaultValue "descriptions"
+    ] ;
+    spin:constraint
+	[
+		a spl:Argument ;
+		rdfs:comment "" ;
+		spl:predicate :_languages ;
+		spl:valueType xsd:string ;
+        spl:defaultValue "en"
+    ] ;
+	spin:column
+	[
+		a spin:Column ;
+		rdfs:comment "Row index: will be assigned a random blank node" ;
+		spl:predicate :_results ;
+		spl:valueType rdfs:Resource;
+        ephedra:jsonPath "$"
+	] ;
+	spin:column
+	[
+		a spin:Column ;
+		rdfs:comment "Geom" ;
+		spl:predicate :_id ;
+		spl:valueType xsd:string;
+        ephedra:jsonPath "$.entities.*.id"
+	] .
