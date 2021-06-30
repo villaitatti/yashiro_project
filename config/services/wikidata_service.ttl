@@ -5,7 +5,6 @@ PREFIX spl: <http://spinrdf.org/spl#>
 PREFIX : <http://www.researchspace.org/resource/system/service/custom#>
 PREFIX rssqlsail: <http://www.researchspace.org/resource/system/sql#>
 PREFIX ephedra: <http://www.researchspace.org/resource/system/ephedra#>
-PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#>
 
 :wikidata a ephedra:Service ;
 	<http://www.openrdf.org/config/sail#sailType> "researchspace:SQL" ;
@@ -13,37 +12,37 @@ PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#>
 	ephedra:hasSPARQLPattern (
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasAction ;
+			sp:predicate :hasAction ;
 			sp:object :_action
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasFormat ;
+			sp:predicate :hasFormat ;
 			sp:object :_format
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasSites ;
+			sp:predicate :hasSites ;
 			sp:object :_sites
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasTitles ;
+			sp:predicate :hasTitles ;
 			sp:object :_titles
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasProps ;
+			sp:predicate :hasProps ;
 			sp:object :_props
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasLanguages ;
+			sp:predicate :hasLanguages ;
 			sp:object :_languages
 		]
 		[
 			sp:subject :_results ;
-			sp:predicate wikidata:hasId ;
+			sp:predicate :hasId ;
 			sp:object :_id
 		]
 	) ;
@@ -100,7 +99,7 @@ PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#>
 		rdfs:comment "Row index: will be assigned a random blank node" ;
 		spl:predicate :_results ;
 		spl:valueType rdfs:Resource;
-        ephedra:jsonPath "$"
+        ephedra:jsonPath "$.entities"
 	] ;
 	spin:column
 	[
@@ -108,5 +107,5 @@ PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#>
 		rdfs:comment "Geom" ;
 		spl:predicate :_id ;
 		spl:valueType xsd:string;
-        ephedra:jsonPath "$.entities.*.id"
+        ephedra:jsonPath "$.*.id"
 	] .

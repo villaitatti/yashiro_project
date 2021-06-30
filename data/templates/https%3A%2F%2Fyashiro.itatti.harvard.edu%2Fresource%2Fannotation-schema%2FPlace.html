@@ -1,37 +1,42 @@
-<rs-text-annotation-type label="Place"
-                         rdf-type='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'
-                         icon-url='/images/dpub/place.svg'>
-  <template id='annotation'>
+<rs-text-annotation-type 
+    label="Place"
+    rdf-type='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'
+    icon-url='/images/dpub/place.svg'>
 
-    <semantic-query query='
-              SELECT ?value ?label WHERE {
+    <template id='annotation'>
+
+        <semantic-query query='
+            SELECT ?value ?label WHERE {
                 BIND({{iri}} as ?iri)
                 ?iri oa:hasBody ?body.
                 ?body rdf:value ?value.
                 ?value rdfs:label ?label
-              }' template='{{> show}}'>
-      <template id='show'>
+            }' template='{{> show}}'>
 
-        {{#> yashiro:AnnotationTemplate}}
-        <div class="yashiro-annotation-content concept">
-            <span>Place:</span>
-            <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
-        </div>
+            <template id='show'>
 
-        {{/ yashiro:AnnotationTemplate}}
-      </template>
-    </semantic-query>
-  </template>
-  <semantic-form-composite-input
-          for='oaHasBody'
-          new-subject-template='body'
-          fields='[[fieldDefinitions type="http://www.researchspace.org/instances/fields/Type" place="http://www.metaphacts.com/fieldDefinition/Place%20(Wikidata)"]]'>
+                {{#> yashiro:AnnotationTemplate}}
+                <div class="yashiro-annotation-content concept">
+                    <span>Place:</span>
+                    <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
+                </div>
+                {{/ yashiro:AnnotationTemplate}}
 
-    <semantic-form-hidden-input for='type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
+            </template>
+        </semantic-query>
+    </template>
+                
+    <semantic-form-composite-input
+        for='oaHasBody'
+        new-subject-template='body'
+        fields='[[fieldDefinitions type="http://www.researchspace.org/instances/fields/Type" place="http://www.metaphacts.com/fieldDefinition/Place%20(Wikidata)"]]'>
+
+        <semantic-form-hidden-input for='type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
     
-    <semantic-form-autocomplete-input for='place'></semantic-form-autocomplete-input>
+        <semantic-form-autocomplete-input for='place'></semantic-form-autocomplete-input>
+    
+        </semantic-form--input>
+        <semantic-form-errors></semantic-form-errors>
+    </semantic-form-composite-input>
 
-  </semantic-form--input>
-    <semantic-form-errors></semantic-form-errors>
-  </semantic-form-composite-input>
 </rs-text-annotation-type>

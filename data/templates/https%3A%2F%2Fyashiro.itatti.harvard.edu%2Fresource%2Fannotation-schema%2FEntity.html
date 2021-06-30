@@ -1,72 +1,112 @@
-<rs-text-annotation-type label="Person"
-                         rdf-type='https://yashiro.itatti.harvard.edu/annotation-schema/Entity'
-                         icon-url='/images/dpub/annotation.svg'>
-  <template id='annotation'>
+<rs-text-annotation-type 
+    label="Wikidata Entity"
+    rdf-type='https://yashiro.itatti.harvard.edu/annotation-schema/Entity'
+    icon-url='/images/dpub/annotation.svg'>
+                         
+    <template id='annotation'>
+        <semantic-query query='
+            SELECT ?value ?label WHERE {
+            BIND({{iri}} as ?iri)
+            ?iri oa:hasBody ?body.
+            ?body crm:P1_is_identified_by ?value.
+            ?value rdfs:label ?label 
+            }' template='{{> show}}'>
 
-    <semantic-query query='
-              SELECT ?value ?label WHERE {
-                BIND({{iri}} as ?iri)
-                ?iri oa:hasBody ?body.
-                ?body crm:P1_is_identified_by ?value.
-                ?value rdfs:label ?label 
-              }' template='{{> show}}'>
-      <template id='show'>
-        {{#> Default:AnnotationTemplate}}
-        <div class="yashiro-annotation-content concept">
-            <span>Entity:</span>
-            <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
-        </div>
+            <template id='show'>
 
-        {{/ Default:AnnotationTemplate}}
-      </template>
-    </semantic-query>
-  </template>
-  <semantic-form-composite-input
-          for='oaHasBody'
-          new-subject-template='body'
-          fields='[
-              {
-                "id": "type",
-                "xsdDatatype": "xsd:anyURI",
-                "selectPattern": "SELECT $value WHERE { $subject rdf:type $value }",
-                "insertPattern": "INSERT { $subject rdf:type $value } WHERE {}",
-                "deletePattern": "DELETE { $subject rdf:type $value } WHERE {}"
-              },
-              {
-                "id": "uri",
-                "label": "Person",
-                "description": "Person name",
-                "xsdDatatype": "xsd:anyURI",
-                "minOccurs": "1",
-                "maxOccurs": "1",
-                "selectPattern": "SELECT $value WHERE { $subject rdfs:label $value }",
-                "insertPattern": "INSERT { $subject crm:P1_is_identified_by $value } WHERE {}",
-                "deletePattern": "DELETE { $subject rdfs:label $value } WHERE {}",
-                "autosuggestionPattern": "SELECT ?value ?label WHERE { ?value rdf:type crm:E21_Person. ?value crm:P1_is_identified_by ?person. ?person rdfs:label ?label. FILTER REGEX(STR(?label), \"?token\") } LIMIT 10"
-              },
-              {
-                "id": "label",
-                "label": "Label",
-                "description": "Label",
-                "xsdDatatype": "rdf:langString",
-                "minOccurs": "1",
-                "maxOccurs": "1",
-                "selectPattern": "SELECT $value WHERE { $subject rdfs:label $value }",
-                "insertPattern": "INSERT { $subject rdfs:label $value } WHERE {}",
-                "deletePattern": "DELETE { $subject rdfs:label $value } WHERE {}"
-              }
-            ]'>
+                {{#> Default:AnnotationTemplate}}
 
-    <semantic-form-hidden-input for='type' default-value='https://yashiro.itatti.harvard.edu/annotation-schema/Entity'></semantic-form-hidden-input>
+                <div class="yashiro-annotation-content concept">
+                    <span>Entity:</span>
+                    <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
+                </div>
+
+                {{/ Default:AnnotationTemplate}}
+            </template>
+        </semantic-query>
+    
+    </template>
+
 
     
-    <semantic-form-autocomplete-input for='uri'></semantic-form-autocomplete-input>
 
-    <semantic-form-hidden-input for='label' append-value='[[singleValueFromSelect "SELECT ?user WHERE { BIND(?__useruri__ as ?user) }" ]]'>
-    </semantic-form-hidden-input>
+    <semantic-form-composite-input
+            for='oaHasBody'
+            new-subject-template='body'
+            fields='[[fieldDefinitions
+
+                annotation_type="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_type"
+                annotation_label="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_label"
+            ]]'>
+
+        <semantic-form-hidden-input for='type' default-value='https://yashiro.itatti.harvard.edu/annotation-schema/Entity'></semantic-form-hidden-input>
+
         
+        <semantic-form-autocomplete-input for='uri'></semantic-form-autocomplete-input>
 
-  </semantic-form--input>
-    <semantic-form-errors></semantic-form-errors>
-  </semantic-form-composite-input>
+        <semantic-form-hidden-input for='label' append-value='[[singleValueFromSelect "SELECT ?user WHERE { BIND(?__useruri__ as ?user) }" ]]'>
+        </semantic-form-hidden-input>
+            
+
+    </semantic-form--input>
+        <semantic-form-errors></semantic-form-errors>
+    </semantic-form-composite-input>
+
 </rs-text-annotation-type>
+
+
+
+<!--
+<semantic-form-composite-input
+            for='oaHasBody'
+            new-subject-template='body'
+            fields='[
+                {
+                    "id": "type",
+                    "xsdDatatype": "xsd:anyURI",
+                    "selectPattern": "SELECT $value WHERE { $subject rdf:type $value }",
+                    "insertPattern": "INSERT { $subject rdf:type $value } WHERE {}",
+                    "deletePattern": "DELETE { $subject rdf:type $value } WHERE {}"
+                },
+                {
+                    "id": "uri",
+                    "label": "Person",
+                    "description": "Person name",
+                    "xsdDatatype": "xsd:anyURI",
+                    "minOccurs": "1",
+                    "maxOccurs": "1",
+                    "selectPattern": "SELECT $value WHERE { $subject rdfs:label $value }",
+                    "insertPattern": "INSERT { $subject crm:P1_is_identified_by $value } WHERE {}",
+                    "deletePattern": "DELETE { $subject rdfs:label $value } WHERE {}",
+                    "autosuggestionPattern": "PREFIX wikidata: <http://www.researchspace.org/resource/system/service/custom#> SELECT ?value ?label WHERE { SERVICE <http://www.researchspace.org/resource/system/service/custom#wikidata> {
+                        ?results wikidata:hasTitles \"?token\";
+                        wikidata:hasId ?value
+                    } } LIMIT 10"
+                },
+                {
+                    "id": "label",
+                    "label": "Label",
+                    "description": "Label",
+                    "xsdDatatype": "rdf:langString",
+                    "minOccurs": "1",
+                    "maxOccurs": "1",
+                    "selectPattern": "SELECT $value WHERE { $subject rdfs:label $value }",
+                    "insertPattern": "INSERT { $subject rdfs:label $value } WHERE {}",
+                    "deletePattern": "DELETE { $subject rdfs:label $value } WHERE {}"
+                }
+                ]'>
+
+        <semantic-form-hidden-input for='type' default-value='https://yashiro.itatti.harvard.edu/annotation-schema/Entity'></semantic-form-hidden-input>
+
+        
+        <semantic-form-autocomplete-input for='uri'></semantic-form-autocomplete-input>
+
+        <semantic-form-hidden-input for='label' append-value='[[singleValueFromSelect "SELECT ?user WHERE { BIND(?__useruri__ as ?user) }" ]]'>
+        </semantic-form-hidden-input>
+            
+
+    </semantic-form--input>
+        <semantic-form-errors></semantic-form-errors>
+    </semantic-form-composite-input>
+
+  -->

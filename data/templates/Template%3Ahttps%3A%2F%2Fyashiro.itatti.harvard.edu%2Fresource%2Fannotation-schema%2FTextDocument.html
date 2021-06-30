@@ -197,7 +197,7 @@
             </mp-field-visualization>
 
             <!-- Document body + annotation sidebar -->
-            <semantic-context repository="default">
+            <semantic-context repository="ephedra">
               <rs-text-annotation-workspace
                 document-iri="[[this]]"
                 storage="yashiro"
@@ -265,8 +265,12 @@
                   </div>
                 </template>
 
-                [[> annotation-schema/Person ]] [[> annotation-schema/Place ]]
+                [[> annotation-schema/Person ]] 
+
                 [[> annotation-schema/Entity ]]
+
+                [[> annotation-schema/Place ]]
+               
               </rs-text-annotation-workspace>
             </semantic-context>
           </div>
