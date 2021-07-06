@@ -2,31 +2,33 @@
     label="Place"
     rdf-type='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'
     icon-url='/images/dpub/place.svg'>
-
+    
     <template id='annotation'>
 
-        <semantic-query query='
-            SELECT ?value ?label WHERE {
-                BIND({{iri}} as ?iri)
-                ?iri oa:hasBody ?body.
-                ?body rdf:value ?value.
-                ?value rdfs:label ?label
-            }' template='{{> show}}'>
+      <semantic-query query='
+        SELECT ?value ?label WHERE {
+          BIND({{iri}} as ?iri)
+          ?iri oa:hasBody ?body.
+          ?body rdf:value ?value.
+          ?value rdfs:label ?label
+        }' template='{{> show}}'
+      >
 
-            <template id='show'>
+        <template id='show'>
 
-                {{#> yashiro:AnnotationTemplate}}
-                <div class="yashiro-annotation-content concept">
-                    <span>Place:</span>
-                    <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
-                </div>
-                {{/ yashiro:AnnotationTemplate}}
+          {{#> yashiro:AnnotationTemplate}}
+          <div class="yashiro-annotation-content concept">
+            <span>Place:</span>
+            <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
+          </div>
+          {{/ yashiro:AnnotationTemplate}}
 
-            </template>
-        </semantic-query>
+        </template>
+      </semantic-query>
     </template>
-                
-    <semantic-form-composite-input
+    
+    <semantic-context repository='ephedra'>
+      <semantic-form-composite-input
         for='oaHasBody'
         new-subject-template='body'
         fields='[[fieldDefinitions 
@@ -34,13 +36,14 @@
             annotation_place="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_place"
         ]]'>
 
-
-        <semantic-form-hidden-input for='annotation_type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
+          <semantic-form-hidden-input for='annotation_type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
+      
+          <semantic-form-autocomplete-input for='annotation_place'></semantic-form-autocomplete-input>
+      
+          </semantic-form--input>
+          <semantic-form-errors></semantic-form-errors>
+      </semantic-form-composite-input> 
+    </semantic-context>
     
-        <semantic-form-autocomplete-input for='annotation_place'></semantic-form-autocomplete-input>
-    
-        </semantic-form--input>
-        <semantic-form-errors></semantic-form-errors>
-    </semantic-form-composite-input>
 
 </rs-text-annotation-type>

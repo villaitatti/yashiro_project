@@ -197,45 +197,45 @@
             </mp-field-visualization>
 
             <!-- Document body + annotation sidebar -->
-            
-              <rs-text-annotation-workspace
-                document-iri="[[this]]"
-                storage="yashiro"
-                annotation-subject-template="https://yashiro.itatti.harvard.edu/annotation/{{UUID}}"
-                fallback-template="{{> fallback-template}}"
-                annotation-tooltip="{{> annotation-tooltip}}"
-              >
-                <template id="fallback-template">
-                  {{#> Default:AnnotationTemplate}} Missing type for annotation
-                  <semantic-link iri="{{ iri.value }}"></semantic-link>
-                  {{/ Default:AnnotationTemplate}}
-                </template>
+              
+            <rs-text-annotation-workspace
+              document-iri="[[this]]"
+              storage="yashiro"
+              annotation-subject-template="https://yashiro.itatti.harvard.edu/annotation/{{UUID}}"
+              fallback-template="{{> fallback-template}}"
+              annotation-tooltip="{{> annotation-tooltip}}"
+            >
+              <template id="fallback-template">
+                {{#> Default:AnnotationTemplate}} Missing type for annotation
+                <semantic-link iri="{{ iri.value }}"></semantic-link>
+                {{/ Default:AnnotationTemplate}}
+              </template>
 
-                <template id="annotation-tooltip">
-                  <div>
-                    {{#if allowEdit}}
-                    <button
-                      name="edit"
-                      class="btn btn-xs btn-default"
-                      data-annotation="{{ iri.value }}"
-                      title="Edit annotation"
-                    >
-                      <span
-                        class="fa fa-pencil"
-                        style="pointer-events: none"
-                      ></span>
-                    </button>
-                    {{else}}
-                    <button
-                      name="edit"
-                      class="btn btn-xs btn-default"
-                      disabled
-                      title="Edit annotation"
-                    >
-                      <span
-                        class="fa fa-pencil"
-                        style="pointer-events: none"
-                      ></span>
+              <template id="annotation-tooltip">
+                <div>
+                  {{#if allowEdit}}
+                  <button
+                    name="edit"
+                    class="btn btn-xs btn-default"
+                    data-annotation="{{ iri.value }}"
+                    title="Edit annotation"
+                  >
+                    <span
+                      class="fa fa-pencil"
+                      style="pointer-events: none"
+                    ></span>
+                  </button>
+                  {{else}}
+                  <button
+                    name="edit"
+                    class="btn btn-xs btn-default"
+                    disabled
+                    title="Edit annotation"
+                  >
+                    <span
+                      class="fa fa-pencil"
+                      style="pointer-events: none"
+                    ></span>
                     </button>
                     {{/if}} {{#if allowDelete}}
                     <button
@@ -263,15 +263,14 @@
                     </button>
                     {{/if}}
                   </div>
-                </template>
+              </template>
+              
+              [[> annotation-schema/Person ]] 
+              
+              [[> annotation-schema/Place ]] 
 
-                [[> annotation-schema/Person ]] 
+            </rs-text-annotation-workspace>
 
-                [[> annotation-schema/Entity ]]
-
-                [[> annotation-schema/Place ]]
-               
-              </rs-text-annotation-workspace>
           </div>
         </mp-splitpane>
       </bs-row>
