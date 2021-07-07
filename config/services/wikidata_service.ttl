@@ -45,67 +45,101 @@ PREFIX ephedra: <http://www.researchspace.org/resource/system/ephedra#>
 			sp:predicate :hasId ;
 			sp:object :_id
 		]
+		[
+			sp:subject :_results ;
+			sp:predicate :hasLabels ;
+			sp:object :_labels
+		]
+		[
+			sp:subject :_results ;
+			sp:predicate :hasDescriptions ;
+			sp:object :_descriptions
+		]
 	) ;
+
 	spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_action ;
 		spl:valueType xsd:string;
-        spl:defaultValue "wbgetentities"
-    ] ;
-  	spin:constraint
+    spl:defaultValue "wbgetentities"
+  ] ;
+
+  spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_format ;
 		spl:valueType xsd:string ;
-        spl:defaultValue "json" 
-    ] ;
-  	spin:constraint
+    spl:defaultValue "json" 
+  ] ;
+
+  spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_sites ;
 		spl:valueType xsd:string ;
-        spl:defaultValue "enwiki"
-    ] ;
-  	spin:constraint
+    spl:defaultValue "enwiki"
+  ] ;
+
+  spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_titles ;
 		spl:valueType xsd:string
-    ] ;
-  	spin:constraint
+  ] ;
+
+  spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_props ;
 		spl:valueType xsd:string ;
-        spl:defaultValue "descriptions"
-    ] ;
-    spin:constraint
+    spl:defaultValue "descriptions|labels"
+  ] ;
+
+  spin:constraint
 	[
 		a spl:Argument ;
 		rdfs:comment "" ;
 		spl:predicate :_languages ;
 		spl:valueType xsd:string ;
-        spl:defaultValue "en"
-    ] ;
+    spl:defaultValue "en"
+  ] ;
+
+
 	spin:column
 	[
 		a spin:Column ;
 		rdfs:comment "Row index: will be assigned a random blank node" ;
 		spl:predicate :_results ;
 		spl:valueType rdfs:Resource;
-        ephedra:jsonPath "$.entities"
+    ephedra:jsonPath "$.entities[*]"
 	] ;
-	spin:column
-	[
+
+	spin:column [
 		a spin:Column ;
-		rdfs:comment "Geom" ;
+		rdfs:comment "" ;
+		spl:predicate :_descriptions ;
+		spl:valueType xsd:string;
+    ephedra:jsonPath "$.descriptions.en.value"
+	] ;
+
+  spin:column [
+		a spin:Column ;
+		rdfs:comment "" ;
+		spl:predicate :_labels ;
+		spl:valueType xsd:string;
+    ephedra:jsonPath "$.labels.en.value"
+	] ;
+
+	spin:column [
+		a spin:Column ;
+		rdfs:comment "" ;
 		spl:predicate :_id ;
 		spl:valueType xsd:string;
-        ephedra:jsonPath "$.*.id"
+    ephedra:jsonPath "$.id"
 	] .
