@@ -34,11 +34,13 @@
         fields='[[fieldDefinitions 
             annotation_type="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_type"
             annotation_place="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_place"
+            annotation_label="https://y.itatti.harvard.edu/container/fieldDefinitionContainer/annotation_label"
         ]]'>
 
           <semantic-form-hidden-input for='annotation_type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
       
           <semantic-form-autocomplete-input for='annotation_place'></semantic-form-autocomplete-input>
+          <semantic-form-hidden-input for='annotation_label' append-value='[[singleValueFromSelect "SELECT ?user WHERE { BIND(?__useruri__ as ?user) }" ]]'></semantic-form-hidden-input>
       
           </semantic-form--input>
           <semantic-form-errors></semantic-form-errors>
