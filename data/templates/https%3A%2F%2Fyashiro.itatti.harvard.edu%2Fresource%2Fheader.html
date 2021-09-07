@@ -14,6 +14,9 @@
   #yashiro-mainmenu:hover {
     background-color: rgba(117, 35, 38, 1);
   }
+  nav.navbar{
+    display: none !important;
+  }
 </style>
 
 <!-- navbar -->
@@ -26,7 +29,9 @@
     <div class="navbar-header">
       <!--a class="navbar-brand" href="#">Yashiro</a-->
       <div id="yashiro-logo">
-        <img src="/assets/images/yashiro_signature_white.png" />
+        <semantic-link iri='yashiro:Start'>
+          <img src="/assets/images/yashiro_signature_white.png" />
+    </semantic-link>
       </div>
       <button
         type="button"
@@ -47,21 +52,18 @@
           ></a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="/resource/yashiro:few-words-lino-pertile"
-                >A few words (Lino pertile)</a
-              >
+              <semantic-link iri="yashiro:few-words-lino-pertile">A few words (Lino pertile)
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:wakaba-yashiro-preface"
-                >Letter (Wakaba Yashiro)</a
-              >
+              <semantic-link iri="yashiro:wakaba-yashiro-preface">Letter (Wakaba Yashiro)
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:Presentation"
-                >Introduction (Jonathan K. Nelson)</a
-              >
+              <semantic-link iri="yashiro:Presentation">Introduction (Jonathan K. Nelson)
+          </semantic-link>
             </li>
-            <li><a href="/resource/yashiro:colophon">Colophon</a></li>
+            <li><semantic-link iri="yashiro:colophon">Colophon</semantic-link></li>
           </ul>
         </li>
         <li class="dropdown" class="dropdown">
@@ -70,29 +72,27 @@
           ></a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="/resource/yashiro:introduction"
-                >The Yashiro-Berenson Correspondence (Michiaki Koshikawa)</a
-              >
+              <semantic-link iri="yashiro:introduction">
+                The Yashiro-Berenson Correspondence (Michiaki Koshikawa)
+              </semantic-link>
             </li>
-            <li><a href="/resource/Letters">Letters</a></li>
+            <li><semantic-link iri="yashiro:Letters">Letters</semantic-link></li>
           </ul>
         </li>
-        <li><a href="/resource/yashiro:People">People</a></li>
-        <li><a href="/resource/yashiro:gallery">Images</a></li>
+        <li><semantic-link iri="yashiro:People">People</semantic-link></li>
+        <li><semantic-link iri="yashiro:gallery">Images</semantic-link></li>
         <li class="dropdown" class="dropdown" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
             >Texts by Yashiro <b class="caret"></b
           ></a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="/resource/yashiro:autobiography-table-of-contents"
-                >My Life in the Fine Arts (Tokyo: 1972)</a
-              >
+              <semantic-link iri="yashiro:autobiography-table-of-contents">My Life in the Fine Arts (Tokyo: 1972)
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:botticelli"
-                >Sandro Botticelli (London and Boston: 1925)</a
-              >
+              <semantic-link iri="yashiro:botticelli">Sandro Botticelli (London and Boston: 1925)
+          </semantic-link>
             </li>
           </ul>
         </li>
@@ -102,19 +102,16 @@
           ></a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="/resource/yashiro:john-hatcher"
-                >Hatcher, "Yashiro, Binyon and Waley"</a
-              >
+              <semantic-link iri="yashiro:john-hatcher">Hatcher, "Yashiro, Binyon and Waley"<
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:akira-takagishi"
-                >Takagishi, "A Japanese Historian of Western Art"</a
-              >
+              <semantic-link iri="yashiro:akira-takagishi">Takagishi, "A Japanese Historian of Western Art"<
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:yamanashi"
-                >Yamanashi, "Yashiro and the Institute of Art Research"</a
-              >
+              <semantic-link iri="yashiro:yamanashi">Yamanashi, "Yashiro and the Institute of Art Research"<
+          </semantic-link>
             </li>
           </ul>
         </li>
@@ -124,14 +121,12 @@
           ></a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="/resource/yashiro:michael-gorman"
-                >Gorman, "Berenson’s Appreciation of Japanese Art"</a
-              >
+              <semantic-link iri="yashiro:michael-gorman">Gorman, "Berenson’s Appreciation of Japanese Art"<
+          </semantic-link>
             </li>
             <li>
-              <a href="/resource/yashiro:carl-brandon-strehlke"
-                >Strehlke, "Bernard Berenson and Asian Art”</a
-              >
+              <semantic-link iri="yashiro:carl-brandon-strehlke">Strehlke, "Bernard Berenson and Asian Art”<
+          </semantic-link>
             </li>
           </ul>
         </li>
@@ -142,14 +137,39 @@
 
 <style>
   #yashiro-logo {
-    display: inline;
-    position: absolute;
-    left: 15px;
-    top: 20px;
+    position: relative;
+    display: flex;
+    left: 0;
+    width: 15vw;
+    height: 100%;
+    top: 0px;
+    justify-content: center;
+    align-items: center;
   }
 
   #yashiro-logo img {
-    width: 120px;
+    height: 48px;
+    object-fit: contain;
+  }
+  #yashiro-menu {
+    position: fixed;
+    left: 0;
+    top: 0%;
+    width: 100%;
+  }
+
+  #yashiro-menu .dropdown-menu{
+    background:#a23338;
+  }
+  #yashiro-menu 
+  .navbar-default .dropdown-menu>li>a:focus, .navbar-default .dropdown-menu>li>a:hover{
+    background: none;
+    filter: opacity(0.7)
+  }
+
+  #yashiro-menu li a {
+    color: white !important;
+    transition: 0.4s;
   }
 
   #yashiro-menu.navbar-default .navbar-brand {

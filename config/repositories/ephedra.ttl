@@ -23,6 +23,6 @@
               ephedra:delegateRepositoryID "wikidata";
               ephedra:serviceReference <http://www.researchspace.org/resource/system/service/custom#wikidata>
             ];
-          ephedra:defaultMember "yashiro"
+          ephedra:defaultMember "default"
         ]
     ] .
