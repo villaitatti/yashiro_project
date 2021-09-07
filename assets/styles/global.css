@@ -1,0 +1,155 @@
+@import "./footer.css";
+
+
+.system-spinner__icon {
+  color: #007bff;
+  font-size: 24px !important;
+  animation: fa-spin 0.7s steps(8) infinite !important;
+}
+.system-spinner__icon::before {
+  content: "\f0ac" !important;
+}
+
+.system-spinner__message {
+  display: none !important;
+}
+#template-content {
+  min-width: 90vw;
+}
+
+span.page__header-gripper-label {
+  font-size: 36px;
+}
+/* Table pagination */
+
+.pagination {
+  margin-bottom: 2vh !important ;
+  justify-content: center !important;
+  flex-wrap: wrap;
+}
+
+.griddle-footer .pagination > .active > a {
+  background: var(--color-dark) !important;
+}
+.griddle-footer .pagination > li > a,
+.griddle-footer .pagination > li > span,
+.pagination > li > a,
+.pagination > li > span {
+  color: var(--color-dark, #1d0a6e);
+  font-size: 12px;
+  line-height: 1.2;
+  text-decoration: none;
+  font-style: italic;
+  border: none;
+  background: #ebebeb;
+  font-size: 20px !important;
+  margin: 4px;
+  padding: 3px 8px;
+}
+.griddle-footer .pagination > li > a:focus,
+.griddle-footer .pagination > li > a:hover,
+.griddle-footer .pagination > li > span:focus,
+.griddle-footer .pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  background: #d2d2d2 !important;
+}
+
+.pagination > li.active,
+.pagination > li.active > a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.pagination > li > a {
+  font-size: 18px !important;
+}
+
+.rs-application .table > tbody > tr > td {
+  border-bottom-color: #ebebeb !important;
+  border-bottom: 0px !important;
+}
+
+ol.page-breadcrumb{
+  position: fixed;
+  top: 90px;
+  left: 0;
+}
+.component-page-toolbar {
+  top: 90px;
+}
+
+.modal-dialog {
+  width: 85%;
+}
+
+.modal-title {
+  text-align: center;
+  line-height: 3.2;
+}
+h4.modal-title{
+  color: #641015;
+}
+.overlay-lightbox__dialog .modal-content {
+  border: none !important;
+  box-shadow: none !important;
+  background: #e1e1e1b3 !important;
+  backdrop-filter: blur(2px);
+}
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+button.close {
+  opacity: 1;
+  color: #641015 !important;
+  font-size: 55px !important;
+}
+.modal-content .modal-header{
+  padding: 0px 22px 0px !important;
+}
+.modal-dialog.overlay-lightbox__dialog.modal-dialog {
+  top: 58px;
+}
+
+header{
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+header h1{
+  font-size: 36px;
+    color: #802126;
+}
+article p{
+  font-size: 16px;
+}
+article li {
+  font-size: 16px;
+
+}
+h1,h2,h3{
+  color: #641015;
+}
+
+em{
+  color: #641015 ;
+}
+a{
+  color: #641015
+}
+
+div#main-container {
+  display: block !important;
+  margin-top: 58px;
+}
+
