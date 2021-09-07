@@ -37,17 +37,18 @@
         </bs-col>
         <bs-col md="12">
           <semantic-query
-            query='SELECT DISTINCT ?letter ?letterLabel  (COUNT (?letter) as ?count) WHERE { 
+            query='SELECT DISTINCT ?letter ?letterLink ?letterLabel  (COUNT (?letter) as ?count) WHERE { 
                   ?subject crm:P1_is_identified_by ?letter.
                   ?activity crm:P16_used_specific_object ?letter.
                   ?letter rdfs:label ?label.
+                  ?letterLink crm:P1_is_identified_by ?letter.
                   ?activity crm:P01_has_domain ?sender_carry.
                   ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
                   ?sender_role rdfs:label "Sender".
                   ?sender_carry crm:P02_has_range <{{subject.value}}>
                   BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
                 }
-                  GROUP BY ?letter ?letterLabel
+                  GROUP BY ?letter ?letterLink ?letterLabel
                   LIMIT 1'
             template='{{> sent }}'>
              <template id='sent'>
@@ -55,40 +56,67 @@
                  <div>Sent {{bindings.0.count.value}} letter(s):</div>
                  <div style="display: flex; grid-gap: 15px;">
                     {{#each bindings}}
-                      <semantic-link iri="{{letter.value}}"  style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
+                      <semantic-link iri="{{letterLink.value}}"  style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                     {{/each}}
                  </div>
               {{/ifCond}}
              </template>
           </semantic-query>
-          <semantic-query
-          query='SELECT DISTINCT ?letter ?letterLabel (COUNT (?letter) as ?count) WHERE { 
-            ?subject crm:P1_is_identified_by ?letter.
-            ?activity crm:P16_used_specific_object ?letter.
-            ?letter rdfs:label ?label.
-            ?activity crm:P01_has_domain ?receiver_carry.
-            ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
-            ?receiver_role rdfs:label "Receiver".
-            ?receiver_carry crm:P02_has_range <{{subject.value}}>
-            BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-          }
-            GROUP BY ?letter ?letterLabel
-            LIMIT 1'
-          template='{{> receive }}'>
-           <template id='receive'>
-            {{#ifCond  bindings.0.count.value "!==" "0"}}
-             <div>Received {{bindings.0.count.value}} letter(s):</div>
-             <div style="display: flex; grid-gap: 15px;">
-                {{#each bindings}}
-                  <semantic-link iri="{{letter.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
-                {{/each}}
-             </div>
-            {{/ifCond}}
-           </template>
-        </semantic-query>
-    </bs-col>
+            <semantic-query
+            query='SELECT DISTINCT ?letter  ?letterLink ?letterLabel (COUNT (?letter) as ?count) WHERE { 
+              ?subject crm:P1_is_identified_by ?letter.
+              ?activity crm:P16_used_specific_object ?letter.
+              ?letter rdfs:label ?label.
+              ?letterLink crm:P1_is_identified_by ?letter.
+              ?activity crm:P01_has_domain ?receiver_carry.
+              ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+              ?receiver_role rdfs:label "Receiver".
+              ?receiver_carry crm:P02_has_range <{{subject.value}}>
+              BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
+            }
+              GROUP BY ?letterLink ?letter ?letterLabel
+              LIMIT 1'
+            template='{{> receive }}'>
+            <template id='receive'>
+              {{#ifCond  bindings.0.count.value "!==" "0"}}
+              <div>Received {{bindings.0.count.value}} letter(s):</div>
+              <div style="display: flex; grid-gap: 15px;">
+                  {{#each bindings}}
+                    <semantic-link iri="{{letterLink.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
+                  {{/each}}
+              </div>
+              {{/ifCond}}
+            </template>
+            </semantic-query>
+            <semantic-query
+            query='SELECT DISTINCT ?letter ?letterLabel (COUNT (?letter) as ?count) WHERE { 
+              ?a oa:hasTarget ?target.
+              ?target oa:hasSource ?letter. 
+              ?a oa:hasBody ?body.
+              ?body crm:P1_is_identified_by <{{subject.value}}>.
+              ?letter rdfs:label ?label.
+              BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
+            }
+              GROUP BY ?letter ?letterLabel
+              LIMIT 1'
+            template='{{> annotation }}'>
+            <template id='annotation'>
+              {{#ifCond  bindings.0.count.value "!==" "0"}}
+              <div>Mentioned in {{bindings.0.count.value}} letter(s):</div>
+              <div style="display: flex; grid-gap: 15px;">
+                  {{#each bindings}}
+                    <semantic-link iri="{{letter.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
+                  {{/each}}
+              </div>
+              {{/ifCond}}
+            </template>
+          </semantic-query>
+         </bs-col>
         </bs-row>
       </div>
     </bs-col>
   </div>
 </div>
+
+
+

@@ -27,7 +27,8 @@ a.mirador-osd-toggle-bottom-panel.hud-control {
 .super-thumbnail-container{
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 8px;
+  grid-gap: 10px;
+  margin-left: 5px;
 }
 
 .openseadragon-canvas {
@@ -40,10 +41,8 @@ img.super-thumbnail{
 }
 
 #imageContainer {
-  margin-top: 5px;
   height: 70vh;
   min-height: 500px;
-  margin-bottom: 50px;
 }
 
 .yashiro-editor-container .AnnotationSidebar--tabIcon {

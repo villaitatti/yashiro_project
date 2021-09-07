@@ -77,26 +77,6 @@
                     <template id="field">
                       <!-- Image -->
                       {{#ifCond this.label.0._value "===" "letter_images"}}
-                      <div id="thumbs" class="super-thumbnail-container">
-                        {{#each this.values}}
-                        {{log value}}
-                          <mp-event-trigger
-                          id='iiif-render'
-                          data='{"clickedImageIri":"{{value._value}}"}'
-                          type='Component.TemplateUpdate'
-                          targets='["mirador-target"]'>
-                          <div>
-                            <img class="super-thumbnail" src="{{value._value}}"/>
-                            <semantic-query
-                              query='SELECT ?index WHERE { 
-                                <{{value._value}}> <http://www.researchspace.org/ontology/image_index> ?index
-                                }LIMIT 1'
-                              >
-                            </semantic-query>
-                          </div>
-                          </mp-event-trigger>
-                        {{/each}} 
-                      </div>
                         {{#each this.values}}
                           {{#if @first}}
                           <mp-event-target-template-render
@@ -128,6 +108,26 @@
                           </mp-event-target-template-render>
                           {{/if}}
                         {{/each}} 
+                        <div id="thumbs" class="super-thumbnail-container">
+                          {{#each this.values}}
+                          {{log value}}
+                            <mp-event-trigger
+                            id='iiif-render'
+                            data='{"clickedImageIri":"{{value._value}}"}'
+                            type='Component.TemplateUpdate'
+                            targets='["mirador-target"]'>
+                            <div>
+                              <img class="super-thumbnail" src="{{value._value}}"/>
+                              <semantic-query
+                                query='SELECT ?index WHERE { 
+                                  <{{value._value}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                  }LIMIT 1'
+                                >
+                              </semantic-query>
+                            </div>
+                            </mp-event-trigger>
+                          {{/each}} 
+                        </div>
                       {{/ifCond}}
                     
                     </template>
@@ -319,7 +319,7 @@
 
 
   #metadataColumn {
-    padding-top: 15px;
+    padding-top: 0px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #6b2226;
