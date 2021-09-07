@@ -9,7 +9,7 @@
         SELECT ?value ?label WHERE {
           BIND({{iri}} as ?iri)
           ?iri oa:hasBody ?body.
-          ?body rdf:value ?value.
+          ?body crm:P1_is_identified_by ?value.
           ?value rdfs:label ?label
         }' template='{{> show}}'
       >
@@ -38,9 +38,13 @@
         ]]'>
 
           <semantic-form-hidden-input for='annotation_type' default-value='https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/Place'></semantic-form-hidden-input>
-      
+          <semantic-form-hidden-input for='annotation_label' default-value='{{label}}'></semantic-form-hidden-input>
           <semantic-form-autocomplete-input for='annotation_place'></semantic-form-autocomplete-input>
-          <semantic-form-hidden-input for='annotation_label' append-value='[[singleValueFromSelect "SELECT ?user WHERE { BIND(?__useruri__ as ?user) }" ]]'></semantic-form-hidden-input>
+
+          {{log this}}
+          {{log subject}}
+          {{log value}}
+          {{log label}}
       
           </semantic-form--input>
           <semantic-form-errors></semantic-form-errors>
