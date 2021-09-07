@@ -1,17 +1,17 @@
-[[> "https://yashiro.itatti.harvard.edu/resource/header"]]
+
 <!-- main container open -->
 <div id="main-container" class="container-fluid">
   <!-- /main container open -->
-
   <link href="/assets/styles/annotation.css" rel="stylesheet" />
 
   <div class="yashiro-editor-page">
     <div class="yashiro-editor-container">
       <bs-row id="editorRow">
-        <mp-splitpane min-size="35" dock="false">
+        <mp-splitpane default-open="true" persist-resize="false" min-size="35" dock="false">
           <div
             data-flex-layout="column top-stretch"
             style="
+              min-height: 100vh;
               border-right: 1px solid #a2a2a2;
               background: #6b2226;
               height: auto;
@@ -73,14 +73,13 @@
                         {{#each fields}} {{> field}} {{/each}}
                       </div>
                     </template>
-                    <template id="field">
 
+                    <template id="field">
                       <!-- Image -->
                       {{#ifCond this.label.0._value "===" "letter_images"}}
                       <div id="imageContainer">
                         {{#each this.values}}
                           {{#if @first}}
-                            <div data-flex-layout="row center-stretch" style="height: 800px;">
                               <rs-iiif-mirador
                                 image-or-region='{"{{value._value}}":["{{value._value}}"]}'
                                 image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
@@ -89,7 +88,6 @@
                                 iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                 >
                               </rs-iiif-mirador>
-                            </div>
                           {{/if}}
                         {{/each}} 
 
@@ -141,7 +139,8 @@
             
               <template id="metadata">
 
-                <div style="border-bottom: 2px solid black;" data-flex-layout="row stretch-stretch">
+                <div style="padding: 20px;
+                border-bottom: 1px solid #e2e2e2;" data-flex-layout="row stretch-stretch">
                   {{#each fields}} {{> field}} {{/each}}
                 </div>
 
@@ -294,10 +293,6 @@
     margin-top: -21px;
   }
 
-  #imageContainer {
-    margin-top: 20px;
-    margin-bottom: 50px;
-  }
 
   #metadataColumn {
     padding-top: 15px;

@@ -4,89 +4,109 @@
   width: auto;
 }
 
-#letterColumn{
-    margin-top: 50px;
+#letterColumn {
+  margin-top: 50px;
 }
 
-.yashiro-editor-container {
-    padding-top: 20px;
-    height: calc(100vh - 114px);
+
+a.change-layout.mainmenu-button ,
+.mirador-viewer .bottomPanel,
+a.mirador-osd-toggle-bottom-panel.hud-control {
+  display: none !important;
+}
+.mirador .researchspace-mirador.mirador-container .mirador-viewer,
+.mirador .researchspace-mirador.mirador-container .mirador-main-menu-bar,
+.mirador,
+#mirador {
+  border: none;
+  background: none !important;
+}
+.TextAnnotationWorkspace--component p{
+    font-size: 16px;
+}
+#imageContainer {
+  margin-top: 20px;
+  height: 70vh;
+  min-height: 500px;
+  margin-bottom: 50px;
 }
 
 .yashiro-editor-container .AnnotationSidebar--tabIcon {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 /* sidebar annotation */
 .yashiro-annotation-template {
-    padding: 10px;
-    display: flex;
-    justify-content: start;
-    overflow-x: hidden;
+  padding: 10px;
+  display: flex;
+  justify-content: start;
+  overflow-x: hidden;
 }
 
 .yashiro-annotation-template div.btn-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .yashiro-annotation-type-icon {
-    min-width: 30px;
-    min-height: 30px;
-    width: 30px;
-    height: 30px;
-    opacity: 0.5;
-    align-self: center;
-    margin-left: 10px;
-    margin-right: 20px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+  align-self: center;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 .yashiro-ctrl-buttons-style {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    opacity: 0.5;
-    margin: 0;
-    padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  opacity: 0.5;
+  margin: 0;
+  padding: 0;
 }
 .yashiro-ctrl-buttons-style:hover,
 .yashiro-ctrl-buttons-style:visited,
 .yashiro-ctrl-buttons-style:focus,
 .yashiro-ctrl-buttons-style:active,
 .yashiro-ctrl-buttons-style:active:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .yashiro-annotation-content {
-    align-self: center;
-    margin-right: 20px;
-    width: 100%;
+  align-self: center;
+  margin-right: 20px;
+  width: 100%;
 }
 .yashiro-annotation-content.concept {
-    display: flex;
+  display: flex;
 }
 .yashiro-annotation-content.concept span:first-child {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .yashiro-annotation-template div.btn-group {
-    opacity: 0;
-    margin-left: 20px;
+  opacity: 0;
+  margin-left: 20px;
 }
-.yashiro-editor-container .AnnotationSidebar--annotation.AnnotationSidebar--highlighted:hover
-.yashiro-annotation-template div.btn-group {
-    opacity: 1;
-    transition: opacity 350ms ease-in;
+.yashiro-editor-container
+  .AnnotationSidebar--annotation.AnnotationSidebar--highlighted:hover
+  .yashiro-annotation-template
+  div.btn-group {
+  opacity: 1;
+  transition: opacity 350ms ease-in;
 }
 
 /* modal annotation */
 .yashiro-modal-line-item {
-    padding: 10px;
+  padding: 10px;
 }
 
 .yashiro-modal-long-iri {
-    display: flex;
+  display: flex;
 }
