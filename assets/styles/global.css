@@ -27,6 +27,14 @@ span.page__header-gripper-label {
   justify-content: center !important;
   flex-wrap: wrap;
 }
+a{
+  transition: 0.4s;
+}
+a:hover {
+  text-decoration: underline;
+  color: #4e070c!important;
+  opacity: 0.7;
+}
 
 .griddle-footer .pagination > .active > a {
   background: var(--color-dark) !important;
@@ -137,6 +145,12 @@ article li {
   font-size: 16px;
 
 }
+  
+article a { 
+  text-decoration:underline;
+}
+
+
 h1,h2,h3{
   color: #641015;
 }
