@@ -77,33 +77,57 @@
                     <template id="field">
                       <!-- Image -->
                       {{#ifCond this.label.0._value "===" "letter_images"}}
-                      <div id="imageContainer">
+                      <div id="thumbs" class="super-thumbnail-container">
+                        {{#each this.values}}
+                        {{log value}}
+                          <mp-event-trigger
+                          id='iiif-render'
+                          data='{"clickedImageIri":"{{value._value}}"}'
+                          type='Component.TemplateUpdate'
+                          targets='["mirador-target"]'>
+                          <div >
+                            <img class="super-thumbnail" src="{{value._value}}"/>
+                            <semantic-query
+                              query='SELECT ?index WHERE { 
+                                <{{value._value}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                }LIMIT 1'
+                              >
+                            </semantic-query>
+                          </div>
+                          </mp-event-trigger>
+                        {{/each}} 
+                      </div>
                         {{#each this.values}}
                           {{#if @first}}
-                              <rs-iiif-mirador
-                                image-or-region='{"{{value._value}}":["{{value._value}}"]}'
-                                image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
-                                                BIND("image" AS ?type)
-                                                BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
-                                iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
-                                >
-                              </rs-iiif-mirador>
+                          <mp-event-target-template-render
+                           id='mirador-target'
+                           template='{{>miradorTemplate }}'>
+                           <template id='miradorTemplate'>
+                            <div id="imageContainer">
+                                {{#if clickedImageIri}}
+                                    <rs-iiif-mirador
+                                    image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
+                                    image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
+                                                    BIND("image" AS ?type)
+                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                    >
+                                  </rs-iiif-mirador>
+                                {{else}}
+                                    <rs-iiif-mirador
+                                    image-or-region='{"{{value._value}}":["{{value._value}}"]}'
+                                    image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
+                                                    BIND("image" AS ?type)
+                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                    >
+                                  </rs-iiif-mirador>
+                                {{/if}}
+                            </div>
+                           </template>
+                          </mp-event-target-template-render>
                           {{/if}}
                         {{/each}} 
-
-                        <!--
-                        <div data-flex-layout="row center-stretch">
-
-                          {{#each this.values}}
-                            {{#if @first}}
-                            {{else}}
-                              {{> image lbl=label val=value._value}}
-                            {{/if}}
-                          {{/each}} 
-                        </div>
-                        -->
-
-                      </div>
                       {{/ifCond}}
                     
                     </template>
