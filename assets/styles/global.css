@@ -1,4 +1,6 @@
 @import "./footer.css";
+@import "./card-letter.css";
+@import "./simpleSearch.css";
 
 .system-spinner__icon {
   color: #007bff;
@@ -36,8 +38,9 @@ a:hover {
 }
 
 .griddle-footer .pagination > .active > a {
-  background: var(--color-dark) !important;
+  background: #a23338 !important;
 }
+
 .griddle-footer .pagination > li > a,
 .griddle-footer .pagination > li > span,
 .pagination > li > a,
@@ -150,10 +153,14 @@ article a {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
   color: #641015;
 }
-
+#search-results .rs-grid-element a {
+  color: #641015 !important;
+}
 em {
   color: #641015;
 }
@@ -178,4 +185,8 @@ div#main-container {
 section.iframe-section {
   height: 67vh;
   min-height: 600px;
+}
+
+input{
+  filter: grayscale(1);
 }

@@ -1,0 +1,66 @@
+<div class="letter-card">
+  <div class="panel-body">
+    <bs-col md="2">
+      <div class="grid-demo">
+
+        {{#if pic}}
+
+          <rs-iiif-image-thumbnail
+            image-or-region="{{pic.value}}"
+            image-id-pattern='BIND( <{{pic.value}}> AS ?imageIRI)
+                            BIND("image" AS ?type)
+                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+            iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+            ></rs-iiif-image-thumbnail>
+
+        {{/if}}
+
+
+      </div>
+    </bs-col>
+    <bs-col md="10">
+      <div data-flex-layout="row md-column center-stretch">
+        <bs-row>
+          <bs-col md="12">
+            <h4>
+              <semantic-link iri="{{subject.value}}"
+                >{{title_label.value}}</semantic-link
+              >
+            </h4>
+          </bs-col>
+
+          <div>
+            <bs-col md="6">
+              <div class="grid-demo">
+                <b>Sent at: </b>{{dateTimeFormat date.value
+                "DD MMM YYYY"}}
+              </div>
+
+              <div class="grid-demo">
+                <b>In: </b>{{place_label.value}}
+              </div>
+            </bs-col>
+
+            <bs-col md="6">
+              <div class="grid-demo">
+                <b>From: </b>{{sender.value}}
+              </div>
+
+              <div class="grid-demo">
+                <b>To: </b>{{receiver.value}}
+              </div>
+            </bs-col>
+          </div>
+          <div>
+            <bs-col md="12">
+              <div class="grid-demo contentExcerpt">
+                <b>Content Excerpt: </b> {{
+                contentvalue.value }}
+              </div>
+            </bs-col>
+          </div>
+        </bs-row>
+      </div>
+    </bs-col>
+  </div>
+</div>
