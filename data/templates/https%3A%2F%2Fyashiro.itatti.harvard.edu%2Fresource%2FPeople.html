@@ -29,25 +29,16 @@
             <bs-tab event-key="1" title="table">
               <semantic-table
                 id="table-result"
-                query="
-                                          SELECT ?sub ?name ?subtitle ?filename WHERE {
-                                          ?sub a crm:E21_Person .
-
-                                          ?sub crm:P1_is_identified_by ?appellation.
-                                          ?appellation rdfs:label ?name.
-
-                                          $sub <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
-                                          ?subtitle_node rdf:value ?subtitle .
-
-                                          $sub crm:P138i_has_representation ?filename
-                                        }"
-                column-configuration='[
-                      {"cellTemplate": "<a href=\"{{ sub.value }}\"><img src={{filename.value }} class=\"personImg\" /></a>",  "displayName": "Photo"},
-                      {"variableName": "sub",    "displayName": "Person"},
-                      {"variableName": "subtitle",  "displayName": "Summary"}
-                    ]'
+                query='
+                SELECT DISTINCT ?subject WHERE {
+                    ?subject a crm:E21_Person .
+                }'
+              
+              tuple-template="{{>tupleTemplate}}"
               >
-                <!--                       {"variableName": "name", "displayName": "Name"}, -->
+                <template id="tupleTemplate">
+                  [[> yashiro:CardPerson]]
+                </template>
               </semantic-table>
             </bs-tab>
           </bs-tabs>
