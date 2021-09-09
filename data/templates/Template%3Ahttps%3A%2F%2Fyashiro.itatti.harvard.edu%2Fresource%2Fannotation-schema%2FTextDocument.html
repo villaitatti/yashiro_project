@@ -61,28 +61,117 @@
             >
               <div id="metadataColumn">
                 <div id="metadataContainer">
+                  <bs-tabs unmount-on-exit="true"  animation="false">
+                    <bs-tab event-key="1" title="English">
+                    <mp-field-visualization
+                      subject="[[this]]"
+                      fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
+                      template="{{> metadata}}"
+                    >
+                      <template id="metadata">
+                        <div>
+                          {{#each fields}} {{> field}} {{/each}}
+                        </div>
+                      </template>
 
-                  <!--  -->
-                  <mp-field-visualization
-                    subject="[[this]]"
-                    fields='[[fieldDefinitionsFromQuery "SELECT ?field WHERE { ?field <http://www.researchspace.org/resource/system/fields/domain> <https://yashiro.itatti.harvard.edu/resource/annotation-schema/TextDocument>}"]]'
-                    template="{{> metadata}}"
-                  >
-                    <template id="metadata">
-                      <div>
-                        {{#each fields}} {{> field}} {{/each}}
-                      </div>
-                    </template>
+                      <template id="field">
+                        <!-- Image -->
+                        {{#ifCond this.label.0._value "===" "letter_images"}}
+                          {{#each this.values}}
+                            {{#if @first}}
+                            <mp-event-target-template-render
+                            id='mirador-target'
+                            template='{{>miradorTemplate }}'>
+                            <template id='miradorTemplate'>
+                              <div id="imageContainer">
+                                  {{#if clickedImageIri}}
+                                    <h1>
+                                      <mp-label iri="[[this]]"></mp-label> 
+                                      Page 
+                                        <semantic-query
+                                        query='SELECT ?index WHERE { 
+                                          <{{clickedImageIri}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                          }LIMIT 1'
+                                        >
+                                      </semantic-query>
+                                    </h1>
+                                      <rs-iiif-mirador
+                                      image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
+                                      image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
+                                                      BIND("image" AS ?type)
+                                                      BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                      iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                      >
+                                    </rs-iiif-mirador>
+                                  {{else}}
+                                    <h1>
+                                      <mp-label iri="[[this]]"></mp-label> Page  1
+                                    </h1>
+                                    <rs-iiif-mirador
+                                    image-or-region='{"{{value._value}}":["{{value._value}}"]}'
+                                    image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
+                                                    BIND("image" AS ?type)
+                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                    >
+                                  </rs-iiif-mirador>
+                                  {{/if}}
+                              </div>
+                            </template>
+                            </mp-event-target-template-render>
+                            {{/if}}
+                          {{/each}} 
+                          <div id="thumbs" class="super-thumbnail-container">
+                            {{#each this.values}}
+                              <mp-event-trigger
+                              id='iiif-render'
+                              data='{"clickedImageIri":"{{value._value}}"}'
+                              type='Component.TemplateUpdate'
+                              targets='["mirador-target"]'>
+                              <div>
+                                <img class="super-thumbnail" src="{{value._value}}"/>
+                                <semantic-query
+                                  query='SELECT ?index WHERE { 
+                                    <{{value._value}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                    }LIMIT 1'
+                                  >
+                                </semantic-query>
+                              </div>
+                              </mp-event-trigger>
+                            {{/each}} 
+                          </div>
+                        {{/ifCond}}
+                      
+                      </template>
 
-                    <template id="field">
-                      <!-- Image -->
-                      {{#ifCond this.label.0._value "===" "letter_images"}}
-                        {{#each this.values}}
-                          {{#if @first}}
+                      <template id="image">
+                        <div class="grid-demo">
+                          <rs-iiif-image-thumbnail
+                            image-or-region="{{val}}"
+                            image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
+                                            BIND("image" AS ?type)
+                                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                            iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                            >
+                          </rs-iiif-image-thumbnail>
+                        </div>
+                      </template>
+
+                    </mp-field-visualization>
+                    </bs-tab>
+                    <bs-tab event-key="2" title="Japanese 日本">
+                      <semantic-query
+                        query='SELECT ?image WHERE { ??  crm:P1_is_identified_by ?letter.
+                          ?letter crm:P73_has_translation ?jpFiles. 
+                          ?jpFiles crm:P129i_is_subject_of ?image.
+                          ?image <http://www.researchspace.org/ontology/image_index> ?index
+                        }ORDER BY ASC (?index)'
+                        template='{{> japanesePdf }}'>
+                         <template id='japanesePdf'>
                           <mp-event-target-template-render
-                           id='mirador-target'
-                           template='{{>miradorTemplate }}'>
-                           <template id='miradorTemplate'>
+                          id='mirador-target'
+                          template='{{>miradorTemplate }}'>
+                          <template id='miradorTemplate'>
                             <div id="imageContainer">
                                 {{#if clickedImageIri}}
                                   <h1>
@@ -94,8 +183,9 @@
                                         }LIMIT 1'
                                       >
                                     </semantic-query>
+                                    日本
                                   </h1>
-                                    <rs-iiif-mirador
+                                   <rs-iiif-mirador
                                     image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
                                     image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
                                                     BIND("image" AS ?type)
@@ -105,11 +195,11 @@
                                   </rs-iiif-mirador>
                                 {{else}}
                                   <h1>
-                                    <mp-label iri="[[this]]"></mp-label> Page  1
+                                    <mp-label iri="[[this]]"></mp-label> Page  1 日本
                                   </h1>
                                   <rs-iiif-mirador
-                                  image-or-region='{"{{value._value}}":["{{value._value}}"]}'
-                                  image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
+                                  image-or-region='{"{{bindings.0.image.value}}":["{{bindings.0.image.value}}"]}'
+                                  image-id-pattern='BIND( <{{bindings.0.image.value}}> AS ?imageIRI)
                                                   BIND("image" AS ?type)
                                                   BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
                                   iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
@@ -117,47 +207,33 @@
                                 </rs-iiif-mirador>
                                 {{/if}}
                             </div>
-                           </template>
+                          </template>
                           </mp-event-target-template-render>
-                          {{/if}}
-                        {{/each}} 
-                        <div id="thumbs" class="super-thumbnail-container">
-                          {{#each this.values}}
-                            <mp-event-trigger
-                            id='iiif-render'
-                            data='{"clickedImageIri":"{{value._value}}"}'
-                            type='Component.TemplateUpdate'
-                            targets='["mirador-target"]'>
-                            <div>
-                              <img class="super-thumbnail" src="{{value._value}}"/>
-                              <semantic-query
-                                query='SELECT ?index WHERE { 
-                                  <{{value._value}}> <http://www.researchspace.org/ontology/image_index> ?index
-                                  }LIMIT 1'
-                                >
-                              </semantic-query>
-                            </div>
-                            </mp-event-trigger>
-                          {{/each}} 
-                        </div>
-                      {{/ifCond}}
-                    
-                    </template>
+                          
+                          <div id="thumbs" class="super-thumbnail-container">
+                            {{#each bindings}}
+                              <mp-event-trigger
+                              id='iiif-render'
+                              data='{"clickedImageIri":"{{image.value}}"}'
+                              type='Component.TemplateUpdate'
+                              targets='["mirador-target"]'>
+                              <div>
+                                <img class="super-thumbnail" src="{{image.value}}"/>
+                                <semantic-query
+                                  query='SELECT ?index WHERE { 
+                                    <{{image.value}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                    }LIMIT 1'
+                                  >
+                                </semantic-query>
+                              </div>
+                              </mp-event-trigger>
+                            {{/each}}
+                          </div>
+                         </template>
+                      </semantic-query>
 
-                    <template id="image">
-                      <div class="grid-demo">
-                        <rs-iiif-image-thumbnail
-                          image-or-region="{{val}}"
-                          image-id-pattern='BIND( <{{val}}> AS ?imageIRI)
-                                          BIND("image" AS ?type)
-                                          BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
-                          iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
-                          >
-                        </rs-iiif-image-thumbnail>
-                      </div>
-                    </template>
+                    </bs-tab>
 
-                  </mp-field-visualization>
                 </div>
               </div>
             </mp-splitpane-sidebar-open>

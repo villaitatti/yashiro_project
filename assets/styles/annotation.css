@@ -25,6 +25,12 @@ a.mirador-btn.mirador-icon-view-type {
 a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
   display: none !important;
 }
+.mirador-main-menu-bar{
+  display: none !important;
+}
+.mirador-viewer{
+  top: 0 !important;
+}
 
 i.fa.fa-lg.fa-fw.fa-expand {
   color: black;
