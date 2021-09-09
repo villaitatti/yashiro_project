@@ -7,7 +7,7 @@
   <div class="yashiro-editor-page">
     <div class="yashiro-editor-container">
       <bs-row id="editorRow">
-        <mp-splitpane default-open="true" persist-resize="false" min-size="35" dock="false">
+        <mp-splitpane default-open="true" default-size="35vw" persist-resize="false" min-size="35" dock="false">
           <div
             data-flex-layout="column top-stretch"
             style="
@@ -85,6 +85,16 @@
                            <template id='miradorTemplate'>
                             <div id="imageContainer">
                                 {{#if clickedImageIri}}
+                                  <h1>
+                                    <mp-label iri="[[this]]"></mp-label> 
+                                    Page 
+                                      <semantic-query
+                                      query='SELECT ?index WHERE { 
+                                        <{{clickedImageIri}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                        }LIMIT 1'
+                                      >
+                                    </semantic-query>
+                                  </h1>
                                     <rs-iiif-mirador
                                     image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
                                     image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
@@ -94,14 +104,17 @@
                                     >
                                   </rs-iiif-mirador>
                                 {{else}}
-                                    <rs-iiif-mirador
-                                    image-or-region='{"{{value._value}}":["{{value._value}}"]}'
-                                    image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
-                                                    BIND("image" AS ?type)
-                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
-                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
-                                    >
-                                  </rs-iiif-mirador>
+                                  <h1>
+                                    <mp-label iri="[[this]]"></mp-label> Page  1
+                                  </h1>
+                                  <rs-iiif-mirador
+                                  image-or-region='{"{{value._value}}":["{{value._value}}"]}'
+                                  image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
+                                                  BIND("image" AS ?type)
+                                                  BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                  iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                  >
+                                </rs-iiif-mirador>
                                 {{/if}}
                             </div>
                            </template>
@@ -110,7 +123,6 @@
                         {{/each}} 
                         <div id="thumbs" class="super-thumbnail-container">
                           {{#each this.values}}
-                          {{log value}}
                             <mp-event-trigger
                             id='iiif-render'
                             data='{"clickedImageIri":"{{value._value}}"}'
@@ -367,11 +379,7 @@
     font-size: 16px;
     line-height: 15px;
   }
-
-  /*
-  #metadataContainer .col-md-6, #metadataContainer .col-sm-4 {
-    padding-left: 0;
-    padding-right: 0;
+  div#main-container{
+    padding-bottom: 0 !important;
   }
-   */
 </style>

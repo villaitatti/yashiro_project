@@ -13,6 +13,33 @@ a.change-layout.mainmenu-button,
 a.mirador-osd-toggle-bottom-panel.hud-control {
   display: none !important;
 }
+
+a.mirador-btn.mirador-icon-window-menu {
+  display: none !important;
+}
+
+a.mirador-btn.mirador-icon-view-type {
+  display: none !important;
+}
+
+a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
+  display: none !important;
+}
+
+i.fa.fa-lg.fa-fw.fa-expand {
+  color: black;
+  position: relative;
+  bottom: 5px;
+}
+i.fa.fa-lg.fa-fw.fa-compress {
+  color: black !important;
+  position: relative;
+  bottom: 5px;
+}
+h3.window-manifest-title {
+  display: none;
+}
+
 .mirador .researchspace-mirador.mirador-container .mirador-viewer,
 .mirador .researchspace-mirador.mirador-container .mirador-main-menu-bar,
 .mirador,
@@ -27,7 +54,7 @@ a.mirador-osd-toggle-bottom-panel.hud-control {
 .super-thumbnail-container{
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 10px;
+  gap: 10px;
   margin-left: 5px;
 }
 
@@ -43,6 +70,15 @@ img.super-thumbnail{
 #imageContainer {
   height: 70vh;
   min-height: 500px;
+}
+#imageContainer > h1{
+  color: white !important;
+  position: absolute;
+  font-size: 24px;
+  top: 0;
+  left: 1vw;
+  display: flex;
+  gap: 5px;
 }
 
 .yashiro-editor-container .AnnotationSidebar--tabIcon {

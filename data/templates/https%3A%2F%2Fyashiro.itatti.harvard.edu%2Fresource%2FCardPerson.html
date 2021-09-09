@@ -53,7 +53,7 @@
              <template id='sent'>
                {{#ifCond  bindings.0.count.value "!==" "0"}}
                  <div>Sent {{bindings.0.count.value}} letter(s):</div>
-                 <div style="display: flex; grid-gap: 15px;">
+                 <div style="display: flex; gap: 15px;">
                     {{#each bindings}}
                       <semantic-link iri="{{letterLink.value}}"  style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                     {{/each}}
@@ -79,7 +79,7 @@
             <template id='receive'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
               <div>Received {{bindings.0.count.value}} letter(s):</div>
-              <div style="display: flex; grid-gap: 15px;">
+              <div style="display: flex; gap: 15px;">
                   {{#each bindings}}
                     <semantic-link iri="{{letterLink.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                   {{/each}}
@@ -102,7 +102,7 @@
             <template id='annotation'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
               <div>Mentioned in {{bindings.0.count.value}} letter(s):</div>
-              <div style="display: flex; grid-gap: 15px;">
+              <div style="display: flex; gap: 15px;">
                   {{#each bindings}}
                     <semantic-link iri="{{letter.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                   {{/each}}

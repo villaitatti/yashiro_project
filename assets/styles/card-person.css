@@ -16,7 +16,7 @@ display: none !important;
   color: black !important
 }
 #search-results .griddle-custom-row{
-  grid-gap: 30px;
+  gap: 30px;
 }
 
 .contentExcerpt{
