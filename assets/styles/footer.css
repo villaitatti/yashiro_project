@@ -11,10 +11,14 @@
 
 .footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background: #a23337;
   height: 100%;
   min-height: 185px;
+}
+#logout-Link + #login-Link {
+  display: none;
 }
 
 .footer *{
