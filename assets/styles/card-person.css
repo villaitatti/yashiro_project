@@ -12,6 +12,17 @@
 .person-card .system-spinner{
 display: none !important;
 }
+
+.person-card .letter-link{
+  font-weight: bold;
+  padding: 4px;
+  background: #a23338;
+  color: white !important;
+  border-radius: 10px;
+  min-width: 40px;
+  text-align: center;
+}
+
 .person-card * {
   color: black !important
 }
