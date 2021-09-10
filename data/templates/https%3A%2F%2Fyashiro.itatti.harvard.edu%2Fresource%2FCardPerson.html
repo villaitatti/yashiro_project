@@ -50,8 +50,11 @@
             template='{{> sent }}'>
              <template id='sent'>
                {{#ifCond  bindings.0.count.value "!==" "0"}}
-                 <div>Sent {{bindings.0.count.value}} letter(s):</div>
-                 <div style="display: flex; gap: 15px;">
+                 <div style="margin-top: 15px;">Sent {{bindings.0.count.value}} letter(s):</div>
+                 <div style="    display: flex;
+    flex-wrap: wrap;
+    max-width: 35vw;
+    gap: 8px;">
                     {{#each bindings}}
                       <semantic-link iri="{{letterLink.value}}"  style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                     {{/each}}
@@ -74,8 +77,11 @@
             template='{{> receive }}'>
             <template id='receive'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
-              <div>Received {{bindings.0.count.value}} letter(s):</div>
-              <div style="display: flex; gap: 15px;">
+              <div style="margin-top: 15px;">Received {{bindings.0.count.value}} letter(s):</div>
+              <div style="    display: flex;
+              flex-wrap: wrap;
+              max-width: 35vw;
+              gap: 8px;">
                   {{#each bindings}}
                     <semantic-link iri="{{letterLink.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                   {{/each}}
@@ -95,8 +101,11 @@
             template='{{> annotation }}'>
             <template id='annotation'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
-              <div>Mentioned in {{bindings.0.count.value}} letter(s):</div>
-              <div style="display: flex; gap: 15px;">
+              <div style="margin-top: 15px;">Mentioned in {{bindings.0.count.value}} letter(s):</div>
+              <div style="    display: flex;
+    flex-wrap: wrap;
+    max-width: 35vw;
+    gap: 8px;">
                   {{#each bindings}}
                     <semantic-link iri="{{letter.value}}" style="font-weight: bold;">{{letterLabel.value}}</semantic-link>
                   {{/each}}
