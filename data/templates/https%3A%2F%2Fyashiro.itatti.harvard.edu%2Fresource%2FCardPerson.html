@@ -4,7 +4,8 @@
       <div class="grid-demo">
         <semantic-query
           query='SELECT ?localImage WHERE {<{{subject.value}}> crm:P138i_has_representation ?filename.
-            BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImage) }LIMIT 1'
+            BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+            BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
           template='{{> thumbTemplate }}'>
            <template id='thumbTemplate'>
              {{#each bindings}}
@@ -19,7 +20,7 @@
         <bs-row>
           <bs-col md="12">
             <h2>
-              <mp-label iri="{{subject.value}}"></mp-label>
+              <semantic-link iri="{{subject.value}}"></semantic-link>
             </h2>
           </bs-col>
           <bs-col md="12">
@@ -114,7 +115,7 @@
             </template>
             </semantic-query>
             <semantic-query
-            query='SELECT DISTINCT ?letter ?letterLabel WHERE { 
+            query='SELECT DISTINCT ?mentioned ?letter ?letterLabel WHERE { 
               ?a oa:hasTarget ?target.
               ?target oa:hasSource ?letter. 
               ?a oa:hasBody ?body.
@@ -135,7 +136,7 @@
                   ?a oa:hasBody ?body.
                   ?body crm:P1_is_identified_by <{{bindings.0.mentioned.value}}>.
                   ?letter rdfs:label ?label.
-                }GROUP BY ?letter ?letterLabel'></semantic-query> letter(s):</div>
+                }'></semantic-query> letter(s):</div>
               <div style="    display: flex;
                 flex-wrap: wrap;
                 max-width: 35vw;

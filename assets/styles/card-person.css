@@ -43,3 +43,11 @@ div#search-results {
   max-height: 150px;
   max-width: 85px;
 }
+
+.person-card img{
+  max-width: 235px;
+}
+
+.person-card .subtitle{
+  font-size: 16px;
+}

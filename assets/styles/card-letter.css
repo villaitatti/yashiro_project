@@ -20,9 +20,7 @@ div#search-results {
   width: 80%;
   margin-left: 16%;
 }
-.letter-card .subtitle{
-  font-size: 16px;
-}
+
 .letter-card .image-thumbnail {
   width: 100%;
   max-width: 300px;
