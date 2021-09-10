@@ -46,9 +46,7 @@
                   ?sender_role rdfs:label "Sender".
                   ?sender_carry crm:P02_has_range <{{subject.value}}>
                   BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-                }
-                  GROUP BY ?letter ?letterLink ?letterLabel
-                  LIMIT 1'
+                }GROUP BY ?letter ?letterLink ?letterLabel'
             template='{{> sent }}'>
              <template id='sent'>
                {{#ifCond  bindings.0.count.value "!==" "0"}}
@@ -72,9 +70,7 @@
               ?receiver_role rdfs:label "Receiver".
               ?receiver_carry crm:P02_has_range <{{subject.value}}>
               BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-            }
-              GROUP BY ?letterLink ?letter ?letterLabel
-              LIMIT 1'
+            }GROUP BY ?letterLink ?letter ?letterLabel'
             template='{{> receive }}'>
             <template id='receive'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
@@ -95,9 +91,7 @@
               ?body crm:P1_is_identified_by <{{subject.value}}>.
               ?letter rdfs:label ?label.
               BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-            }
-              GROUP BY ?letter ?letterLabel
-              LIMIT 1'
+            }GROUP BY ?letter ?letterLabel'
             template='{{> annotation }}'>
             <template id='annotation'>
               {{#ifCond  bindings.0.count.value "!==" "0"}}
