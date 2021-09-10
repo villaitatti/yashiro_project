@@ -85,16 +85,6 @@
                             <template id='miradorTemplate'>
                               <div id="imageContainer">
                                   {{#if clickedImageIri}}
-                                    <h1>
-                                      <mp-label iri="[[this]]"></mp-label> 
-                                      Page 
-                                        <semantic-query
-                                        query='SELECT ?index WHERE { 
-                                          <{{clickedImageIri}}> <http://www.researchspace.org/ontology/image_index> ?index
-                                          }LIMIT 1'
-                                        >
-                                      </semantic-query>
-                                    </h1>
                                       <rs-iiif-mirador
                                       image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
                                       image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
@@ -103,10 +93,16 @@
                                       iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                       >
                                     </rs-iiif-mirador>
-                                  {{else}}
                                     <h1>
-                                      <mp-label iri="[[this]]"></mp-label> Page  1
+                                      Page 
+                                        <semantic-query
+                                        query='SELECT ?index WHERE { 
+                                          <{{clickedImageIri}}> <http://www.researchspace.org/ontology/image_index> ?index
+                                          }LIMIT 1'
+                                        >
+                                      </semantic-query>
                                     </h1>
+                                  {{else}}
                                     <rs-iiif-mirador
                                     image-or-region='{"{{value._value}}":["{{value._value}}"]}'
                                     image-id-pattern='BIND( <{{value._value}}> AS ?imageIRI)
@@ -115,6 +111,9 @@
                                     iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                     >
                                   </rs-iiif-mirador>
+                                  <h1>
+                                    Page  1
+                                 </h1>
                                   {{/if}}
                               </div>
                             </template>
@@ -174,8 +173,16 @@
                           <template id='miradorTemplate'>
                             <div id="imageContainer">
                                 {{#if clickedImageIri}}
+                               
+                                   <rs-iiif-mirador
+                                    image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
+                                    image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
+                                                    BIND("image" AS ?type)
+                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
+                                    >
+                                  </rs-iiif-mirador>
                                   <h1>
-                                    <mp-label iri="[[this]]"></mp-label> 
                                     Page 
                                       <semantic-query
                                       query='SELECT ?index WHERE { 
@@ -185,18 +192,7 @@
                                     </semantic-query>
                                     日本
                                   </h1>
-                                   <rs-iiif-mirador
-                                    image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
-                                    image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
-                                                    BIND("image" AS ?type)
-                                                    BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
-                                    iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
-                                    >
-                                  </rs-iiif-mirador>
                                 {{else}}
-                                  <h1>
-                                    <mp-label iri="[[this]]"></mp-label> Page  1 日本
-                                  </h1>
                                   <rs-iiif-mirador
                                   image-or-region='{"{{bindings.0.image.value}}":["{{bindings.0.image.value}}"]}'
                                   image-id-pattern='BIND( <{{bindings.0.image.value}}> AS ?imageIRI)
@@ -205,6 +201,9 @@
                                   iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                   >
                                 </rs-iiif-mirador>
+                                <h1>
+                                  Page  1 日本
+                               </h1>
                                 {{/if}}
                             </div>
                           </template>
