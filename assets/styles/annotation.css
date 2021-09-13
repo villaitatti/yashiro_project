@@ -163,3 +163,61 @@ img.super-thumbnail{
 .yashiro-modal-long-iri {
   display: flex;
 }
+
+div#text-annotation-editor-tooltip {
+  background: white;
+}
+
+button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
+  /* background: #a23338; */
+  color: #a23338 ;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  font-size: 19px;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 5px;
+  -moz-osx-font-smoothing: grayscale;
+}
+button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before{
+  content: "\f055";
+}
+span.TextAnnotationEditor--addAnnotationIcon {
+  display: none;
+}
+#text-annotation-editor-tooltip .popover-content button{
+  width: 40px !important;
+  font-size: 18px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid #dedede !important;
+  height: 40px !important;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.AnnotationEditForm--formContent {
+  min-width: 45vw;
+  height: fit-content;
+  padding-bottom: 45px;
+}
+
+.AnnotationEditForm--selectedFragment {
+  margin-top: 8px;
+  margin-bottom: 25px;
+}
+
+img.AnnotationEditForm--bodyTypeIcon {
+  height: 22px;
+  width: 22px;
+}
+
+.modal-dialog.overlay-modal__dialog.modal-dialog {
+  min-height: 80vh;
+  margin-top: 10vh;
+}
+
+button.btn.btn-default.AnnotationEditForm--cancelButton {
+  margin-left: 50px;
+}

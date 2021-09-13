@@ -31,12 +31,15 @@
 
         #main-container {
             background-image: url("/assets/images/yashiro_home.jpg");
-            background-size: contain;
             background-repeat: no-repeat;
+            background-size: 65vw;
+            background-position: 50% 15%;
             width: 100%;
             height: 100%;
             min-height: 700px;
+            width: 100%;
         }
+
         .container-fluid{
             min-height: 94vh;
             padding-bottom: 40px;
@@ -48,9 +51,10 @@
             padding-top: 50px;
             box-shadow: 0px 0px 9px 0px rgb(191 192 186);
             background-color: rgb(255 253 248);
-            margin-top: 120px;
+            margin-top: 20vh;
             filter: saturate(2.5);
-            width: 88%;
+            margin-left: 2vw;
+            width: 450px;
             letter-spacing: 0.4px;
         }
 
@@ -117,7 +121,20 @@
             box-shadow: 0 2px 4px #999;
             background: white;
         }
+        
+        @media(max-width:1000px){
+            #main-container {
+            background-size:100vw !important;
+            background-position: 7vw 92% !important;
+        }
 
+                #home-letter{
+                    width: 85vw !important;
+                    margin-top: 2vh !important;
+                    margin-left: 0 !important;
+
+                }
+        }
     </style>
     <!-- main container end -->
 </div>
