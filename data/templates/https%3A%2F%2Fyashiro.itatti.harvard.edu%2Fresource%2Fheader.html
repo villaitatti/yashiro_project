@@ -1,115 +1,90 @@
-<!-- header -->
-<div
-  id="yashiro-menu"
-  class="navbar navbar-default navbar-static-top"
-  role="navigation"
->
-  <div class="container">
-    <div class="navbar-header">
-      <!--a class="navbar-brand" href="#">Yashiro</a-->
-      <div id="yashiro-logo">
-        <semantic-link iri='yashiro:Start'>
-          <img src="/assets/images/yashiro_signature_white.png" />
-    </semantic-link>
-      </div>
-      <button
-        type="button"
-        class="navbar-toggle"
-        data-toggle="collapse"
-        data-target=".navbar-menubuilder"
-      >
-        <span class="sr-only">Toggle navigation</span
-        ><span class="icon-bar"></span><span class="icon-bar"></span
-        ><span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse navbar-menubuilder">
-      <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown" class="dropdown" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >About <b class="caret"></b
-          ></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <semantic-link iri="yashiro:few-words-lino-pertile">A few words (Lino pertile)
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:wakaba-yashiro-preface">Letter (Wakaba Yashiro)
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:Presentation">Introduction (Jonathan K. Nelson)
-          </semantic-link>
-            </li>
-            <li><semantic-link iri="yashiro:colophon">Colophon</semantic-link></li>
-          </ul>
-        </li>
-        <li class="dropdown" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >Letters <b class="caret"></b
-          ></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <semantic-link iri="yashiro:introduction">
-                The Yashiro-Berenson Correspondence (Michiaki Koshikawa)
-              </semantic-link>
-            </li>
-            <li><semantic-link iri="yashiro:Letters">Letters</semantic-link></li>
-          </ul>
-        </li>
-        <li><semantic-link iri="yashiro:People">People</semantic-link></li>
-        <li><semantic-link iri="yashiro:gallery">Images</semantic-link></li>
-        <li class="dropdown" class="dropdown" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >Texts by Yashiro <b class="caret"></b
-          ></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <semantic-link iri="yashiro:autobiography-table-of-contents">My Life in the Fine Arts (Tokyo: 1972)
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:botticelli">Sandro Botticelli (London and Boston: 1925)
-          </semantic-link>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown" class="dropdown" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >Studies on Yashiro <b class="caret"></b
-          ></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <semantic-link iri="yashiro:john-hatcher">Hatcher, "Yashiro, Binyon and Waley"
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:akira-takagishi">Takagishi, "A Japanese Historian of Western Art"
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:yamanashi">Yamanashi, "Yashiro and the Institute of Art Research"
-          </semantic-link>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >Berenson <b class="caret"></b
-          ></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <semantic-link iri="yashiro:michael-gorman">Gorman, "Berenson’s Appreciation of Japanese Art"
-          </semantic-link>
-            </li>
-            <li>
-              <semantic-link iri="yashiro:carl-brandon-strehlke">Strehlke, "Bernard Berenson and Asian Art"
-          </semantic-link>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
+<div id="artwork-header"  class="page__header-body" data-flex-layout="row top-left">
+      <h1 data-flex-layout="row center-left">
+         <mp-label iri="[[this]]" class='page__header-gripper-label'></mp-label>
+      </h1>
 </div>
+<style>
+  #artwork-header {
+  display: flex;
+  flex-direction: column;
+}
+.page__header-gripper-label{
+  margin-left: 1.5vw;
+}
+#artwork-header .titleCopy{
+  font-size: 0;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+#artwork-header .page__header-draggable-title:hover .titleCopy{
+  font-size: initial;
+}
+
+#artwork-header .sourceIcon {
+  height: 18px;
+  width: 18px;
+  padding: 2px;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 100%;
+  box-shadow: 1px 1px 3px 1px #e7e7e7;
+}
+
+#artwork-header .subtitleInfo {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  align-items: initial !important;
+}
+
+#artwork-header .lowercase {
+  text-transform: lowercase;
+}
+#artwork-header .page__header-body {
+  display: flex;
+  flex-direction: column;
+}
+#artwork-header .fc-label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 12px;
+}
+#artwork-header .original-link {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #c4c4c4;
+  padding: 5px;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+#artwork-header .original-link:hover {
+  background: #e7e7e7;
+}
+
+#artwork-header .original-link .text {
+  max-width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#artwork-header #fcLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#artwork-header #fcLabel img {
+  height: 18px;
+  margin: 1vh;
+}
+
+#artwork-header  .artwork-link{
+  color: #6b0200 !important;
+  font-size: 18px;
+  border-bottom: 1px solid;
+  margin-left: 6px;
+  border-radius: 0px !important;
+}
+
+</style>

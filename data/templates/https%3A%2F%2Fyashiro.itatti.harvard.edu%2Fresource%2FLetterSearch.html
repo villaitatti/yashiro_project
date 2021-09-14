@@ -1,0 +1,349 @@
+<link rel="stylesheet" href="../../assets/styles/template.css" />
+
+<!-- main container open -->
+<div id="simple-search">
+<div id="main-container" class="container">
+  <!-- /main container open -->
+
+  <link href="/assets/styles/annotation.css" rel="stylesheet" />
+
+  <semantic-search
+    categories='{
+        "<http://www.w3.org/2001/XMLSchema#date>": [{
+          "kind": "date-range",
+          "datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "queryPattern": "
+            {
+              $subject ?__relation__ ?date .
+              FILTER(?date <= ?__dateEndValue__) .
+              FILTER(?date >= ?__dateBeginValue__) .
+            }"
+          }]
+        }'
+    relations='{
+          "<mpp:letter_sender>": [
+            {
+              "kind": "resource",
+              "queryPattern": "
+                {
+                  ?subject crm:P1_is_identified_by ?letter.
+                  ?activity crm:P16_used_specific_object ?letter.
+                  ?activity crm:P01_has_domain ?carry_by_sender.
+                  ?carry_by_sender crm:P14.1_in_the_role_of ?sender_role.
+                  ?sender_role rdfs:label \"Sender\".
+                  ?carry_by_sender crm:P02_has_range ?__value__.
+                }"
+            }
+          ],
+          "<mpp:letter_receiver>": [
+            {
+              "kind": "resource",
+              "queryPattern": "
+                {
+                  ?subject crm:P1_is_identified_by ?letter.
+                  ?activity crm:P16_used_specific_object ?letter.
+                  ?activity crm:P01_has_domain ?receiver_carry.
+                  ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+                  ?receiver_role rdfs:label \"Receiver\".
+                  ?receiver_carry crm:P02_has_range ?__value__.
+                }"
+            }
+          ],
+          "<mpp:date>":[
+            {
+              "kind": "date-range",
+              "queryPattern": "
+              {
+                ?subject crm:P1_is_identified_by ?letter.
+                ?activity crm:P16_used_specific_object ?letter.
+
+                ?production crm:P9i_forms_part_of ?activity.
+                ?production a crm:E12_Production.
+
+                ?production crm:P4_has_time_span ?prod_ts.
+  				      ?prod_ts crm:P81a_end_of_the_begin ?literal
+                FILTER(?literal >= ?__dateBeginValue__) .
+                FILTER(?literal <= ?__dateEndValue__) .
+              }"
+            }
+          ],
+          "<mpp:place>":[
+            {
+              "kind": "resource",
+              "queryPattern": "
+              {
+                ?subject crm:P1_is_identified_by ?letter.
+                ?prod crm:P108_has_produced ?letter.
+  				      ?prod crm:P7_took_place_at ?__value__
+              }"
+            }
+          ]
+        }'
+    search-profile='{ 
+        "categories": [
+          {
+            "iri": "<https://www.researchspace.org/resource/TextDocuments>",
+            "label": "Letter",
+            "thumbnail": "../../../assets/images/user.svg"
+          },
+          {
+            "iri":"<crm:E21_Person>",
+            "label":"Person",
+            "thumbnail": "../../../assets/images/users.svg"
+          },
+          {
+            "iri": "<http://www.w3.org/2001/XMLSchema#date>",
+            "label": "Date",
+            "thumbnail": "../../../assets/images/calendar-full.svg"
+          },
+          {
+            "iri": "<crm:E53_Place>",
+            "label": "Place",
+            "thumbnail": "../../../assets/images/marker.svg"
+          }
+        ],
+        "relations": [
+          {
+            "iri": "<mpp:letter_sender>",
+            "label": "Sender",
+            "hasDomain": "<https://www.researchspace.org/resource/TextDocuments>",
+            "hasRange": "<crm:E21_Person>"
+          },
+          {
+            "iri": "<mpp:letter_receiver>",
+            "label": "Receiver",
+            "hasDomain": "<https://www.researchspace.org/resource/TextDocuments>",
+            "hasRange": "<crm:E21_Person>"
+          },
+          {
+            "iri": "<mpp:date>",
+            "label": "Year",
+            "hasDomain": "<https://www.researchspace.org/resource/TextDocuments>",
+            "hasRange": "<http://www.w3.org/2001/XMLSchema#date>"
+          },
+          {
+            "iri": "<mpp:place>",
+            "label": "Sending Place",
+            "hasDomain": "<https://www.researchspace.org/resource/TextDocuments>",
+            "hasRange": "<crm:E53_Place>" 
+          }
+        ]
+      }'
+  >
+    <semantic-search-query-constant
+      domain="<https://www.researchspace.org/resource/TextDocuments>"
+      query='
+        SELECT DISTINCT ?subject ?sender ?receiver ?date ?place_label ?contentvalue WHERE {
+          ?subject crm:P1_is_identified_by ?letter.
+          ?activity crm:P16_used_specific_object ?letter.
+
+          ?sending crm:P9i_forms_part_of ?activity.
+          ?sending crm:P7_took_place_at ?place.
+          ?place rdfs:label ?place_label.
+
+          ?sending crm:P4_has_time_span ?activity_timespan.
+          ?activity_timespan crm:P81a_end_of_the_begin ?date.
+          
+          ?activity crm:P01_has_domain ?sender_carry.
+          ?sender_carry crm:P02_has_range ?sender_person.
+          ?sender_person rdfs:label ?sender.
+          ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
+          ?sender_role rdfs:label "Sender".
+          
+          ?activity crm:P01_has_domain ?receiver_carry.
+          ?receiver_carry crm:P02_has_range ?receiver_person.
+          ?receiver_person rdfs:label ?receiver.
+          ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+          ?receiver_role rdfs:label "Receiver".
+
+          ?letter crm:P128_carries ?content.
+          ?content rdf:value ?contentvalue.
+          BIND(str(?contentvalue) as ?contentvalue).
+          [[queryBinds]]
+        }'
+    >
+    </semantic-search-query-constant>
+
+    <div  class="row">
+      <div class="col-sm-3" style="margin-top: 8px">
+        <h4>Filters</h4>
+        <semantic-search-facet open-by-default="true"></semantic-search-facet>
+      </div>
+      <div class="col-sm-9">
+        <semantic-search-result-holder>
+          <bs-tabs unmount-on-exit="true" id="search-results" animation="false">
+            <bs-tab event-key="2" title="Grid">
+              <semantic-search-result>
+                <semantic-search-facet-breadcrumbs></semantic-search-facet-breadcrumbs>
+                <semantic-table
+                  id="grid-result"
+                  number-of-displayed-rows="9"
+                  query='
+                          SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue ?pic WHERE {
+                          
+                            
+                                    ?subject crm:P1_is_identified_by ?letter.
+                                    ?activity crm:P16_used_specific_object ?letter.
+
+                                    optional{
+
+                                      ?pic a crm:E38_Image;
+                                        crm:P165i_is_incorporated_in ?letter;
+                                        rso:image_index 1
+                                    }
+                    
+                                    ?letter crm:P48_has_preferred_identifier ?title.
+                                    ?title rdfs:label ?title_label.
+                            
+            
+                                    ?sending crm:P9i_forms_part_of ?activity.
+                                    ?sending crm:P7_took_place_at ?place.
+                                    ?place rdfs:label ?place_label.
+            
+                                    ?sending crm:P4_has_time_span ?activity_timespan.
+                                    ?activity_timespan crm:P81a_end_of_the_begin ?date.
+            
+                                    ?activity crm:P01_has_domain ?sender_carry.
+                                    ?sender_carry crm:P02_has_range ?sender_person.
+                                    ?sender_person rdfs:label ?sender.
+                                    ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
+                                    ?sender_role rdfs:label "Sender".
+            
+                                    ?activity crm:P01_has_domain ?receiver_carry.
+                                    ?receiver_carry crm:P02_has_range ?receiver_person.
+                                    ?receiver_person rdfs:label ?receiver.
+                                    ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+                                    ?receiver_role rdfs:label "Receiver".
+
+                                    
+                                    ?letter crm:P128_carries ?content.
+                                    ?content rdf:value ?contentvalue.
+                                    BIND(str(?contentvalue) as ?contentvalue).
+                                                }
+                                ORDER BY ?date '
+                  tuple-template="{{>tupleTemplate}}"
+                  no-result-template="{{>noResult}}"
+                >
+                <template id="noResult">
+                  <div style="    background: #f4f4f4;
+                  padding: 15px;
+                  position: relative;
+                  left: -12vw;
+                  border-radius: 5px;"> 
+                  <h1>No letters found..</h1>
+                  <h2>Try changing category e.g. select "Received"</h2>
+                  <img style="height: 35vh; max-width: 50vw;" src="/assets/images/gallery/akio_fumi_niki_1956(2).jpg" />
+                  <h2 style="text-decoration: underline;">
+                    <semantic-link iri='yashiro:Letters'>
+                      View the complete list of letters
+                    </semantic-link>
+                  </h2>
+                  <h2 style="text-decoration: underline;">
+                    <semantic-link iri='yashiro:People'>
+                      View the complete list of people that sent, received or where
+                      mentioned in the letters
+                    </semantic-link>
+                  </h2>
+                </div>
+                </template>
+                  <template id="tupleTemplate">
+                    [[> yashiro:CardLetter]]
+                  </template>
+                </semantic-table>
+              </semantic-search-result>
+            </bs-tab>
+          </bs-tabs>
+        </semantic-search-result-holder>
+      </div>
+    </div>
+  </semantic-search>
+
+  <!-- main container end -->
+</div>
+</div>
+<!-- /main container end -->
+[[> "https://yashiro.itatti.harvard.edu/resource/footer"]]
+
+<style>
+  .show-facet-button {
+    display: none;
+  }
+#search-results  .nav-tabs {
+    display: none;
+  }
+  .facet,
+  .semantic-facet-holder {
+    width: 100% !important;
+    position: relative !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .facet__category-selector-holder li {
+    border: none !important;
+    margin: 5px !important;
+  }
+
+  .facet__relation__content__category-image {
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .facet__category-selector-holder .category-selector .category-item-holder {
+    min-width: 30px;
+  }
+
+  .FacetSlider--range input.form-control {
+    width: 60px !important;
+    min-width: 0 !important;
+    padding: 4px !important;
+  }
+  .facet__category-selector-holder {
+    display: none !important;
+  }
+
+  .facet__relation__header {
+    border: 1px solid rgb(221, 221, 221);
+    margin-top: 5px;
+  }
+
+  .facet__relation__header:hover,
+  .facet__relation__header:focus {
+    text-decoration: none;
+    color: #000000;
+    background-color: rgba(162, 51, 56, 0.06);
+  }
+
+  header h1 {
+    font-family: Georgia, Serif;
+  }
+
+  .rc-slider.FacetSlider--slider {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .facet__relation__values__filter {
+    margin: 0;
+  }
+
+  .contentExcerpt {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: fade;
+    height: 65px;
+    margin-top: 10px;
+  }
+
+  .contentExcerpt:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(transparent 50px, white);
+  }
+</style>

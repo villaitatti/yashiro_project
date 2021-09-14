@@ -1,0 +1,171 @@
+<div id="printableInfo" class="workAndProductionInfo">
+  <!-- Fields for Work (Artwork or photograph) -->
+
+  <div class="image-container">
+    <semantic-query
+      query='SELECT ?localImage WHERE {?? crm:P138i_has_representation ?filename.
+    BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+    BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
+      template="{{> imageTemplate }}"
+    >
+      <template id="imageTemplate">
+        <img class="thumbnailImage" src="{{bindings.0.localImage.value}}" />
+      </template>
+    </semantic-query>
+  </div>
+  <div class="workInfoContainer">
+    <!-- Fields for Production -->
+  <h1>Letters</h1>
+  <bs-tab-container
+    id="tab-container"
+    class="page__body-navtabs--borderless"
+    default-active-key="sent"
+  >
+    <div>
+      <bs-nav bs-style="tabs">
+        <bs-nav-item event-key="sent">Sent</bs-nav-item>
+        <bs-nav-item event-key="received">Received </bs-nav-item>
+        <bs-nav-item event-key="mentioned">Mentioned </bs-nav-item>
+      </bs-nav>
+      <bs-tab-content unmount-on-exit="true">
+        <bs-tab-pane event-key="sent">
+          [[> LetterSearch queryBinds='BIND(?? as ?sender_person)']]
+        </bs-tab-pane>
+        <bs-tab-pane event-key="received">
+          [[> LetterSearch queryBinds='BIND(?? as ?receiver_person)']]
+        </bs-tab-pane>
+        <bs-tab-pane event-key="mentioned">
+          [[> LetterSearch queryBinds='?a oa:hasTarget ?target. ?target oa:hasSource ?letter.   ?a oa:hasBody ?body. ?body crm:P1_is_identified_by ??.']]
+        </bs-tab-pane>
+      </bs-tab-content>
+    </div>
+  </bs-tab-container>
+
+  </div>
+</div>
+<style>
+  .workAndProductionInfo {
+    display: grid;
+    grid-template-columns: minmax(300px, 25%) 1fr;
+    margin-top: 20px;
+  }
+
+  .workAndProductionInfo .workInfoContainer {
+    max-width: 75vw;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 20px 1px #f8f8f8;
+  }
+
+  .workAndProductionInfo .productionInfoContainer {
+    width: 45%;
+    margin: 10px;
+    padding: 20px;
+    min-width: 500px;
+    box-shadow: 0px 0px 20px 1px #f8f8f8;
+  }
+  .workAndProductionInfo .image-container {
+    margin-left: 2vw;
+  }
+
+  .workAndProductionInfo .image-container img.thumbnailImage {
+    height: 50vh;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .rs-application .semantic-carousel > .slick-slider .slick-next:before,
+  .rs-application .semantic-carousel > .slick-slider > .slick-prev:before {
+    color: #000000 !important;
+  }
+
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+  }
+  .workAndProductionInfo ul.slick-dots {
+    top: unset;
+  }
+  .slick-prev {
+    top: 15px;
+    left: 0;
+  }
+  .slick-next {
+    top: 15px;
+    left: 30px;
+  }
+  .rs-application .semantic-carousel > .slick-slider .slick-next:before,
+  .rs-application .semantic-carousel > .slick-slider > .slick-prev:before {
+    color: #aa182b !important;
+    background: white;
+    border-radius: 100%;
+    opacity: 1;
+  }
+  .workAndProductionInfo
+    .image-container
+    img.thumbnailImage:hover
+    + .zoom-option.fa.fa-search-plus {
+    opacity: 1;
+  }
+  .zoom-option.fa.fa-search-plus:hover {
+    opacity: 1;
+  }
+  .zoom-option.fa.fa-search-plus {
+    cursor: pointer;
+    transition: 0.4s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 23px;
+    opacity: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, #00000080, #ffffff00);
+  }
+  .slick-slide {
+    position: relative;
+  }
+  ul.slick-dots {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .no-spinner * .system-spinner {
+    display: none !important;
+  }
+  .no-spinner .system-spinner {
+    display: none !important;
+  }
+
+  @media (max-width: 1480px) {
+    .workAndProductionInfo .productionInfoContainer {
+      width: 100% !important;
+    }
+  }
+  @media (max-width: 800px) {
+    .workAndProductionInfo{
+      display: flex;
+    flex-wrap: wrap;
+    }
+
+
+    .workAndProductionInfo .workInfoContainer {
+    max-width: 95vw;
+      min-width: unset !important;
+      margin: 0 !important;
+      padding: 10px !important;
+    }
+    .workAndProductionInfo .productionInfoContainer {
+      width: 100vw !important;
+      min-width: unset !important;
+      margin: 0 !important;
+      padding: 10px !important;
+    }
+  }
+</style>
