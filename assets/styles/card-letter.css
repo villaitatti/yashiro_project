@@ -1,5 +1,6 @@
 .letter-card{
   padding: 15px;
+  min-width: 50vw;
   height: fit-content;
   background: white;
   border-radius: 5px;

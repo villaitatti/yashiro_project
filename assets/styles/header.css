@@ -15,14 +15,8 @@ nav.navbar {
 }
 
 #yashiro-logo {
-  position: relative;
+  flex-direction: column;
   display: flex;
-  left: 0;
-  width: 15vw;
-  height: 100%;
-  top: 0px;
-  justify-content: center;
-  align-items: center;
 }
 
 #yashiro-logo img {
@@ -88,34 +82,17 @@ nav.navbar {
   background-color: #a23338;
 }
 
+.h2-title {
+  color: white;
+  font-size: 21px;
+  margin: 0 !important;
+}
 .h2-subtitle {
   color: white;
-  margin-left: 10px;
-  min-width: fit-content;
-  font-weight: 100; 
-  position: absolute; 
-  left: 27px;
-  min-width: fit-content; 
-  max-width: 87vw;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 !important;
 }
-
-@media(max-width:1600px){
-  .h2-subtitle {
-    left: unset !important;
-    right: 5vw !important;
-  }
-}
-@media(max-width:1350px){
-  .h2-subtitle {
-    position: fixed;
-    padding: 8px;
-    top: 6vh;
-    max-width: unset !important;
-    right: unset;
-    left: 0 !important;
-    text-align: center;
-    background: #a23338;
-    margin: 0;
-    width: 100vw;
-  }
+.navbar-header a:hover {
+  text-decoration: none !important;
 }
