@@ -1,5 +1,5 @@
 #yashiro-mainmenu {
-  height: 70px !important;
+  height: 100px !important;
   vertical-align: middle;
   border-radius: 0px 0px 10px 10px;
   box-shadow: inset 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
@@ -49,6 +49,7 @@ nav.navbar {
 }
 #yashiro-menu.navbar-default {
   font-size: 15px;
+  height: 100px;
   background-color: rgba(162, 51, 56, 1);
   border-bottom-width: 1px;
 }
@@ -82,17 +83,43 @@ nav.navbar {
   background-color: #a23338;
 }
 
+.logo-flex{
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic{
+  height: 75px;
+    float: left;
+    margin-right: 8px;
+}
+
 .h2-title {
   color: white;
-  font-size: 21px;
+  font-weight: 100;
+  font-size: 28px;
   margin: 0 !important;
 }
 .h2-subtitle {
   color: white;
   font-style: italic;
-  font-size: 14px;
+  font-weight: 100;
+  font-size: 18px;
   margin: 0 !important;
 }
 .navbar-header a:hover {
   text-decoration: none !important;
+}
+
+@media (max-width:1250px){
+  .profile-pic{
+    height: 70px;
+  }
+  
+  .h2-title {
+    font-size: 24px;
+  }
+  .h2-subtitle {
+    font-size: 14px;
+  }
 }

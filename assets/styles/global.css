@@ -18,6 +18,7 @@
 }
 #template-content {
   min-width: 90vw;
+  min-height: calc(92vh - 100px) !important;
 }
 
 span.page__header-gripper-label {
