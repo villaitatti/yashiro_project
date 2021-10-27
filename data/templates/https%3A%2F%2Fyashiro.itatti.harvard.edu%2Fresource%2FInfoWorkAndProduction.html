@@ -22,22 +22,7 @@
     default-active-key="sent"
   >
     <div>
-      <bs-nav bs-style="tabs">
-        <bs-nav-item event-key="sent">Sent</bs-nav-item>
-        <bs-nav-item event-key="received">Received </bs-nav-item>
-        <bs-nav-item event-key="mentioned">Mentioned </bs-nav-item>
-      </bs-nav>
-      <bs-tab-content unmount-on-exit="true">
-        <bs-tab-pane event-key="sent">
-          [[> LetterSearch queryBinds='BIND(?? as ?sender_person)']]
-        </bs-tab-pane>
-        <bs-tab-pane event-key="received">
-          [[> LetterSearch queryBinds='BIND(?? as ?receiver_person)']]
-        </bs-tab-pane>
-        <bs-tab-pane event-key="mentioned">
-          [[> LetterSearch queryBinds='?a oa:hasTarget ?target. ?target oa:hasSource ?letter.   ?a oa:hasBody ?body. ?body crm:P1_is_identified_by ??.']]
-        </bs-tab-pane>
-      </bs-tab-content>
+          [[> LetterSearch]]
     </div>
   </bs-tab-container>
 

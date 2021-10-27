@@ -27,3 +27,13 @@ div#search-results {
   width: 100%;
   max-width: 300px;
 }
+
+.role-text{
+    font-size: 16px;
+    font-weight: bold;
+    color: #a23338 !important;
+    text-align: right;
+}
+ a.no-underline:hover{
+  text-decoration: none !important;
+}

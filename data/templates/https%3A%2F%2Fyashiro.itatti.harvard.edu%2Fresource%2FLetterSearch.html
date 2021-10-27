@@ -133,33 +133,87 @@
     <semantic-search-query-constant
       domain="<https://www.researchspace.org/resource/TextDocuments>"
       query='
-        SELECT DISTINCT ?subject ?sender ?receiver ?date ?place_label ?contentvalue WHERE {
-          ?subject crm:P1_is_identified_by ?letter.
-          ?activity crm:P16_used_specific_object ?letter.
+        SELECT DISTINCT ?subject ?sender ?receiver ?date ?place_label ?contentvalue ?roleText WHERE {
 
-          ?sending crm:P9i_forms_part_of ?activity.
-          ?sending crm:P7_took_place_at ?place.
-          ?place rdfs:label ?place_label.
+          {    
+            ?subject crm:P1_is_identified_by ?letter.
+            ?activity crm:P16_used_specific_object ?letter.
+  
+            ?sending crm:P9i_forms_part_of ?activity.
+            ?sending crm:P7_took_place_at ?place.
+            ?place rdfs:label ?place_label.
+  
+            ?sending crm:P4_has_time_span ?activity_timespan.
+            ?activity_timespan crm:P81a_end_of_the_begin ?date.
+            
+            ?activity crm:P01_has_domain ?sender_carry.
+            ?sender_carry crm:P02_has_range ?sender_person.
+            ?sender_person rdfs:label ?sender.
+            ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
+            ?sender_role rdfs:label "Sender".
+            
+            ?activity crm:P01_has_domain ?receiver_carry.
+            ?receiver_carry crm:P02_has_range ?receiver_person.
+            ?receiver_person rdfs:label ?receiver.
+            ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+            ?receiver_role rdfs:label "Receiver".
 
-          ?sending crm:P4_has_time_span ?activity_timespan.
-          ?activity_timespan crm:P81a_end_of_the_begin ?date.
+            BIND(?? as ?sender_person)
+            BIND("Sender" as ?roleText)
+          }UNION{
+            ?subject crm:P1_is_identified_by ?letter.
+            ?activity crm:P16_used_specific_object ?letter.
+  
+            ?sending crm:P9i_forms_part_of ?activity.
+            ?sending crm:P7_took_place_at ?place.
+            ?place rdfs:label ?place_label.
+  
+            ?sending crm:P4_has_time_span ?activity_timespan.
+            ?activity_timespan crm:P81a_end_of_the_begin ?date.
+            
+            ?activity crm:P01_has_domain ?sender_carry.
+            ?sender_carry crm:P02_has_range ?sender_person.
+            ?sender_person rdfs:label ?sender.
+            ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
+            ?sender_role rdfs:label "Sender".
+            
+            ?activity crm:P01_has_domain ?receiver_carry.
+            ?receiver_carry crm:P02_has_range ?receiver_person.
+            ?receiver_person rdfs:label ?receiver.
+            ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+            ?receiver_role rdfs:label "Receiver".
+
+            ?a oa:hasTarget ?target. 
+            ?target oa:hasSource ?subject.   
+            ?a oa:hasBody ?body. 
+            ?body crm:P1_is_identified_by ??.  
+            BIND("Mentioned in" as ?roleText)
+          }UNION{
+            ?subject crm:P1_is_identified_by ?letter.
+            ?activity crm:P16_used_specific_object ?letter.
+  
+            ?sending crm:P9i_forms_part_of ?activity.
+            ?sending crm:P7_took_place_at ?place.
+            ?place rdfs:label ?place_label.
+  
+            ?sending crm:P4_has_time_span ?activity_timespan.
+            ?activity_timespan crm:P81a_end_of_the_begin ?date.
+            
+            ?activity crm:P01_has_domain ?sender_carry.
+            ?sender_carry crm:P02_has_range ?sender_person.
+            ?sender_person rdfs:label ?sender.
+            ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
+            ?sender_role rdfs:label "Sender".
+            
+            ?activity crm:P01_has_domain ?receiver_carry.
+            ?receiver_carry crm:P02_has_range ?receiver_person.
+            ?receiver_person rdfs:label ?receiver.
+            ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
+            ?receiver_role rdfs:label "Receiver".
+            BIND("Receiver" as ?roleText)
+            BIND(?? as ?receiver_person)  
+          } 
           
-          ?activity crm:P01_has_domain ?sender_carry.
-          ?sender_carry crm:P02_has_range ?sender_person.
-          ?sender_person rdfs:label ?sender.
-          ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
-          ?sender_role rdfs:label "Sender".
-          
-          ?activity crm:P01_has_domain ?receiver_carry.
-          ?receiver_carry crm:P02_has_range ?receiver_person.
-          ?receiver_person rdfs:label ?receiver.
-          ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
-          ?receiver_role rdfs:label "Receiver".
-
-          ?letter crm:P128_carries ?content.
-          ?content rdf:value ?contentvalue.
-          BIND(str(?contentvalue) as ?contentvalue).
-          [[queryBinds]]
         }'
     >
     </semantic-search-query-constant>
@@ -175,7 +229,7 @@
                   id="grid-result"
                   number-of-displayed-rows="9"
                   query='
-                          SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue ?pic WHERE {
+                          SELECT DISTINCT ?subject ?title_label ?sender ?receiver ?date ?place_label ?contentvalue ?pic  ?roleText  WHERE {
                           
                             
                                     ?subject crm:P1_is_identified_by ?letter.
@@ -243,7 +297,9 @@
                 </div>
                 </template>
                   <template id="tupleTemplate">
-                    [[> yashiro:CardLetter]]
+                    <div>
+                      [[> yashiro:CardLetter]]
+                    </div>
                   </template>
                 </semantic-table>
               </semantic-search-result>

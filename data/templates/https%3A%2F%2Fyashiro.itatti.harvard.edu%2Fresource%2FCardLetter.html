@@ -1,6 +1,11 @@
-<semantic-link iri="{{subject.value}}"
+<semantic-link class="no-underline" iri="{{subject.value}}"
 >
 <div class="letter-card">
+  {{#if roleText}}
+  <div class="role-text">
+    {{roleText.value}}
+  </div>
+  {{/if}}
   <div class="panel-body">
     <bs-col sm="12" md="3">
       <div class="grid-demo">
