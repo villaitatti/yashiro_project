@@ -4,8 +4,18 @@
   width: auto;
 }
 
+.annotation-subtitle {
+  text-align: left;
+  color:black !important;
+  padding: 15px;
+}
+
 #letterColumn {
   margin-top: 20px;
+}
+
+.person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
+  display: none !important;
 }
 
 a.change-layout.mainmenu-button,
@@ -25,10 +35,10 @@ a.mirador-btn.mirador-icon-view-type {
 a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
   display: none !important;
 }
-.mirador-main-menu-bar{
+.mirador-main-menu-bar {
   display: none !important;
 }
-.mirador-viewer{
+.mirador-viewer {
   top: 0 !important;
 }
 
@@ -57,7 +67,7 @@ h3.window-manifest-title {
   font-size: 16px;
 }
 
-.super-thumbnail-container{
+.super-thumbnail-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -68,7 +78,7 @@ h3.window-manifest-title {
   background: black !important;
 }
 
-img.super-thumbnail{
+img.super-thumbnail {
   height: 90px;
   cursor: pointer;
 }
@@ -76,8 +86,8 @@ img.super-thumbnail{
 #imageContainer .mirador {
   height: 64vh !important;
   min-height: 500px;
-} 
-#imageContainer > h1{
+}
+#imageContainer > h1 {
   color: white !important;
   font-size: 24px;
   display: flex;
@@ -92,6 +102,7 @@ img.super-thumbnail{
 .yashiro-annotation-template {
   padding: 10px;
   display: flex;
+  gap: 5px;
   justify-content: start;
   overflow-x: hidden;
 }
@@ -131,16 +142,20 @@ img.super-thumbnail{
 
 .yashiro-annotation-content {
   align-self: center;
-  margin-right: 20px;
   width: 100%;
 }
+.yashiro-annotation-content.concept button[name="edit"] {
+  margin-right: 15px;
+}
+
 .yashiro-annotation-content.concept {
   display: flex;
+  align-items: center;
 }
+
 .yashiro-annotation-content.concept span:first-child {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
 
 .yashiro-annotation-template div.btn-group {
@@ -170,7 +185,7 @@ div#text-annotation-editor-tooltip {
 
 button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
   /* background: #a23338; */
-  color: #a23338 ;
+  color: #a23338;
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -180,13 +195,13 @@ button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
   border-radius: 5px;
   -moz-osx-font-smoothing: grayscale;
 }
-button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before{
+button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before {
   content: "\f055";
 }
 span.TextAnnotationEditor--addAnnotationIcon {
   display: none;
 }
-#text-annotation-editor-tooltip .popover-content button{
+#text-annotation-editor-tooltip .popover-content button {
   width: 40px !important;
   font-size: 18px;
   border-radius: 5px;

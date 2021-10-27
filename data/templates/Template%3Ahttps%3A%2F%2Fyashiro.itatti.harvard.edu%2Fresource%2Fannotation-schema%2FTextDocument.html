@@ -374,6 +374,44 @@
 
               <template id="annotation-tooltip">
                 <div>
+                  <semantic-query 
+                  query='SELECT ?value ?label WHERE {
+                      BIND({{iri}} as ?iri)
+                      ?iri oa:hasBody ?body.
+                      ?body crm:P1_is_identified_by ?value.
+                      ?value rdfs:label ?label 
+                  }' template='{{> show}}'>
+                  <template id='show'>
+                    <div class="yashiro-annotation-content concept">
+                      <semantic-query
+                      query='SELECT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
+                        BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+                        BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
+                      template='{{> thumbTemplate }}'>
+                      <template id='thumbTemplate'>
+                        {{#each bindings}}
+                          <img class="person-img" height="60px" src="{{localImage.value}}"/>
+                        {{/each}}
+                      </template>
+                    </semantic-query>
+                          <span>Person:</span>
+                          <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
+                      
+                      </div>
+                      <div style="display: flex; align-items: center;">
+                        <semantic-query
+                              query='SELECT DISTINCT ?info WHERE { <{{bindings.0.value.value}}>  <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
+                              ?subtitle_node rdf:value ?info .}LIMIT 10'
+                              template='{{> documentedIn }}'>
+                          <template id='documentedIn'>
+                            {{#each bindings}}
+                              <div   class="annotation-subtitle">{{info.value}}</div>
+                            {{/each}}
+                          </template>
+                        </semantic-query>
+                      </div>
+                  </template>
+              </semantic-query>
                   {{#if allowEdit}}
                   <button
                     name="edit"
@@ -386,35 +424,12 @@
                       style="pointer-events: none"
                     ></span>
                   </button>
-                  {{else}}
-                  <button
-                    name="edit"
-                    class="btn btn-xs btn-default"
-                    disabled
-                    title="Edit annotation"
-                  >
-                    <span
-                      class="fa fa-pencil"
-                      style="pointer-events: none"
-                    ></span>
-                    </button>
-                    {{/if}} {{#if allowDelete}}
+                    {{/if}} 
+                    {{#if allowDelete}}
                     <button
                       name="delete"
                       class="btn btn-xs btn-default"
                       data-annotation="{{ iri.value }}"
-                      title="Delete annotation"
-                    >
-                      <span
-                        class="fa fa-trash"
-                        style="pointer-events: none"
-                      ></span>
-                    </button>
-                    {{else}}
-                    <button
-                      name="delete"
-                      class="btn btn-xs btn-default"
-                      disabled
                       title="Delete annotation"
                     >
                       <span
