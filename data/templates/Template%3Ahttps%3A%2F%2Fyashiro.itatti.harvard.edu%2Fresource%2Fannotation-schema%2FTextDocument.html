@@ -240,7 +240,58 @@
           
           
           <div id="letterColumn">
-
+            
+            <semantic-query
+              query='
+              SELECT DISTINCT ?prevLetter ?nextLetter  WHERE {
+                OPTIONAL{
+                 ?? rdfs:label ?label
+                 BIND(xsd:integer(REPLACE(?label,"Letter_00","")) as ?letterNumber)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_00",str(?letterNumber+1)) as ?nextLetter)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_00",str(?letterNumber-1)) as ?prevLetter)
+               }
+               
+               OPTIONAL{
+                 ?? rdfs:label ?label
+                 BIND(xsd:integer(REPLACE(?label,"Letter_0","")) as ?letterNumber)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_0",str(?letterNumber+1)) as ?nextLetter)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_0",str(?letterNumber-1)) as ?prevLetter)
+               }
+               
+              OPTIONAL {    
+                 ?? rdfs:label ?label
+                 BIND(xsd:integer(REPLACE(?label,"Letter_","")) as ?letterNumber)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_",str(?letterNumber+1)) as ?nextLetter)
+                 BIND(CONCAT("https://yashiro.itatti.harvard.edu/resource/document/Letter_",str(?letterNumber-1)) as ?prevLetter)
+               }
+               
+             }LIMIT 1
+              '
+              template='{{> pagination }}'>
+               <template id='pagination'>
+                 {{#each bindings}}
+                <div class="pagination-letters">
+                {{#ifCond prevLetter.value "!==" "https://yashiro.itatti.harvard.edu/resource/document/Letter_000"}}
+                 <semantic-link iri="{{prevLetter.value}}">
+                  <h2>
+                    <i class="fa fa-arrow-left"></i>
+                      Previous letter
+                    </h2>
+                  </semantic-link>
+                {{/ifCond}}
+                {{#ifCond nextLetter.value "!==" "https://yashiro.itatti.harvard.edu/resource/document/Letter_116"}}
+                  <semantic-link iri="{{nextLetter.value}}">
+                   <h2>
+                     Next letter
+                     <i class="fa fa-arrow-right"></i>
+                    </h2>
+                  </semantic-link>
+                {{/ifCond}}
+                </div>
+                {{/each}}
+               </template>
+            </semantic-query>
+          
             <!-- LETTER METADATA -->
             <mp-field-visualization
               subject="[[this]]"
@@ -456,5 +507,9 @@
   }
   div#main-container{
     padding-bottom: 0 !important;
+  }
+  .pagination-letters{
+    display: flex;
+    gap: 50px;
   }
 </style>
