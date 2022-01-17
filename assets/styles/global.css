@@ -4,6 +4,11 @@
 @import "./card-person.css";
 @import "./simpleSearch.css";
 
+
+
+.AnnotationSidebar--annotationList > div > div{
+  flex-direction: row !important;
+}
 .system-spinner__icon {
   color: #007bff;
   font-size: 24px !important;

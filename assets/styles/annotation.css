@@ -13,6 +13,9 @@
 #letterColumn {
   margin-top: 20px;
 }
+.person-img {
+  border-right: 10px solid rgb(249, 105, 14);
+}
 
 .person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
@@ -64,7 +67,7 @@ h3.window-manifest-title {
   background: none !important;
 }
 .TextAnnotationWorkspace--component p {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .super-thumbnail-container {
