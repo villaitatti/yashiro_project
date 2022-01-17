@@ -16,11 +16,14 @@
       >
 
         <template id='show'>
+          <div class="yashiro-annotation-content concept">
+             
+          <img class="place-img" height="60px" src="/images/dpub/place.svg"/>
 
           {{#> yashiro:AnnotationTemplate}}
           <div class="yashiro-annotation-content concept">
             <span>Place:</span>
-            <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
+            <semantic-link iri="{{bindings.0.value.value}}"> {{bindings.0.label.value}}</semantic-link>
           </div>
           {{/ yashiro:AnnotationTemplate}}
 
