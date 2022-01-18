@@ -17,8 +17,21 @@
 
         <template id='show'>
           <div class="yashiro-annotation-content concept">
-             
-          <img class="place-img" height="60px" src="/images/dpub/place.svg"/>
+              <div class="yashiro-annotation-content concept">
+                <semantic-query
+                query='SELECT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
+                  BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+                  BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
+                template='{{> thumbTemplate }}'
+                no-result-template='{{> thumbTemplate }}'
+                >
+                <template id='thumbTemplate'>
+                 
+                    <img class="person-img" height="60px" src="/images/dpub/place.svg"/>
+                  
+                </template>
+              </semantic-query>
+         
 
           {{#> yashiro:AnnotationTemplate}}
           
