@@ -379,9 +379,15 @@
                       BIND({{iri}} as ?iri)
                       ?iri oa:hasBody ?body.
                       ?body crm:P1_is_identified_by ?value.
-                      ?value rdfs:label ?label 
+                      {
+                        ?value rdfs:label ?label.
+                      } UNION {
+                        ?body rdfs:label ?label.
+                      }
+                       
                   }' template='{{> show}}'>
                   <template id='show'>
+                    <!-- {{#ifCond bindings "!==" null}} -->
                     <div class="yashiro-annotation-content concept">
                       <semantic-query
                       query='SELECT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
@@ -398,6 +404,7 @@
                           <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
                       
                       </div>
+                     
                       <div style="display: flex; align-items: center;">
                         <semantic-query
                               query='SELECT DISTINCT ?info WHERE { <{{bindings.0.value.value}}>  <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
@@ -410,6 +417,9 @@
                           </template>
                         </semantic-query>
                       </div>
+                       <!-- {{else}}
+                      <h2>hahahah</h2>
+                      {{/ifCond}} -->
                   </template>
               </semantic-query>
                   {{#if allowEdit}}
