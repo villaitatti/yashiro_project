@@ -14,10 +14,18 @@
   margin-top: 20px;
 }
 .person-img {
+   margin-right: 5px;
   border-right: 10px solid rgb(249, 105, 14);
+}
+.place-img {
+  margin-right: 5px;
+  border-right: 10px solid rgb(38, 166, 91);
 }
 
 .person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
+  display: none !important;
+}
+.place-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
 }
 
@@ -154,6 +162,7 @@ img.super-thumbnail {
 .yashiro-annotation-content.concept {
   display: flex;
   align-items: center;
+  margin-bottom:5px;
 }
 
 .yashiro-annotation-content.concept span:first-child {

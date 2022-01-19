@@ -390,19 +390,29 @@
                     <!-- {{#ifCond bindings "!==" null}} -->
                     <div class="yashiro-annotation-content concept">
                       <semantic-query
-                      query='SELECT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
-                        BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
-                        BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
+                      query=' SELECT ?localImage WHERE {
+                            {
+                              <{{bindings.0.value.value}}>   crm:P138i_has_representation ?filename.
+                              BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+                              BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage)
+                          }union{
+                              FILTER NOT EXISTS { <{{bindings.0.value.value}}>   crm:P138i_has_representation ?filename.}
+                            VALUES (?localImage) { ("/images/dpub/place.svg") }
+                            }}LIMIT 1
+
+                        '
                       template='{{> thumbTemplate }}'>
                       <template id='thumbTemplate'>
                         {{#each bindings}}
+                        {{#ifCond localImage.value "===" "/images/dpub/place.svg"}}
+                           <img class="place-img" height="60px" src="{{localImage.value}}"/>
+                        {{else}}
                           <img class="person-img" height="60px" src="{{localImage.value}}"/>
+                          {{/ifCond}}
                         {{/each}}
                       </template>
                     </semantic-query>
-                          <span>Person:</span>
                           <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
-                      
                       </div>
                      
                       <div style="display: flex; align-items: center;">
