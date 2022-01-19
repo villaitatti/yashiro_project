@@ -7,7 +7,7 @@
     <template id='annotation'>
 
       <semantic-query query='
-        SELECT ?value ?label WHERE {
+        SELECT DISTINCT ?value ?label WHERE {
           BIND({{iri}} as ?iri)
           ?iri oa:hasBody ?body.
           ?body crm:P1_is_identified_by ?value.
@@ -16,10 +16,16 @@
       >
 
         <template id='show'>
-          <div class="yashiro-annotation-content concept">
+            <style>
+
+              .yashiro-annotation-content.concept{
+                margin-bottom: 0px !important;
+              }
+            </style>
+
               <div class="yashiro-annotation-content concept">
                 <semantic-query
-                query='SELECT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
+                query='SELECT  DISTINCT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.
                   BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
                   BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
                 template='{{> thumbTemplate }}'
@@ -37,9 +43,9 @@
           
             <span>Place:</span>
             <semantic-link iri="{{bindings.0.value.value}}"> {{bindings.0.label.value}}</semantic-link>
-          </div>
+         
           {{/ yashiro:AnnotationTemplate}}
-
+               </div>
         </template>
       </semantic-query>
     </template>
