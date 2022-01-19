@@ -14,13 +14,6 @@
                 ?value rdfs:label ?label 
             }' template='{{> show}}'>
             <template id='show'>
-               <style>
-
-              .yashiro-annotation-content.concept{
-                margin-bottom: 0px !important;
-              }
-
-            </style>
               <div class="yashiro-annotation-content concept">
                 <semantic-query
                 query='SELECT DISTINCT ?localImage WHERE {<{{bindings.0.value.value}}> crm:P138i_has_representation ?filename.

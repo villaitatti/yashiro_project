@@ -162,7 +162,8 @@ img.super-thumbnail {
 .yashiro-annotation-content.concept {
   display: flex;
   align-items: center;
-  margin-bottom:5px;
+  margin-bottom:5px !important;
+  margin-top: 5px !important;
 }
 
 .yashiro-annotation-content.concept span:first-child {
