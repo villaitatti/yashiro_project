@@ -50,7 +50,12 @@ a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
   display: none !important;
 }
 .mirador-viewer {
+  /* min-width: 450px; */
+  min-width: 34vw;
   top: 0 !important;
+}
+.mirador .mirador-container .mirador-pan-zoom-controls{
+  right:20px !important;
 }
 
 i.fa.fa-lg.fa-fw.fa-expand {
