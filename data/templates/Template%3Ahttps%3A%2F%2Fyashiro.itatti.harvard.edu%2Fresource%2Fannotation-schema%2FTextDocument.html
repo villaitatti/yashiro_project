@@ -271,25 +271,72 @@
                <template id='pagination'>
                  {{#each bindings}}
                 <div class="pagination-letters">
-                {{#ifCond prevLetter.value "!==" "https://yashiro.itatti.harvard.edu/resource/document/Letter_000"}}
-                 <semantic-link iri="{{prevLetter.value}}">
-                  <h2>
-                    <i class="fa fa-arrow-left"></i>
-                      Previous letter
-                    </h2>
+
+                  {{#switch prevLetter.value}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_09" break=true}}
+                    <semantic-link iri="https://yashiro.itatti.harvard.edu/resource/document/Letter_009">
+                    <h2>
+                      <i class="fa fa-arrow-left"></i>
+                        Previous letter
+                      </h2>
+                    </semantic-link>
+                    {{/case}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_99" break=true}}
+                    <semantic-link iri="https://yashiro.itatti.harvard.edu/resource/document/Letter_099">
+                    <h2>
+                      <i class="fa fa-arrow-left"></i>
+                        Previous letter
+                      </h2>
+                    </semantic-link>
+                    {{/case}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_000" break=true}}
+
+                    {{/case}}
+                    {{#default}}
+                          <semantic-link iri="{{prevLetter.value}}">
+                            <h2>
+                            <i class="fa fa-arrow-left"></i>
+                              Previous letter
+                            </h2>
+                        </semantic-link>
+                    {{/default}}
+                    {{/switch}}
+
+
+                  {{#switch nextLetter.value}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_0010" break=true}}
+                    <semantic-link iri="https://yashiro.itatti.harvard.edu/resource/document/Letter_010">
+                    <h2>
+                        Next Letter
+                      <i class="fa fa-arrow-right"></i>
+                      </h2>
+                    </semantic-link>
+                    {{/case}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_0100" break=true}}
+                    <semantic-link iri="https://yashiro.itatti.harvard.edu/resource/document/Letter_100">
+                    <h2>
+                        Next Letter
+                      <i class="fa fa-arrow-right"></i>
+                      </h2>
+                    </semantic-link>
+                    {{/case}}
+                    {{#case "https://yashiro.itatti.harvard.edu/resource/document/Letter_116" break=true}}
+
+                    {{/case}}
+                    {{#default}}
+                    <semantic-link iri="{{nextLetter.value}}">
+                      <h2>
+                        Next Letter
+                        <i class="fa fa-arrow-right"></i>
+                      </h2>
                   </semantic-link>
-                {{/ifCond}}
-                {{#ifCond nextLetter.value "!==" "https://yashiro.itatti.harvard.edu/resource/document/Letter_116"}}
-                  <semantic-link iri="{{nextLetter.value}}">
-                   <h2>
-                     Next letter
-                     <i class="fa fa-arrow-right"></i>
-                    </h2>
-                  </semantic-link>
-                {{/ifCond}}
+                    {{/default}}
+                    {{/switch}}
+            
+               
                 </div>
-                {{/each}}
-               </template>
+                {{/each}} 
+               </template> 
             </semantic-query>
           
             <!-- LETTER METADATA -->
