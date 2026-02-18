@@ -4,7 +4,9 @@
 @import "./card-person.css";
 @import "./simpleSearch.css";
 
-
+#yashiro-container {
+  margin-top: 60px;
+}
 
 .AnnotationSidebar--annotationList > div > div{
   flex-direction: row !important;
