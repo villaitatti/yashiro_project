@@ -2,9 +2,12 @@
   margin-top: 120px;
 }
 
-
 .iframe-section {
   height: 800px;
+}
+
+#editorRow {
+  margin-top: -33px;
 }
 
 #yashiro-mainmenu {
@@ -93,6 +96,7 @@
 #yashiro-menu .logo-flex{
   display: flex;
   align-items: center;
+  margin-top: 12px;
 }
 
 #yashiro-menu .profile-pic{
@@ -130,4 +134,9 @@
   #yashiro-menu.h2-subtitle {
     font-size: 14px;
   }
+}
+
+
+div[role="toolbar"]{
+  display: none;
 }

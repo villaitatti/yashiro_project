@@ -98,7 +98,7 @@ ol.page-breadcrumb {
   left: 0;
 }
 .component-page-toolbar {
-  top: 90px;
+  display: none !important;
 }
 
 .modal-dialog {
