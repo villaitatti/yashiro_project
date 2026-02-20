@@ -1,15 +1,15 @@
-.icon-holder{
+#yashiro-container .icon-holder{
   display: flex;
 }
 
-.icon-holder img {
+#yashiro-container .icon-holder img {
   cursor: pointer;
   height: 25px;
   filter: invert(1);
   margin-right: 15px;
 }
 
-.footer {
+#yashiro-container .footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17,20 +17,20 @@
   height: 100%;
   min-height: 185px;
 }
-#logout-Link + #login-Link {
+#yashiro-container #logout-Link + #login-Link {
   display: none;
 }
 
-.footer *{
+#yashiro-container .footer *{
   background:  none !important;
   color:  white;
 }
-footer a{
+#yashiro-container footer a{
   transition: 0.3s;
 }
-footer a:hover {
+#yashiro-container footer a:hover {
   filter: opacity(0.7);
 }
-.footer h3 {
+#yashiro-container .footer h3 {
   font-size: 18px;
 }

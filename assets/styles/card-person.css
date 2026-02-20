@@ -1,4 +1,4 @@
-.person-card{
+#yashiro-container .person-card{
   padding: 15px;
   height: fit-content;
   min-width: 50vw;
@@ -9,11 +9,11 @@
   max-width: 800px;
 }
 
-.person-card .system-spinner{
+#yashiro-container .person-card .system-spinner{
 display: none !important;
 }
 
-.person-card .letter-link{
+#yashiro-container .person-card .letter-link{
   /* font-weight: bold;
   padding: 4px;
   background: #a23338;
@@ -31,31 +31,31 @@ display: none !important;
   text-align: center;
 }
 
-.person-card * {
+#yashiro-container .person-card * {
   color: black !important
 }
-#search-results .griddle-custom-row{
+#yashiro-container #search-results .griddle-custom-row{
   gap: 30px;
 }
 
-.contentExcerpt{
+#yashiro-container .contentExcerpt{
   height: 13vh !important;
 }
-div#search-results {
+#yashiro-container div#search-results {
   width: 80%;
   margin-left: 16%;
 }
 
-.person-card .image-thumbnail {
+#yashiro-container .person-card .image-thumbnail {
   width: 100%;
   max-height: 150px;
   max-width: 85px;
 }
 
-.person-card img{
+#yashiro-container .person-card img{
   max-width: 235px;
 }
 
-.person-card .subtitle{
+#yashiro-container .person-card .subtitle{
   font-size: 16px;
 }

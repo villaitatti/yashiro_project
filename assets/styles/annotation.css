@@ -1,121 +1,121 @@
-.page__body.yashiro-editor-page {
+#yashiro-container .page__body.yashiro-editor-page {
   margin-left: 50px;
   padding-bottom: 0;
   width: auto;
 }
 
-.annotation-subtitle {
+#yashiro-container .annotation-subtitle {
   text-align: left;
   color:black !important;
   padding: 15px;
 }
 
-#letterColumn {
+#yashiro-container #letterColumn {
   margin-top: 20px;
 }
-.person-img {
+#yashiro-container .person-img {
    margin-right: 5px;
   border-right: 10px solid rgb(249, 105, 14);
 }
-.place-img {
+#yashiro-container .place-img {
   margin-right: 5px;
   border-right: 10px solid rgb(38, 166, 91);
 }
 
-.person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
+#yashiro-container .person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
 }
-.place-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
-  display: none !important;
-}
-
-a.change-layout.mainmenu-button,
-.mirador-viewer .bottomPanel,
-a.mirador-osd-toggle-bottom-panel.hud-control {
+#yashiro-container .place-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
 }
 
-a.mirador-btn.mirador-icon-window-menu {
+#yashiro-container a.change-layout.mainmenu-button,
+#yashiro-container .mirador-viewer .bottomPanel,
+#yashiro-container a.mirador-osd-toggle-bottom-panel.hud-control {
   display: none !important;
 }
 
-a.mirador-btn.mirador-icon-view-type {
+#yashiro-container a.mirador-btn.mirador-icon-window-menu {
   display: none !important;
 }
 
-a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
+#yashiro-container a.mirador-btn.mirador-icon-view-type {
   display: none !important;
 }
-.mirador-main-menu-bar {
+
+#yashiro-container a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
   display: none !important;
 }
-.mirador-viewer {
+#yashiro-container .mirador-main-menu-bar {
+  display: none !important;
+}
+#yashiro-container .mirador-viewer {
   /* min-width: 450px; */
   min-width: 34vw;
   top: 0 !important;
 }
-.mirador .mirador-container .mirador-pan-zoom-controls{
+#yashiro-container .mirador .mirador-container .mirador-pan-zoom-controls{
   right:20px !important;
 }
 
-i.fa.fa-lg.fa-fw.fa-expand {
+#yashiro-container i.fa.fa-lg.fa-fw.fa-expand {
   color: black;
   position: relative;
   bottom: 5px;
 }
-i.fa.fa-lg.fa-fw.fa-compress {
+#yashiro-container i.fa.fa-lg.fa-fw.fa-compress {
   color: black !important;
   position: relative;
   bottom: 5px;
 }
-h3.window-manifest-title {
+#yashiro-container h3.window-manifest-title {
   display: none;
 }
 
-.mirador .researchspace-mirador.mirador-container .mirador-viewer,
-.mirador .researchspace-mirador.mirador-container .mirador-main-menu-bar,
-.mirador,
-#mirador {
+#yashiro-container .mirador .researchspace-mirador.mirador-container .mirador-viewer,
+#yashiro-container .mirador .researchspace-mirador.mirador-container .mirador-main-menu-bar,
+#yashiro-container .mirador,
+#yashiro-container #mirador {
   border: none;
   background: none !important;
 }
-.TextAnnotationWorkspace--component p {
+#yashiro-container .TextAnnotationWorkspace--component p {
   font-size: 18px;
 }
 
-.super-thumbnail-container {
+#yashiro-container .super-thumbnail-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-left: 5px;
 }
 
-.openseadragon-canvas {
+#yashiro-container .openseadragon-canvas {
   background: black !important;
 }
 
-img.super-thumbnail {
+#yashiro-container img.super-thumbnail {
   height: 90px;
   cursor: pointer;
 }
 
-#imageContainer .mirador {
+#yashiro-container #imageContainer .mirador {
   height: 64vh !important;
   min-height: 500px;
 }
-#imageContainer > h1 {
+#yashiro-container #imageContainer > h1 {
   color: white !important;
   font-size: 24px;
   display: flex;
   gap: 5px;
 }
 
-.yashiro-editor-container .AnnotationSidebar--tabIcon {
+#yashiro-container .yashiro-editor-container .AnnotationSidebar--tabIcon {
   opacity: 0.5;
 }
 
 /* sidebar annotation */
-.yashiro-annotation-template {
+#yashiro-container .yashiro-annotation-template {
   padding: 10px;
   display: flex;
   gap: 5px;
@@ -123,13 +123,13 @@ img.super-thumbnail {
   overflow-x: hidden;
 }
 
-.yashiro-annotation-template div.btn-group {
+#yashiro-container .yashiro-annotation-template div.btn-group {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.yashiro-annotation-type-icon {
+#yashiro-container .yashiro-annotation-type-icon {
   min-width: 30px;
   min-height: 30px;
   width: 30px;
@@ -140,7 +140,7 @@ img.super-thumbnail {
   margin-right: 20px;
 }
 
-.yashiro-ctrl-buttons-style {
+#yashiro-container .yashiro-ctrl-buttons-style {
   border: none;
   outline: none;
   background-color: transparent;
@@ -148,39 +148,39 @@ img.super-thumbnail {
   margin: 0;
   padding: 0;
 }
-.yashiro-ctrl-buttons-style:hover,
-.yashiro-ctrl-buttons-style:visited,
-.yashiro-ctrl-buttons-style:focus,
-.yashiro-ctrl-buttons-style:active,
-.yashiro-ctrl-buttons-style:active:hover {
+#yashiro-container .yashiro-ctrl-buttons-style:hover,
+#yashiro-container .yashiro-ctrl-buttons-style:visited,
+#yashiro-container .yashiro-ctrl-buttons-style:focus,
+#yashiro-container .yashiro-ctrl-buttons-style:active,
+#yashiro-container .yashiro-ctrl-buttons-style:active:hover {
   background-color: transparent;
 }
 
-.yashiro-annotation-content {
+#yashiro-container .yashiro-annotation-content {
   align-self: center;
   width: 100%;
 }
-.yashiro-annotation-content.concept button[name="edit"] {
+#yashiro-container .yashiro-annotation-content.concept button[name="edit"] {
   margin-right: 15px;
 }
 
-.yashiro-annotation-content.concept {
+#yashiro-container .yashiro-annotation-content.concept {
   display: flex;
   align-items: center;
   margin-bottom:5px !important;
   margin-top: 5px !important;
 }
 
-.yashiro-annotation-content.concept span:first-child {
+#yashiro-container .yashiro-annotation-content.concept span:first-child {
   display: flex;
   align-items: center;
 }
 
-.yashiro-annotation-template div.btn-group {
+#yashiro-container .yashiro-annotation-template div.btn-group {
   opacity: 0;
   margin-left: 20px;
 }
-.yashiro-editor-container
+#yashiro-container .yashiro-editor-container
   .AnnotationSidebar--annotation.AnnotationSidebar--highlighted:hover
   .yashiro-annotation-template
   div.btn-group {
@@ -189,19 +189,19 @@ img.super-thumbnail {
 }
 
 /* modal annotation */
-.yashiro-modal-line-item {
+#yashiro-container .yashiro-modal-line-item {
   padding: 10px;
 }
 
-.yashiro-modal-long-iri {
+#yashiro-container .yashiro-modal-long-iri {
   display: flex;
 }
 
-div#text-annotation-editor-tooltip {
+#yashiro-container div#text-annotation-editor-tooltip {
   background: white;
 }
 
-button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
+#yashiro-container button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
   /* background: #a23338; */
   color: #a23338;
   display: inline-block;
@@ -213,13 +213,13 @@ button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
   border-radius: 5px;
   -moz-osx-font-smoothing: grayscale;
 }
-button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before {
+#yashiro-container button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before {
   content: "\f055";
 }
-span.TextAnnotationEditor--addAnnotationIcon {
+#yashiro-container span.TextAnnotationEditor--addAnnotationIcon {
   display: none;
 }
-#text-annotation-editor-tooltip .popover-content button {
+#yashiro-container #text-annotation-editor-tooltip .popover-content button {
   width: 40px !important;
   font-size: 18px;
   border-radius: 5px;
@@ -230,27 +230,106 @@ span.TextAnnotationEditor--addAnnotationIcon {
   margin-right: 8px;
 }
 
-.AnnotationEditForm--formContent {
+#yashiro-container .AnnotationEditForm--formContent {
   min-width: 45vw;
   height: fit-content;
   padding-bottom: 45px;
 }
 
-.AnnotationEditForm--selectedFragment {
+#yashiro-container .AnnotationEditForm--selectedFragment {
   margin-top: 8px;
   margin-bottom: 25px;
 }
 
-img.AnnotationEditForm--bodyTypeIcon {
+#yashiro-container img.AnnotationEditForm--bodyTypeIcon {
   height: 22px;
   width: 22px;
 }
 
-.modal-dialog.overlay-modal__dialog.modal-dialog {
+#yashiro-container .modal-dialog.overlay-modal__dialog.modal-dialog {
   min-height: 80vh;
   margin-top: 10vh;
 }
 
-button.btn.btn-default.AnnotationEditForm--cancelButton {
+#yashiro-container button.btn.btn-default.AnnotationEditForm--cancelButton {
   margin-left: 50px;
+}
+
+/* Annotation template inline styles */
+#yashiro-container .yashiro-annotation-type-icon[style*="border-left"] {
+  border-left-width: 10px;
+  border-left-style: solid;
+}
+
+#yashiro-container .yashiro-annotation-template .fa-pencil,
+#yashiro-container .yashiro-annotation-template .fa-trash {
+  pointer-events: none;
+}
+
+/* Annotation person template */
+#yashiro-container .yashiro-annotation-person-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#yashiro-container .yashiro-annotation-person-info {
+  display: flex;
+  align-items: center;
+}
+
+/* Text document editor styles */
+#yashiro-container .yashiro-editor-sidebar {
+  min-height: 100vh;
+  border-right: 1px solid #a2a2a2;
+  background: #6b2226;
+  height: auto;
+}
+
+#yashiro-container .yashiro-toggle-button-on {
+  border: none;
+  background: transparent;
+  padding: 15px 2px;
+  outline: none;
+  width: 100%;
+  color: white;
+}
+
+#yashiro-container .yashiro-toggle-button-on .fa-angle-double-right {
+  font-size: 20px;
+}
+
+#yashiro-container .yashiro-toggle-button-off {
+  border: none;
+  border-bottom: 1px solid rgb(115, 37, 40);
+  background: #6b2226;
+  padding: 15px;
+  outline: none;
+  width: 100%;
+}
+
+#yashiro-container .yashiro-toggle-button-off .fa-angle-double-left {
+  font-size: 20px;
+  margin-left: auto;
+  color: white;
+}
+
+#yashiro-container .yashiro-splitpane-sidebar {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+
+#yashiro-container .yashiro-letter-metadata {
+  padding: 20px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+#yashiro-container .yashiro-annotation-tooltip-info {
+  display: flex;
+  align-items: center;
+}
+
+#yashiro-container .yashiro-annotation-tooltip .fa-pencil,
+#yashiro-container .yashiro-annotation-tooltip .fa-trash {
+  pointer-events: none;
 }

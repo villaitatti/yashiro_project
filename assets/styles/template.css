@@ -1,22 +1,22 @@
-.rs-grid-element{
+#yashiro-container .rs-grid-element{
     width: 100%!important;
     margin-top: 10px;
 }
 
-img.thumbnail{
+#yashiro-container img.thumbnail{
     width: 100px!important;
     margin-bottom: 0px !important;
 }
 
-.grid-demo{
+#yashiro-container .grid-demo{
     font-size: 16px;
 }
 
-div[data-flex-self="size-1of3"]{
+#yashiro-container div[data-flex-self="size-1of3"]{
     min-width: 450px;
 }
 
-div.semantic-facet-holder{
+#yashiro-container div.semantic-facet-holder{
     position: fixed;
     background-color: white;
 }

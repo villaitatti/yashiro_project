@@ -1,4 +1,4 @@
-.letter-card{
+#yashiro-container .letter-card{
   padding: 15px;
   width: 50vw;
   height: fit-content;
@@ -8,32 +8,32 @@
   box-shadow: 1px 1px 5px 2px #dedede;
 }
 
-.letter-card * {
+#yashiro-container .letter-card * {
   color: black !important
 }
-#search-results .griddle-custom-row{
+#yashiro-container #search-results .griddle-custom-row{
   gap: 30px;
 }
 
-.contentExcerpt{
+#yashiro-container .contentExcerpt{
   height: 13vh !important;
 }
-div#search-results {
+#yashiro-container div#search-results {
   width: 80%;
   margin-left: 16%;
 }
 
-.letter-card .image-thumbnail {
+#yashiro-container .letter-card .image-thumbnail {
   width: 100%;
   max-width: 300px;
 }
 
-.role-text{
+#yashiro-container .role-text{
     font-size: 16px;
     font-weight: bold;
     color: #a23338 !important;
     text-align: right;
 }
- a.no-underline:hover{
+#yashiro-container a.no-underline:hover{
   text-decoration: none !important;
 }

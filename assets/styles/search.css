@@ -1,0 +1,127 @@
+/* Search page styles */
+#yashiro-container .show-facet-button,
+#simple-search .show-facet-button {
+  display: none;
+}
+
+#yashiro-container #search-results .nav-tabs,
+#simple-search #search-results .nav-tabs {
+  display: none;
+}
+
+#yashiro-container .facet,
+#yashiro-container .semantic-facet-holder,
+#simple-search .facet,
+#simple-search .semantic-facet-holder {
+  width: 100% !important;
+  position: relative !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+#yashiro-container .facet__category-selector-holder li,
+#simple-search .facet__category-selector-holder li {
+  border: none !important;
+  margin: 5px !important;
+}
+
+#yashiro-container .facet__relation__content__category-image,
+#simple-search .facet__relation__content__category-image {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#yashiro-container .facet__category-selector-holder .category-selector .category-item-holder,
+#simple-search .facet__category-selector-holder .category-selector .category-item-holder {
+  min-width: 30px;
+}
+
+#yashiro-container .FacetSlider--range input.form-control,
+#simple-search .FacetSlider--range input.form-control {
+  width: 60px !important;
+  min-width: 0 !important;
+  padding: 4px !important;
+}
+
+#yashiro-container .facet__category-selector-holder,
+#simple-search .facet__category-selector-holder {
+  display: none !important;
+}
+
+#yashiro-container .facet__relation__header,
+#simple-search .facet__relation__header {
+  border: 1px solid rgb(221, 221, 221);
+  margin-top: 5px;
+}
+
+#yashiro-container .facet__relation__header:hover,
+#yashiro-container .facet__relation__header:focus,
+#simple-search .facet__relation__header:hover,
+#simple-search .facet__relation__header:focus {
+  text-decoration: none;
+  color: #000000;
+  background-color: rgba(162, 51, 56, 0.06);
+}
+
+#yashiro-container header h1,
+#simple-search header h1 {
+  font-family: Georgia, Serif;
+}
+
+#yashiro-container .rc-slider.FacetSlider--slider,
+#simple-search .rc-slider.FacetSlider--slider {
+  width: 80%;
+  margin-left: 10%;
+}
+
+#yashiro-container .facet__relation__values__filter,
+#simple-search .facet__relation__values__filter {
+  margin: 0;
+}
+
+#yashiro-container .contentExcerpt,
+#simple-search .contentExcerpt {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: fade;
+  height: 65px;
+  margin-top: 10px;
+}
+
+#yashiro-container .contentExcerpt:before,
+#simple-search .contentExcerpt:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(transparent 50px, white);
+}
+
+/* No results styles */
+#yashiro-container .search-no-results,
+#simple-search .search-no-results {
+  background: #f4f4f4;
+  padding: 15px;
+  position: relative;
+  border-radius: 5px;
+}
+
+#yashiro-container .search-no-results img,
+#simple-search .search-no-results img {
+  height: 35vh;
+  max-width: 50vw;
+}
+
+#yashiro-container .search-no-results h2,
+#simple-search .search-no-results h2 {
+  text-decoration: underline;
+}
+
+/* Letters page filter column */
+#yashiro-container .letters-filter-column {
+  margin-top: 8px;
+}

@@ -1,60 +1,56 @@
-@import "./footer.css";
-@import "./header.css";
-@import "./card-letter.css";
-@import "./card-person.css";
-@import "./simpleSearch.css";
-
 #yashiro-container {
   margin-top: 60px;
 }
 
-.AnnotationSidebar--annotationList > div > div{
+#yashiro-container .AnnotationSidebar--annotationList > div > div{
   flex-direction: row !important;
 }
-.system-spinner__icon {
+
+#yashiro-container .system-spinner__icon {
   color: #007bff;
   font-size: 24px !important;
   animation: fa-spin 0.7s steps(8) infinite !important;
 }
-.system-spinner__icon::before {
+
+#yashiro-container .system-spinner__icon::before {
   content: "\f0ac" !important;
 }
 
-.system-spinner__message {
+#yashiro-container .system-spinner__message {
   display: none !important;
 }
-#template-content {
+#yashiro-container #template-content {
   min-width: 90vw;
   min-height: calc(92vh - 100px) !important;
 }
 
-span.page__header-gripper-label {
+#yashiro-container span.page__header-gripper-label {
   font-size: 36px;
 }
 /* Table pagination */
 
-.pagination {
+#yashiro-container .pagination {
   margin-bottom: 2vh !important ;
   justify-content: center !important;
   flex-wrap: wrap;
 }
-a {
+#yashiro-container a {
   transition: 0.4s;
 }
-a:hover {
+#yashiro-container a:hover {
   text-decoration: underline;
   color: #4e070c !important;
   opacity: 0.7;
 }
 
-.griddle-footer .pagination > .active > a {
+#yashiro-container .griddle-footer .pagination > .active > a {
   background: #a23338 !important;
 }
 
-.griddle-footer .pagination > li > a,
-.griddle-footer .pagination > li > span,
-.pagination > li > a,
-.pagination > li > span {
+#yashiro-container .griddle-footer .pagination > li > a,
+#yashiro-container .griddle-footer .pagination > li > span,
+#yashiro-container .pagination > li > a,
+#yashiro-container .pagination > li > span {
   color: var(--color-dark, #1d0a6e);
   font-size: 12px;
   line-height: 1.2;
@@ -66,141 +62,141 @@ a:hover {
   margin: 4px;
   padding: 3px 8px;
 }
-.griddle-footer .pagination > li > a:focus,
-.griddle-footer .pagination > li > a:hover,
-.griddle-footer .pagination > li > span:focus,
-.griddle-footer .pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover {
+#yashiro-container .griddle-footer .pagination > li > a:focus,
+#yashiro-container .griddle-footer .pagination > li > a:hover,
+#yashiro-container .griddle-footer .pagination > li > span:focus,
+#yashiro-container .griddle-footer .pagination > li > span:hover,
+#yashiro-container .pagination > li > a:focus,
+#yashiro-container .pagination > li > a:hover,
+#yashiro-container .pagination > li > span:focus,
+#yashiro-container .pagination > li > span:hover {
   background: #d2d2d2 !important;
 }
 
-.pagination > li.active,
-.pagination > li.active > a {
+#yashiro-container .pagination > li.active,
+#yashiro-container .pagination > li.active > a {
   color: white !important;
   text-decoration: none !important;
 }
 
-.pagination > li > a {
+#yashiro-container .pagination > li > a {
   font-size: 18px !important;
 }
 
-.rs-application .table > tbody > tr > td {
+#yashiro-container .rs-application .table > tbody > tr > td {
   border-bottom-color: #ebebeb !important;
   border-bottom: 0px !important;
 }
 
-ol.page-breadcrumb {
+#yashiro-container ol.page-breadcrumb {
   position: fixed;
   top: 90px;
   left: 0;
 }
-.component-page-toolbar {
+#yashiro-container .component-page-toolbar {
   display: none !important;
 }
 
-.modal-dialog {
+#yashiro-container .modal-dialog {
   width: 85%;
 }
 
-.modal-title {
+#yashiro-container .modal-title {
   text-align: center;
   line-height: 3.2;
 }
-h4.modal-title {
+#yashiro-container h4.modal-title {
   color: #641015;
 }
-.overlay-lightbox__dialog .modal-content {
+#yashiro-container .overlay-lightbox__dialog .modal-content {
   border: none !important;
   box-shadow: none !important;
   background: #e1e1e1b3 !important;
   backdrop-filter: blur(2px);
 }
-.modal-body {
+#yashiro-container .modal-body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.modal-body img {
+#yashiro-container .modal-body img {
   height: 100%;
   width: 100%;
   object-fit: contain;
 }
 
-button.close {
+#yashiro-container button.close {
   opacity: 1;
   color: #641015 !important;
   font-size: 55px !important;
 }
-.modal-content .modal-header {
+#yashiro-container .modal-content .modal-header {
   padding: 0px 22px 0px !important;
 }
-.modal-dialog.overlay-lightbox__dialog.modal-dialog {
+#yashiro-container .modal-dialog.overlay-lightbox__dialog.modal-dialog {
   top: 58px;
 }
 
-header {
+#yashiro-container header {
   margin-top: 80px;
   margin-bottom: 50px;
 }
-header h1 {
+#yashiro-container header h1 {
   font-size: 36px;
   color: #802126;
 }
-article p {
+#yashiro-container article p {
   font-size: 16px;
 }
-article li {
+#yashiro-container article li {
   font-size: 16px;
 }
 
-article a {
+#yashiro-container article a {
   text-decoration: underline;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+#yashiro-container h1,
+#yashiro-container h2,
+#yashiro-container h3,
+#yashiro-container h4,
+#yashiro-container h5 {
   color: #641015;
 }
-#search-results .rs-grid-element a {
+#yashiro-container #search-results .rs-grid-element a {
   color: #641015 !important;
 }
-em {
+#yashiro-container em {
   color: #641015;
 }
-a {
+#yashiro-container a {
   color: #641015;
 }
 
-div#main-container {
+#yashiro-container div#main-container {
   display: block !important;
   margin-top: 0px;
   padding-bottom: 50px;
 }
-.nav.nav-tabs > li a {
+#yashiro-container .nav.nav-tabs > li a {
   color: black;
 }
 
-.nav.nav-tabs > li.active a {
+#yashiro-container .nav.nav-tabs > li.active a {
   color: #641015 !important;
 }
-.nav.nav-tabs > li.active {
+#yashiro-container .nav.nav-tabs > li.active {
   box-shadow: inset 0 -3px 0 0 rgba(162, 51, 56, 1) !important;
 }
-section.iframe-section {
+#yashiro-container section.iframe-section {
   height: 67vh;
   min-height: 600px;
 }
 
-input{
+#yashiro-container input{
   filter: grayscale(1);
 }
-.modal-dialog.resource-viewer-modal__dialog.modal-lg.modal-dialog{
+#yashiro-container .modal-dialog.resource-viewer-modal__dialog.modal-lg.modal-dialog{
   width: 100%;
 }

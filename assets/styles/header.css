@@ -2,11 +2,11 @@
   margin-top: 120px;
 }
 
-.iframe-section {
+#yashiro-container .iframe-section {
   height: 800px;
 }
 
-#editorRow {
+#yashiro-container #editorRow {
   margin-top: -33px;
 }
 
@@ -44,7 +44,7 @@
   background: #a23338;
 }
 #yashiro-menu .navbar-default .dropdown-menu > li > a:focus,
-.navbar-default .dropdown-menu > li > a:hover {
+#yashiro-menu .navbar-default .dropdown-menu > li > a:hover {
   background: none;
   filter: opacity(0.7);
 }
@@ -139,4 +139,12 @@
 
 div[role="toolbar"]{
   display: none;
+}
+
+#yashiro-menu .yashiro-menu-row {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }

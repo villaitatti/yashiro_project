@@ -14,27 +14,12 @@
           <mp-splitpane default-open="true" default-size="35vw" persist-resize="false" min-size="35" dock="false">
             <div
               data-flex-layout="column top-stretch"
-              style="
-                min-height: 100vh;
-                border-right: 1px solid #a2a2a2;
-                background: #6b2226;
-                height: auto;
-              "
+              class="yashiro-editor-sidebar"
             >
               <mp-splitpane-toggle-on>
-                <button
-                  style="
-                    border: none;
-                    background: transparent;
-                    padding: 15px 2px;
-                    outline: none;
-                    width: 100%;
-                    color: white;
-                  "
-                >
+                <button class="yashiro-toggle-button-on">
                   <i
                     class="fa fa-angle-double-right"
-                    style="font-size: 20px"
                     aria-hidden="true"
                   ></i>
                 </button>
@@ -43,25 +28,17 @@
               <mp-splitpane-toggle-off>
                 <button
                   data-flex-layout="row center-left"
-                  style="
-                    border: none;
-                    border-bottom: 1px solid rgb(115, 37, 40);
-                    background: #6b2226;
-                    padding: 15px;
-                    outline: none;
-                    width: 100%;
-                  "
+                  class="yashiro-toggle-button-off"
                 >
                   <div
                     class="fa fa-angle-double-left"
-                    style="font-size: 20px; margin-left: auto; color: white"
                     aria-hidden="true"
                   ></div>
                 </button>
               </mp-splitpane-toggle-off>
 
               <mp-splitpane-sidebar-open
-                style="display: flex; flex-direction: row; flex: auto"
+                class="yashiro-splitpane-sidebar"
               >
                 <div id="metadataColumn">
                   <div id="metadataContainer">
@@ -360,7 +337,7 @@
                 }'
                 template='{{> letterMetadata}}'>
                 <template id='letterMetadata'>
-                  <div style="padding: 20px; border-bottom: 1px solid #e2e2e2;" data-flex-layout="row stretch-stretch">
+                  <div class="yashiro-letter-metadata" data-flex-layout="row stretch-stretch">
                     {{#each bindings}}
                       {{#ifCond type.value "===" "title"}}
                         <div data-flex-layout="column top-stretch">
@@ -452,7 +429,7 @@
                             <semantic-link iri="{{bindings.0.value.value}}">{{bindings.0.label.value}}</semantic-link>
                         </div>
                       
-                        <div style="display: flex; align-items: center;">
+                        <div class="yashiro-annotation-tooltip-info">
                           <semantic-query
                                 query='SELECT DISTINCT ?info WHERE { <{{bindings.0.value.value}}>  <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
                                 ?subtitle_node rdf:value ?info .}LIMIT 10'
@@ -475,7 +452,6 @@
                     >
                       <span
                         class="fa fa-pencil"
-                        style="pointer-events: none"
                       ></span>
                     </button>
                       {{/if}} 
@@ -488,7 +464,6 @@
                       >
                         <span
                           class="fa fa-trash"
-                          style="pointer-events: none"
                         ></span>
                       </button>
                       {{/if}}
@@ -510,7 +485,7 @@
   <!-- main container end -->
 </div>
 <!-- /main container end -->
-[[> "https://yashiro.itatti.harvard.edu/resource/footer"]]
+
 
 <style>
 

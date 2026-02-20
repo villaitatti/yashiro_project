@@ -2,7 +2,7 @@
   class="yashiro-annotation-template"
   >
   {{#if iconUrl}}
-    <img class="yashiro-annotation-type-icon" style="border-left: 10px solid {{color}}" src='{{iconUrl}}'>
+    <img class="yashiro-annotation-type-icon" style="border-left-color: {{color}}" src='{{iconUrl}}'>
   {{/if}}
   {{> @partial-block}}
   <div class='btn-group'>
@@ -11,7 +11,7 @@
       class='btn btn-xs btn-default yashiro-ctrl-buttons-style'
       data-annotation='{{iri.value}}'
       title='Edit annotation'>
-      <span class='fa fa-pencil' style='pointer-events: none;'></span>
+      <span class='fa fa-pencil'></span>
     </button>
     {{/if}}
     {{#if allowDelete}}
@@ -19,7 +19,7 @@
       class='btn btn-xs btn-default yashiro-ctrl-buttons-style'
       data-annotation='{{iri.value}}'
       title='Delete annotation'>
-      <span class='fa fa-trash' style='pointer-events: none;'></span>
+      <span class='fa fa-trash'></span>
     </button>
     {{/if}}
   </div>
