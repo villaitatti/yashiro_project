@@ -342,19 +342,8 @@
                 template='{{> letterMetadata}}'>
                 <template id='letterMetadata'>
                   <div class="yashiro-letter-metadata" data-flex-layout="row stretch-stretch">
+                    {{! 1. Sending place }}
                     {{#each bindings}}
-                      {{#ifCond type.value "===" "title"}}
-                        <div data-flex-layout="column top-stretch">
-                          <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
-                          <div class="grid-demo">{{label.value}}</div>
-                        </div>
-                      {{/ifCond}}
-                      {{#ifCond type.value "===" "date"}}
-                        <div data-flex-layout="column top-stretch">
-                          <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
-                          <div class="grid-demo">{{dateTimeFormat label.value "MMM DD YYYY"}}</div>
-                        </div>
-                      {{/ifCond}}
                       {{#ifCond type.value "===" "place"}}
                         <div data-flex-layout="column top-stretch">
                           <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
@@ -363,12 +352,48 @@
                           </div>
                         </div>
                       {{/ifCond}}
-                      {{#ifCond type.value "===" "person"}}
+                    {{/each}}
+                    {{! 2. Title }}
+                    {{#each bindings}}
+                      {{#ifCond type.value "===" "title"}}
                         <div data-flex-layout="column top-stretch">
                           <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
-                          <div class="grid-demo">
-                            <semantic-link class="metadataValue" iri="{{value.value}}"></semantic-link>
+                          <div class="grid-demo">{{label.value}}</div>
+                        </div>
+                      {{/ifCond}}
+                    {{/each}}
+                    {{! 3. Receiver }}
+                    {{#each bindings}}
+                      {{#ifCond type.value "===" "person"}}
+                        {{#ifCond displayLabel.value "===" "Receiver"}}
+                          <div data-flex-layout="column top-stretch">
+                            <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
+                            <div class="grid-demo">
+                              <semantic-link class="metadataValue" iri="{{value.value}}"></semantic-link>
+                            </div>
                           </div>
+                        {{/ifCond}}
+                      {{/ifCond}}
+                    {{/each}}
+                    {{! 4. Sender }}
+                    {{#each bindings}}
+                      {{#ifCond type.value "===" "person"}}
+                        {{#ifCond displayLabel.value "===" "Sender"}}
+                          <div data-flex-layout="column top-stretch">
+                            <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
+                            <div class="grid-demo">
+                              <semantic-link class="metadataValue" iri="{{value.value}}"></semantic-link>
+                            </div>
+                          </div>
+                        {{/ifCond}}
+                      {{/ifCond}}
+                    {{/each}}
+                    {{! 5. Date }}
+                    {{#each bindings}}
+                      {{#ifCond type.value "===" "date"}}
+                        <div data-flex-layout="column top-stretch">
+                          <div class="grid-demo"><strong>{{displayLabel.value}}:</strong></div>
+                          <div class="grid-demo">{{dateTimeFormat label.value "MMM DD YYYY"}}</div>
                         </div>
                       {{/ifCond}}
                     {{/each}}
@@ -556,6 +581,10 @@
   }
   .pagination-letters{
     display: flex;
-    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pagination-letters h2 {
+    font-size: 2em;
   }
 </style>
