@@ -16,7 +16,8 @@
             image-or-region="{{pic.value}}"
             image-id-pattern='BIND( <{{pic.value}}> AS ?imageIRI)
                             BIND("image" AS ?type)
-                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
+                            BIND(REPLACE(STR(REPLACE(STR(?imageIRI),"/full/full/0/default.jpg","")), "(^.*)\\/(.*)$", "$2") AS ?imageID)
+                            BIND(?imageIRI AS ?carrierImageIRI)'
             iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
             ></rs-iiif-image-thumbnail>
 
