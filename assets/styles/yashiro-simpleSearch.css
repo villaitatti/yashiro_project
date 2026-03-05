@@ -74,21 +74,6 @@ min-width: 90vw
   transition: 0.4s;
 }
 
-#yashiro-container #simple-search .facet__relation__values__value.checkbox input[type="checkbox"] {
-  -webkit-appearance: initial;
-  appearance: initial;
-  border: none;
-  margin: -1px 0 0 -20px;
-}
-#yashiro-container #simple-search
-  .facet__relation__values__value.checkbox
-  input[type="checkbox"]:checked:after {
-  /* Heres your symbol replacement */
-  content: "✖";
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--color-primary-100);
-}
 
 #yashiro-container #simple-search .FacetBreadcrumbs--container {
   justify-content: center;

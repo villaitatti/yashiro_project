@@ -62,12 +62,12 @@
 #simple-search .facet__relation__header:focus {
   text-decoration: none;
   color: #000000;
-  background-color: rgba(162, 51, 56, 0.06);
+  background-color: rgba(37, 57, 94, 0.06);
 }
 
 #yashiro-container header h1,
 #simple-search header h1 {
-  font-family: Georgia, Serif;
+  font-family: var(--itatti-font-heading);
 }
 
 #yashiro-container .rc-slider.FacetSlider--slider,

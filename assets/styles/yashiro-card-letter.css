@@ -5,7 +5,7 @@
   background: white;
   max-width:900px;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px 2px #dedede;
+  border: 1px solid var(--project-border, #e2e2e2);
 }
 
 #yashiro-container .letter-card * {
@@ -31,7 +31,7 @@
 #yashiro-container .role-text{
     font-size: 16px;
     font-weight: bold;
-    color: #a23338 !important;
+    color: var(--project-accent) !important;
     text-align: right;
 }
 #yashiro-container a.no-underline:hover{

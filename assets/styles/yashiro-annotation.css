@@ -202,8 +202,8 @@
 }
 
 #yashiro-container button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
-  /* background: #a23338; */
-  color: #a23338;
+  /* background: var(--project-accent); */
+  color: var(--project-accent);
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -281,7 +281,7 @@
 #yashiro-container .yashiro-editor-sidebar {
   min-height: 100vh;
   border-right: 1px solid #a2a2a2;
-  background: #6b2226;
+  background: var(--project-main);
   height: auto;
 }
 
@@ -300,8 +300,8 @@
 
 #yashiro-container .yashiro-toggle-button-off {
   border: none;
-  border-bottom: 1px solid rgb(115, 37, 40);
-  background: #6b2226;
+  border-bottom: 1px solid var(--project-main-dark);
+  background: var(--project-main);
   padding: 15px;
   outline: none;
   width: 100%;

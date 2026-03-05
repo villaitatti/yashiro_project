@@ -1,5 +1,13 @@
+/* =============================================================================
+   YASHIRO — HEADER + CONTAINER
+   Navbar layout and interaction are handled by .itatti-navbar in
+   collection/navbar.css. This file handles Yashiro-specific sizing,
+   the logo image, and the container top-offset.
+   ============================================================================= */
+
+/* ── Container offset: RS bar (84px) + project nav (100px) ── */
 #yashiro-container {
-  margin-top: 120px;
+  margin-top: 184px;
 }
 
 #yashiro-container .iframe-section {
@@ -10,141 +18,14 @@
   margin-top: -33px;
 }
 
-#yashiro-mainmenu {
-  height: 100px !important;
-  vertical-align: middle;
-  border-radius: 0px 0px 10px 10px;
-  box-shadow: inset 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
-  background-color: #a23338;
-  color: white !important;
+/* ── Navbar logo image ── */
+#yashiro-menu .nav-logo img {
+  height     : 52px;
+  width      : auto;
+  object-fit : contain;
 }
 
-#yashiro-mainmenu:hover {
-  background-color: rgba(117, 35, 38, 1);
-}
-
-#yashiro-logo {
-  flex-direction: column;
-  display: flex;
-}
-
-#yashiro-logo img {
-  height: 48px;
-  object-fit: contain;
-}
-#yashiro-menu {
-  position: fixed;
-  left: 0;
-  top: 0%;
-  width: 100%;
-  margin-top: 80px;
-}
-
-#yashiro-menu .dropdown-menu {
-  background: #a23338;
-}
-#yashiro-menu .navbar-default .dropdown-menu > li > a:focus,
-#yashiro-menu .navbar-default .dropdown-menu > li > a:hover {
-  background: none;
-  filter: opacity(0.7);
-}
-
-#yashiro-menu li a {
-  color: white !important;
-  transition: 0.4s;
-}
-
-#yashiro-menu.navbar-default .navbar-brand {
-  color: rgba(255, 255, 255, 1);
-}
-#yashiro-menu.navbar-default {
-  font-size: 15px;
-  height: 100px;
-  background-color: rgba(162, 51, 56, 1);
-  border-bottom-width: 1px;
-}
-#yashiro-menu.navbar-default .navbar-nav > li > a {
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(162, 51, 56, 1);
-}
-#yashiro-menu.navbar-default .navbar-nav > li > a:hover,
-#yashiro-menu.navbar-default .navbar-nav > li > a:focus {
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(117, 35, 38, 1);
-}
-#yashiro-menu.navbar-default .navbar-nav > .active > a,
-#yashiro-menu.navbar-default .navbar-nav > .active > a:hover,
-#yashiro-menu.navbar-default .navbar-nav > .active > a:focus {
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(162, 51, 56, 1);
-}
-#yashiro-menu.navbar-default .navbar-toggle {
-  border-color: #a23338;
-}
-#yashiro-menu.navbar-default .navbar-toggle:hover,
-#yashiro-menu.navbar-default .navbar-toggle:focus {
-  background-color: #a23338;
-}
-#yashiro-menu.navbar-default .navbar-toggle .icon-bar {
-  background-color: #a23338;
-}
-#yashiro-menu.navbar-default .navbar-toggle:hover .icon-bar,
-#yashiro-menu.navbar-default .navbar-toggle:focus .icon-bar {
-  background-color: #a23338;
-}
-
-#yashiro-menu .logo-flex{
-  display: flex;
-  align-items: center;
-  margin-top: 12px;
-}
-
-#yashiro-menu .profile-pic{
-  height: 75px;
-    float: left;
-    margin-right: 8px;
-}
-
-#yashiro-menu .h2-title {
-  color: white;
-  font-weight: 100;
-  font-size: 28px;
-  margin: 0 !important;
-}
-#yashiro-menu .h2-subtitle {
-  color: white;
-  font-style: italic;
-  font-weight: 100;
-  font-size: 18px;
-  margin: 0 !important;
-}
-
-#yashiro-menu .navbar-header a:hover {
-  text-decoration: none !important;
-}
-
-@media (max-width:1250px){
-  #yashiro-menu .profile-pic{
-    height: 70px;
-  }
-  
-  #yashiro-menu .h2-title {
-    font-size: 24px;
-  }
-  #yashiro-menu.h2-subtitle {
-    font-size: 14px;
-  }
-}
-
-
-div[role="toolbar"]{
+/* ── Toolbar hidden in content area ── */
+div[role="toolbar"] {
   display: none;
-}
-
-#yashiro-menu .yashiro-menu-row {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 }
