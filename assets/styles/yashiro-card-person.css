@@ -9,10 +9,6 @@
   max-width: 800px;
 }
 
-#yashiro-container .person-card .system-spinner{
-display: none !important;
-}
-
 #yashiro-container .person-card .letter-link{
   /* font-weight: bold;
   padding: 4px;
