@@ -3,3 +3,5 @@ crm = http://www.cidoc-crm.org/cidoc-crm/
 prov = http://www.w3.org/ns/prov#
 yashiro = 	https://yashiro.itatti.harvard.edu/resource/
 yashiro-annotation = https://yashiro.itatti.harvard.edu/resource/annotation/
+
+yashiro-annotation-schema = https://yashiro.itatti.harvard.edu/yashiro/annotation-schema/

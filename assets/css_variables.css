@@ -1,4 +1,14 @@
 :root {
   /* Yashiro-specific override: dark/primary text colour */
   --color-dark: #641015;
+
+  /* Yashiro brand palette */
+  --yashiro-ink-blue:    #25395e;
+  --yashiro-gold:        #b8963c;
+  --yashiro-crimson:     #641015;
+
+  /* Text annotation accent colours — one token per annotation type */
+  --annotation-person-accent:  var(--yashiro-ink-blue);
+  --annotation-place-accent:   var(--yashiro-gold);
+  --annotation-entity-accent:  var(--yashiro-crimson);
 }
