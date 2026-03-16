@@ -1,144 +1,474 @@
 [[> yashiro:header ]]
 
 <div id="yashiro-container" class="container">
-    <!-- /main container open -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div id="home-letter">
-                    <p class="paragraph-top">"This Exhibition presents the extant correspondence - nearly all unpublished - between Bernard Berenson and Yukio Yashiro. At the height of their fame they were among the most influential art historians in the West and in Japan, respectively." [...]
-                         <semantic-link iri="yashiro:Presentation">(read more)</semantic-link>
-                        
-                        </p>
-                    <div class="or-spacer">
-                        <div class="mask"></div>
-                    </div>
-                    <p class="paragraph-bottom">The correspondence is available in the <semantic-link iri="yashiro:Letters">Letters</semantic-link> section. Alternatively, you can read the <semantic-link iri="yashiro:introduction">introduction</semantic-link> by Jonathan Nelson.</p>
-                    <p class="paragraph-bottom">This collection also hosts digital editions of <semantic-link iri="yashiro:autobiography-table-of-contents">Texts by Yashiro</semantic-link> and <semantic-link iri="yashiro:john-hatcher">studies</semantic-link> on yashiro.</p>
-                </div>
-            </div>
+    <div class="yashiro-home">
+
+      <!-- Hero section -->
+      <div class="yashiro-hero">
+        <div class="yashiro-hero-text">
+          <div class="yashiro-section-label">Villa I Tatti · Harvard University</div>
+          <h1 class="yashiro-hero-title">The Correspondence of<br/>Yashiro &amp; Berenson</h1>
+          <p class="yashiro-hero-description">114 letters exchanged between two of the most influential art historians of the twentieth century — bridging Florence and Tokyo, 1923–1959.</p>
+          <div class="yashiro-hero-actions">
+            <semantic-link iri="yashiro:Letters" class="yashiro-btn-primary">Explore the letters</semantic-link>
+            <semantic-link iri="yashiro:Presentation" class="yashiro-btn-secondary">About the project</semantic-link>
+          </div>
         </div>
-        <div id="subtitle-home"></div>
+        <div class="yashiro-hero-card">
+          <div id="home-letter">
+            <p class="paragraph-top">"This Exhibition presents the extant correspondence - nearly all unpublished - between Bernard Berenson and Yukio Yashiro. At the height of their fame they were among the most influential art historians in the West and in Japan, respectively."
+              <semantic-link iri="yashiro:Presentation">(read more)</semantic-link>
+            </p>
+            <div class="yashiro-quote-attribution">— Jonathan K. Nelson, Introduction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="yashiro-stats">
+        <div class="yashiro-stat">
+          <div class="yashiro-stat-number">114</div>
+          <div class="yashiro-stat-label">Letters</div>
+        </div>
+        <div class="yashiro-stat">
+          <div class="yashiro-stat-number">1923–1959</div>
+          <div class="yashiro-stat-label">Period</div>
+        </div>
+        <div class="yashiro-stat">
+          <div class="yashiro-stat-number">5</div>
+          <div class="yashiro-stat-label">Correspondents</div>
+        </div>
+        <div class="yashiro-stat">
+          <div class="yashiro-stat-number">2</div>
+          <div class="yashiro-stat-label">Archives</div>
+        </div>
+      </div>
+
+      <!-- Navigation cards -->
+      <div class="yashiro-home-nav">
+        <div class="yashiro-home-nav-header">
+          <h2>Explore the collection</h2>
+        </div>
+        <div class="yashiro-home-nav-grid">
+          <semantic-link iri="yashiro:Letters" class="yashiro-nav-card">
+            <div class="yashiro-nav-card-label">Correspondence</div>
+            <div class="yashiro-nav-card-title">The Letters</div>
+            <div class="yashiro-nav-card-desc">Browse and search all 114 transcribed letters with IIIF facsimiles and annotations.</div>
+            <span class="yashiro-nav-card-arrow">→</span>
+          </semantic-link>
+          <semantic-link iri="yashiro:People" class="yashiro-nav-card">
+            <div class="yashiro-nav-card-label">Index</div>
+            <div class="yashiro-nav-card-title">People</div>
+            <div class="yashiro-nav-card-desc">Individuals mentioned in the correspondence — scholars, diplomats, and friends.</div>
+            <span class="yashiro-nav-card-arrow">→</span>
+          </semantic-link>
+          <semantic-link iri="yashiro:autobiography-table-of-contents" class="yashiro-nav-card">
+            <div class="yashiro-nav-card-label">Texts by Yashiro</div>
+            <div class="yashiro-nav-card-title">My Life in the Fine Arts</div>
+            <div class="yashiro-nav-card-desc">Digitised chapters from Yashiro's 1972 autobiography.</div>
+            <span class="yashiro-nav-card-arrow">→</span>
+          </semantic-link>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="yashiro-timeline">
+        <div class="yashiro-timeline-inner">
+          <h2 class="yashiro-timeline-title">Timeline</h2>
+          <div class="yashiro-timeline-track">
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1921</div>
+              <div class="yashiro-timeline-text">Yashiro arrives in Florence, begins studying under Berenson at Villa I Tatti</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1925</div>
+              <div class="yashiro-timeline-text">Publishes <em>Sandro Botticelli</em> in London, returns to Japan</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1930</div>
+              <div class="yashiro-timeline-text">Founds the Institute of Art Research in Tokyo</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1933</div>
+              <div class="yashiro-timeline-text">First extant letter from Berenson to Yashiro</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1940</div>
+              <div class="yashiro-timeline-text">WWII interrupts correspondence</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1951</div>
+              <div class="yashiro-timeline-text">Yashiro visits I Tatti after the war, correspondence resumes</div>
+            </div>
+            <div class="yashiro-timeline-item">
+              <div class="yashiro-timeline-year">1959</div>
+              <div class="yashiro-timeline-text">Berenson dies; Yashiro visits to pay condolences</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-
     <style>
-        #paragraph-middle {
-            height: 60px;
+      /* ── Home page layout ── */
+      .yashiro-home {
+        max-width: 1120px;
+        margin: 0 auto;
+        overflow: visible;
+        padding-bottom: 0;
+      }
+
+      /* Hero */
+      .yashiro-hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        padding: 60px 24px 48px;
+        position: relative;
+      }
+
+      .yashiro-section-label {
+        font-family: var(--itatti-font-body);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--itatti-accent);
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .yashiro-hero-title {
+        font-family: var(--itatti-font-heading);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.15;
+        color: var(--itatti-text);
+        margin: 0 0 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .yashiro-hero-description {
+        font-family: var(--itatti-font-body);
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--itatti-text-sub);
+        margin: 0 0 32px;
+        max-width: 440px;
+      }
+
+      .yashiro-hero-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .yashiro-btn-primary {
+        display: inline-block;
+        background: var(--itatti-text);
+        color: #fff !important;
+        border: none;
+        padding: 12px 28px;
+        font-family: var(--itatti-font-body);
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: var(--itatti-radius-sm);
+        text-decoration: none !important;
+        transition: opacity 0.15s;
+      }
+
+      .yashiro-btn-primary:hover {
+        opacity: 0.85;
+        text-decoration: none !important;
+      }
+
+      .yashiro-btn-secondary {
+        display: inline-block;
+        background: transparent;
+        color: var(--itatti-text) !important;
+        border: 1px solid var(--itatti-border-strong);
+        padding: 12px 28px;
+        font-family: var(--itatti-font-body);
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: var(--itatti-radius-sm);
+        text-decoration: none !important;
+        transition: all 0.15s;
+      }
+
+      .yashiro-btn-secondary:hover {
+        background: var(--itatti-warm);
+        text-decoration: none !important;
+      }
+
+      /* Hero — right-side warm background panel */
+      .yashiro-hero::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        bottom: 40px;
+        left: 48%;
+        right: 25px;
+        background: linear-gradient(135deg, #F5EDE4, #E8DDD0);
+        border-radius: var(--itatti-radius-lg);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .yashiro-hero-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      .yashiro-hero-card {
+        position: relative;
+        z-index: 1;
+      }
+
+      #home-letter {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 32px 24px;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .paragraph-top {
+        font-family: var(--itatti-font-heading);
+        text-align: center;
+        line-height: 1.5;
+        font-size: 19px;
+        color: var(--itatti-accent);
+        font-style: italic;
+        margin: 0;
+        max-width: 400px;
+      }
+
+      .paragraph-top a {
+        color: var(--itatti-text-hint) !important;
+        font-family: var(--itatti-font-body);
+        font-size: 12px;
+        font-style: normal;
+        text-decoration: none !important;
+      }
+
+      .paragraph-top a:hover {
+        text-decoration: underline !important;
+      }
+
+      .yashiro-quote-attribution {
+        font-family: var(--itatti-font-body);
+        font-size: 12px;
+        color: var(--itatti-text-hint);
+        margin-top: 20px;
+        letter-spacing: 0.08em;
+      }
+
+      /* Stats bar */
+      .yashiro-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--itatti-border);
+        border-radius: var(--itatti-radius-md);
+        overflow: hidden;
+        margin: 0 24px 60px;
+      }
+
+      .yashiro-stat {
+        background: var(--itatti-card);
+        padding: 28px 24px;
+        text-align: center;
+      }
+
+      .yashiro-stat-number {
+        font-family: var(--itatti-font-heading);
+        font-size: 24px;
+        color: var(--itatti-text);
+        margin-bottom: 4px;
+      }
+
+      .yashiro-stat-label {
+        font-family: var(--itatti-font-body);
+        font-size: 12px;
+        color: var(--itatti-text-hint);
+      }
+
+      /* Navigation cards */
+      .yashiro-home-nav {
+        padding: 0 24px 60px;
+      }
+
+      .yashiro-home-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 24px;
+      }
+
+      .yashiro-home-nav-header h2 {
+        font-family: var(--itatti-font-heading);
+        font-size: 22px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .yashiro-home-nav-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .yashiro-nav-card {
+        display: block;
+        background: var(--itatti-card);
+        border: 0.5px solid var(--itatti-border);
+        border-radius: var(--itatti-radius-md);
+        padding: 24px;
+        text-decoration: none !important;
+        transition: box-shadow 0.2s;
+        position: relative;
+      }
+
+      .yashiro-nav-card:hover {
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        text-decoration: none !important;
+      }
+
+      .yashiro-nav-card-label {
+        font-family: var(--itatti-font-body);
+        font-size: 11px;
+        color: var(--itatti-accent) !important;
+        font-weight: 500;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .yashiro-nav-card-title {
+        font-family: var(--itatti-font-body);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--itatti-text) !important;
+        margin-bottom: 8px;
+      }
+
+      .yashiro-nav-card-desc {
+        font-family: var(--itatti-font-body);
+        font-size: 13px;
+        color: var(--itatti-text-hint) !important;
+        line-height: 1.5;
+      }
+
+      .yashiro-nav-card-arrow {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        color: var(--itatti-text-hint) !important;
+        font-size: 16px;
+      }
+
+      /* Timeline — full-viewport-width breakout */
+      .yashiro-timeline {
+        background: var(--itatti-ink);
+        padding: 64px 24px;
+        margin-top: 40px;
+        margin-bottom: 0;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Remove gap between timeline and footer */
+      #yashiro-container:has(.yashiro-home) {
+        padding-bottom: 0 !important;
+      }
+
+      #yashiro-container:has(.yashiro-home) + #templateFooter,
+      #yashiro-container:has(.yashiro-home) ~ footer,
+      #yashiro-container:has(.yashiro-home) ~ .coll-footer {
+        margin-top: 0 !important;
+      }
+
+      .yashiro-timeline-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .yashiro-timeline-title {
+        font-family: var(--itatti-font-heading);
+        font-size: 22px;
+        font-weight: 400;
+        color: #fff !important;
+        margin: 0 0 32px;
+      }
+
+      .yashiro-timeline-track {
+        display: flex;
+        gap: 32px;
+        overflow-x: auto;
+        padding-bottom: 16px;
+      }
+
+      .yashiro-timeline-item {
+        min-width: 160px;
+        flex-shrink: 0;
+      }
+
+      .yashiro-timeline-year {
+        font-family: var(--itatti-font-heading);
+        font-size: 28px;
+        color: var(--itatti-accent-light);
+        margin-bottom: 8px;
+      }
+
+      .yashiro-timeline-text {
+        font-family: var(--itatti-font-body);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+      }
+
+      .yashiro-timeline-text em {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .yashiro-hero {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding: 40px 24px;
         }
 
-        #yashiro-container {
-            background-image: url("/assets/images/yashiro_home.jpg");
-            background-repeat: no-repeat;
-            background-size: 65vw;
-            background-position: 50% 15%;
-            width: 100%;
-            height: 100%;
-            min-height: 700px;
-            width: 100%;
+        .yashiro-hero::before {
+          left: 0;
+          right: 0;
+          top: auto;
+          bottom: 0;
+          height: 50%;
+          border-radius: var(--itatti-radius-lg) var(--itatti-radius-lg) 0 0;
         }
 
-        .container-fluid{
-            padding-bottom: 40px;
-            height: fit-content;
+        .yashiro-hero-title {
+          font-size: 32px;
         }
 
-        #home-letter {
-            padding: 40px;
-            padding-top: 50px;
-            box-shadow: 0px 0px 9px 0px rgb(191 192 186);
-            background-color: rgb(255 253 248);
-            margin-top: 10vh;
-            filter: saturate(2.5);
-            margin-left: 2vw;
-            width: 450px;
-            letter-spacing: 0.4px;
+        .yashiro-stats {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .paragraph-top {
-            font-family: Georgia, Serif;
-            text-align: center;
-            line-height: 1.8;
-            font-size: 18px;
+        .yashiro-home-nav-grid {
+          grid-template-columns: 1fr;
         }
-
-        .paragraph-bottom {
-            font-family: Lato;
-            text-transform: uppercase;
-            text-align: center;
-            font-size: 16px;
-            font-weight:100;
-        }
-
-        .paragraph-bottom a {
-            color: black !important;
-            text-decoration: underline;
-            font-weight:400;
-        }
-        .paragraph-bottom a:hover {
-            color: rgba(0, 0, 0, 0.40) !important;
-            text-decoration: underline;
-        }
-
-        .paragraph-top a {
-            color: rgba(0, 0, 0, 0.4);
-            font-family: Lato;
-            font-size: 12px;
-        }
-
-
-        .or-spacer {
-            width: 100%;
-            margin-top: 50px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .or-spacer .mask {
-            overflow: hidden;
-            height: 20px;
-        }
-        .or-spacer .mask:after {
-            content: '';
-            display: block;
-            margin: -25px auto 0;
-            width: 100%;
-            height: 25px;
-            border-radius: 125px / 12px;
-            box-shadow: 0 0 8px black;
-        }
-        .or-spacer span {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            bottom: 100%;
-            margin-bottom: -25px;
-            left: 50%;
-            margin-left: -25px;
-            border-radius: 100%;
-            box-shadow: 0 2px 4px #999;
-            background: white;
-        }
-        
-        @media(max-width:1000px){
-            #main-container {
-            background-size:100vw !important;
-            background-position: 7vw 92% !important;
-        }
-
-                #home-letter{
-                    width: 85vw !important;
-                    margin-top: 2vh !important;
-                    margin-left: 0 !important;
-
-                }
-        }
+      }
     </style>
-    <!-- main container end -->
+
 </div>
-<!-- /main container end -->
-
-
-
-
-

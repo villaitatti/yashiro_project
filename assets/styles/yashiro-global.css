@@ -1,6 +1,84 @@
-/* margin-top set in yashiro-header.css to account for RS bar + project nav */
+/* =============================================================================
+   YASHIRO — GLOBAL STYLES
+   CSS custom properties, body resets, typography, pagination, modals,
+   and shared overrides. This file MUST be loaded first.
+   ============================================================================= */
 
-#yashiro-container .AnnotationSidebar--annotationList > div > div{
+/* ── CSS Custom Properties ── */
+:root {
+  /* Typography */
+  --itatti-font-heading: Georgia, 'Times New Roman', serif;
+  --itatti-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* Colors — Warm scholarly palette */
+  --itatti-bg: #FAF9F6;
+  --itatti-card: #FFFFFF;
+  --itatti-text: #1C1917;
+  --itatti-text-sub: #57534E;
+  --itatti-text-hint: #A8A29E;
+  --itatti-accent: #78350F;
+  --itatti-accent-mid: #92400E;
+  --itatti-accent-light: #D4A574;
+  --itatti-accent-bg: #FEF3C7;
+  --itatti-accent-bg2: #FFFBEB;
+  --itatti-warm: #F5F0E8;
+  --itatti-warm-dark: #EDE5D8;
+  --itatti-parchment: #FAF5ED;
+  --itatti-border: rgba(0, 0, 0, 0.07);
+  --itatti-border-strong: rgba(0, 0, 0, 0.13);
+  --itatti-ink: #292524;
+
+  /* Spacing */
+  --itatti-space-xs: 4px;
+  --itatti-space-sm: 8px;
+  --itatti-space-md: 16px;
+  --itatti-space-lg: 24px;
+  --itatti-space-xl: 32px;
+  --itatti-space-2xl: 48px;
+  --itatti-space-3xl: 64px;
+
+  /* Radii */
+  --itatti-radius-sm: 6px;
+  --itatti-radius-md: 8px;
+  --itatti-radius-lg: 12px;
+  --itatti-radius-pill: 20px;
+
+  /* Yashiro brand palette */
+  --yashiro-ink-blue: #25395e;
+  --yashiro-gold: #b8963c;
+  --yashiro-crimson: #641015;
+
+  /* Annotation type colors (match rs-text-annotation-type color attrs) */
+  --itatti-annotation-person: #25395e;
+  --itatti-annotation-place: #b8963c;
+  --itatti-annotation-entity: #641015;
+
+  /* Text annotation accent colours — one token per annotation type */
+  --annotation-person-accent: var(--yashiro-ink-blue);
+  --annotation-place-accent: var(--yashiro-gold);
+  --annotation-entity-accent: var(--yashiro-crimson);
+
+  /* Override RS system dark color for Yashiro */
+  --color-dark: #641015;
+}
+
+/* ── Global body / app background ── */
+.rs-application {
+  background: var(--itatti-bg) !important;
+}
+
+#yashiro-container {
+  margin-bottom: -96px!important;
+}
+
+/* ── RS page-holder chrome: remove extra padding when templates handle their own ── */
+#yashiro-container .page-holder-container,
+#yashiro-container .page-holder {
+  padding: 0;
+}
+
+/* ── Annotation sidebar layout fix ── */
+#yashiro-container .AnnotationSidebar--annotationList > div > div {
   flex-direction: row !important;
 }
 
@@ -12,50 +90,57 @@
 #yashiro-container span.page__header-gripper-label {
   font-size: 36px;
 }
-/* Table pagination */
 
+/* ── Table pagination ── */
 #yashiro-container .pagination {
-  margin-bottom: 2vh !important ;
+  margin-top: 32px !important;
+  margin-bottom: 2vh !important;
   justify-content: center !important;
   flex-wrap: wrap;
 }
-#yashiro-container a {
-  transition: 0.4s;
+
+#yashiro-container .griddle-footer {
+  margin-top: 24px;
 }
+
+#yashiro-container a {
+  color: var(--itatti-accent);
+  transition: color 0.2s, opacity 0.2s;
+}
+
 #yashiro-container a:hover {
   text-decoration: underline;
-  color: var(--project-main) !important;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 #yashiro-container .griddle-footer .pagination > .active > a {
-  background: var(--project-main) !important;
+  background: var(--itatti-accent) !important;
+  color: #fff !important;
 }
 
 #yashiro-container .griddle-footer .pagination > li > a,
 #yashiro-container .griddle-footer .pagination > li > span,
 #yashiro-container .pagination > li > a,
 #yashiro-container .pagination > li > span {
-  color: var(--color-dark, #1d0a6e);
-  font-size: 12px;
-  line-height: 1.2;
+  color: var(--itatti-text);
+  font-family: var(--itatti-font-body);
+  font-size: 13px !important;
+  line-height: 1.4;
   text-decoration: none;
-  font-style: italic;
-  border: none;
-  background: #ebebeb;
-  font-size: 20px !important;
-  margin: 4px;
-  padding: 3px 8px;
+  border: 1px solid var(--itatti-border);
+  background: var(--itatti-card);
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: var(--itatti-radius-sm);
 }
+
 #yashiro-container .griddle-footer .pagination > li > a:focus,
 #yashiro-container .griddle-footer .pagination > li > a:hover,
-#yashiro-container .griddle-footer .pagination > li > span:focus,
-#yashiro-container .griddle-footer .pagination > li > span:hover,
 #yashiro-container .pagination > li > a:focus,
-#yashiro-container .pagination > li > a:hover,
-#yashiro-container .pagination > li > span:focus,
-#yashiro-container .pagination > li > span:hover {
-  background: #d2d2d2 !important;
+#yashiro-container .pagination > li > a:hover {
+  background: var(--itatti-warm-dark) !important;
+  border-color: var(--itatti-border-strong);
+  color: var(--itatti-text) !important;
 }
 
 #yashiro-container .pagination > li.active,
@@ -64,13 +149,8 @@
   text-decoration: none !important;
 }
 
-#yashiro-container .pagination > li > a {
-  font-size: 18px !important;
-}
-
 #yashiro-container .rs-application .table > tbody > tr > td {
-  border-bottom-color: #ebebeb !important;
-  border-bottom: 0px !important;
+  border-bottom: 0px solid var(--itatti-border) !important;
 }
 
 #yashiro-container ol.page-breadcrumb {
@@ -78,10 +158,12 @@
   top: 90px;
   left: 0;
 }
+
 #yashiro-container .component-page-toolbar {
   display: none !important;
 }
 
+/* ── Modals ── */
 #yashiro-container .modal-dialog {
   width: 85%;
 }
@@ -90,15 +172,18 @@
   text-align: center;
   line-height: 3.2;
 }
+
 #yashiro-container h4.modal-title {
-  color: var(--project-main);
+  color: var(--itatti-accent);
 }
+
 #yashiro-container .overlay-lightbox__dialog .modal-content {
   border: none !important;
   box-shadow: none !important;
-  background: #e1e1e1b3 !important;
-  backdrop-filter: blur(2px);
+  background: rgba(250, 249, 246, 0.85) !important;
+  backdrop-filter: blur(12px);
 }
+
 #yashiro-container .modal-body {
   display: flex;
   justify-content: center;
@@ -113,50 +198,91 @@
 
 #yashiro-container button.close {
   opacity: 1;
-  color: var(--project-main) !important;
-  font-size: 55px !important;
+  color: var(--itatti-text) !important;
+  font-size: 40px !important;
 }
+
 #yashiro-container .modal-content .modal-header {
   padding: 0px 22px 0px !important;
 }
+
 #yashiro-container .modal-dialog.overlay-lightbox__dialog.modal-dialog {
   top: 58px;
 }
 
-#yashiro-container header {
-  margin-top: 80px;
-  margin-bottom: 50px;
+/* ── Shared page content container (matches homepage max-width + padding) ── */
+.yashiro-page-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
+
+/* ── Shared section label (uppercase eyebrow text) ── */
+.yashiro-section-label {
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--itatti-accent);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ── Page header with description ── */
+#yashiro-container header,
+#yashiro-container .yashiro-page-header {
+  margin-top: 48px;
+  margin-bottom: 40px;
+}
+
 #yashiro-container header h1 {
-  font-size: 36px;
-  color: var(--project-main);
+  font-family: var(--itatti-font-heading);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--itatti-ink);
+  margin: 0 0 12px;
 }
+
+.yashiro-page-description {
+  font-family: var(--itatti-font-body);
+  font-size: 15px;
+  color: var(--itatti-text-sub);
+  margin: 0;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
 #yashiro-container article p {
-  font-size: 16px;
+  font-family: var(--itatti-font-heading);
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--itatti-text);
 }
+
 #yashiro-container article li {
   font-size: 16px;
 }
 
 #yashiro-container article a {
   text-decoration: underline;
+  color: var(--itatti-accent);
 }
 
+/* ── Headings ── */
 #yashiro-container h1,
 #yashiro-container h2,
 #yashiro-container h3,
 #yashiro-container h4,
 #yashiro-container h5 {
-  color: var(--project-main);
+  color: var(--itatti-ink);
 }
+
 #yashiro-container #search-results .rs-grid-element a {
-  color: var(--project-main) !important;
+  color: var(--itatti-accent) !important;
 }
+
 #yashiro-container em {
-  color: var(--project-accent);
-}
-#yashiro-container a {
-  color: var(--project-main);
+  color: var(--itatti-accent-mid);
 }
 
 #yashiro-container div#main-container {
@@ -164,24 +290,28 @@
   margin-top: 0px;
   padding-bottom: 50px;
 }
+
 #yashiro-container .nav.nav-tabs > li a {
-  color: black;
+  color: var(--itatti-text-sub);
 }
 
 #yashiro-container .nav.nav-tabs > li.active a {
-  color: var(--project-main) !important;
+  color: var(--itatti-accent) !important;
 }
+
 #yashiro-container .nav.nav-tabs > li.active {
-  box-shadow: inset 0 -3px 0 0 var(--project-main) !important;
+  box-shadow: inset 0 -3px 0 0 var(--itatti-accent) !important;
 }
+
 #yashiro-container section.iframe-section {
   height: 67vh;
   min-height: 600px;
 }
 
-#yashiro-container input{
+#yashiro-container input {
   filter: grayscale(1);
 }
+
 #yashiro-container .modal-dialog.resource-viewer-modal__dialog.modal-lg {
   width: 100%;
 }

@@ -1,57 +1,126 @@
-#yashiro-container .person-card{
-  padding: 15px;
-  height: fit-content;
-  min-width: 50vw;
-  background: white;
-  border-radius: 5px;
-  border: 1px solid var(--project-border, #e2e2e2);
-  min-height: 280px;
-  max-width: 800px;
+/* =============================================================================
+   YASHIRO — PERSON CARD
+
+   Rendered DOM:
+   a.no-underline
+     div.person-card
+       div.person-card-inner         ← flex row
+         div.person-card-avatar      ← photo or initial circle
+         div.person-card-body
+           h2.person-card-name
+           div.person-card-subtitle  (×N from SPARQL)
+           div.person-card-mentions
+   ============================================================================= */
+
+/* ── Card shell ── */
+#yashiro-container .person-card {
+  background: var(--itatti-card);
+  border: 1px solid var(--itatti-border);
+  border-radius: var(--itatti-radius-lg);
+  padding: 28px;
+  transition: box-shadow 0.2s;
+  height: 100%;
 }
 
-#yashiro-container .person-card .letter-link{
-  /* font-weight: bold;
-  padding: 4px;
-  background: var(--project-main);
-  color: white !important;
-  border-radius: 10px;
-  min-width: 40px;
-  text-align: center; */
-  font-weight: bold;
-  padding: 2px;
-  background: #ffffff;
-  box-shadow: 0px 0px 3px 0px #b0b0b0;
-  color: #404040 !important;
-  border-radius: 10px;
-  min-width: 40px;
-  text-align: center;
+#yashiro-container .person-card:hover {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 
-#yashiro-container .person-card * {
-  color: black !important
-}
-#yashiro-container #search-results .griddle-custom-row{
-  gap: 30px;
-}
-
-#yashiro-container .contentExcerpt{
-  height: 13vh !important;
-}
-#yashiro-container div#search-results {
-  width: 80%;
-  margin-left: 16%;
+/* ── Inner flex row ── */
+#yashiro-container .person-card-inner {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
 
-#yashiro-container .person-card .image-thumbnail {
-  width: 100%;
-  max-height: 150px;
-  max-width: 85px;
+/* ── Avatar — stacked layers: initial underneath, photo on top ── */
+#yashiro-container .person-card-avatar {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-#yashiro-container .person-card img{
-  max-width: 235px;
+/* Initial — always rendered as the base layer */
+#yashiro-container .person-card-initial {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--itatti-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--itatti-font-heading);
+  font-size: 22px;
+  color: var(--itatti-accent);
+  font-weight: 400;
 }
 
-#yashiro-container .person-card .subtitle{
+/* Photo — overlays the initial when present.
+   Hide alt text and broken-image icon so the initial shows through. */
+#yashiro-container .person-card-photo,
+#yashiro-container .person-card-avatar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent;
+  font-size: 0;
+}
+
+/* ── Body ── */
+#yashiro-container .person-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Name ── */
+#yashiro-container .person-card-name {
+  font-family: var(--itatti-font-body);
   font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0 0;
+  color: var(--itatti-text) !important;
+  line-height: 1.3;
+}
+
+#yashiro-container .person-card-name a {
+  color: var(--itatti-text) !important;
+  text-decoration: none !important;
+}
+
+/* ── Subtitle lines (dates, role, location) ── */
+#yashiro-container .person-card-subtitle {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-hint) !important;
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
+/* First subtitle (dates) — directly after name */
+#yashiro-container .person-card-subtitle:first-of-type {
+  margin-top: 4px;
+}
+
+/* Second subtitle onward (role, location) — add gap */
+#yashiro-container .person-card-subtitle:nth-of-type(2) {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--itatti-text-sub) !important;
+}
+
+/* ── Mention count ── */
+#yashiro-container .person-card-mentions {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--itatti-accent) !important;
+  margin-top: 16px;
 }

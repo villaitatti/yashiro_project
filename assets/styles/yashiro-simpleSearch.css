@@ -1,7 +1,12 @@
+/* =============================================================================
+   YASHIRO — SIMPLE SEARCH (letter list filter interactions)
+   ============================================================================= */
+
 #yashiro-container #simple-search {
   display: flex;
   margin-bottom: 120px;
 }
+
 #yashiro-container #simple-search .change-view-options {
   display: flex;
   font-size: 28px;
@@ -10,38 +15,45 @@
   height: 5vh;
   min-height: 50px;
 }
+
 #yashiro-container #simple-search .change-view-options div {
   margin-left: 8px;
   cursor: pointer;
 }
+
 #yashiro-container #simple-search .superRow {
-display: inline-block;
-min-width: 90vw
+  display: inline-block;
+  min-width: 90vw;
 }
+
 #yashiro-container #simple-search .fa {
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 #yashiro-container #simple-search .fa:hover {
-  color: #8b8a8a;
+  color: var(--itatti-text-hint);
 }
+
 #yashiro-container .nav.nav-tabs {
-  border-bottom: none !important
+  border-bottom: none !important;
 }
 
 #yashiro-container #simple-search a[role="tab"][aria-selected=true] > div {
-  color: var(--color-primary-100);
+  color: var(--itatti-accent);
 }
-#yashiro-container #simple-search .nav.nav-tabs>li.active {
+
+#yashiro-container #simple-search .nav.nav-tabs > li.active {
   box-shadow: none;
 }
-#yashiro-container #simple-search .nav.nav-tabs>li:hover {
+
+#yashiro-container #simple-search .nav.nav-tabs > li:hover {
   box-shadow: none;
 }
 
 #yashiro-container #simple-search .facet__category-selector-holder {
   display: none;
 }
+
 #yashiro-container #simple-search .facet {
   display: flex;
   border: none;
@@ -69,11 +81,11 @@ min-width: 90vw
 #yashiro-container #simple-search .facet__relation__values > div:nth-child(2) {
   width: 100% !important;
 }
+
 #yashiro-container #simple-search .facet__relation__header {
   border: none !important;
-  transition: 0.4s;
+  transition: 0.3s;
 }
-
 
 #yashiro-container #simple-search .FacetBreadcrumbs--container {
   justify-content: center;
@@ -83,52 +95,63 @@ min-width: 90vw
 #yashiro-container #simple-search .FacetBreadcrumbs--relation {
   text-transform: none;
 }
+
 #yashiro-container #simple-search .FacetBreadcrumbs--relation::after {
   content: ">";
   margin-left: 5px;
 }
+
 #yashiro-container #simple-search .FacetBreadcrumbs--values.btn.btn-default {
   border: none;
-  background: #f6f5f3;
+  background: var(--itatti-warm);
 }
+
 #yashiro-container #simple-search .FacetBreadcrumbs--cancelButton {
-  background: #f6f5f3 !important;
-  color: black !important;
+  background: var(--itatti-warm) !important;
+  color: var(--itatti-text) !important;
 }
+
 #yashiro-container #simple-search button.FacetBreadcrumbs--cancelButton.btn.btn-default:hover {
-  background: #f6f5f3 !important;
+  background: var(--itatti-warm-dark) !important;
 }
+
 #yashiro-container #simple-search .panel-default > .panel-heading a {
-  color: var(--color-primary-100) !important;
+  color: var(--itatti-accent) !important;
 }
+
 #yashiro-container #simple-search h4.panel-title {
   text-transform: none;
 }
+
 #yashiro-container #simple-search .facet-relation__content {
   font-weight: bold;
   font-size: 16px;
 }
+
 #yashiro-container #simple-search .facet__relation__header:focus,
 #yashiro-container #simple-search .facet__relation__header:hover {
   background: none !important;
-  box-shadow: 0px 1px 0px 0px #d0d0d0;
+  box-shadow: 0px 1px 0px 0px var(--itatti-warm-dark);
 }
 
 #yashiro-container #simple-search i.facet__relation__header__icon--selected {
   display: none;
 }
+
 #yashiro-container #simple-search i.facet__relation__header__icon {
   display: none;
 }
 
 #yashiro-container #simple-search .facet__relation__values__value {
-  transition: 0.4s;
+  transition: 0.3s;
 }
+
 #yashiro-container #simple-search .facet__relation__values__value:focus,
 #yashiro-container #simple-search .facet__relation__values__value:hover {
   background: none !important;
-  box-shadow: 0px 1px 0px 0px #d0d0d0;
+  box-shadow: 0px 1px 0px 0px var(--itatti-warm-dark);
 }
+
 #yashiro-container #simple-search .panel-default > .panel-heading {
   background: none;
 }
@@ -138,13 +161,12 @@ min-width: 90vw
   position: -webkit-sticky;
   position: sticky;
   padding: 1vh;
-  top: 18vh;
+  top: 180px;
   z-index: 1;
-  background: white;
+  background: var(--itatti-bg);
 }
 
-
-@media (max-width:1000px){
+@media (max-width: 1000px) {
   #yashiro-container #simple-search #artwork-filter-search {
     position: unset;
   }

@@ -1,14 +1,56 @@
 :root {
+  /* Typography */
+  --itatti-font-heading: Georgia, 'Times New Roman', serif;
+  --itatti-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* Colors — Warm scholarly palette */
+  --itatti-bg: #FAF9F6;
+  --itatti-card: #FFFFFF;
+  --itatti-text: #1C1917;
+  --itatti-text-sub: #57534E;
+  --itatti-text-hint: #A8A29E;
+  --itatti-accent: #78350F;
+  --itatti-accent-mid: #92400E;
+  --itatti-accent-light: #D4A574;
+  --itatti-accent-bg: #FEF3C7;
+  --itatti-accent-bg2: #FFFBEB;
+  --itatti-warm: #F5F0E8;
+  --itatti-warm-dark: #EDE5D8;
+  --itatti-parchment: #FAF5ED;
+  --itatti-border: rgba(0, 0, 0, 0.07);
+  --itatti-border-strong: rgba(0, 0, 0, 0.13);
+  --itatti-ink: #292524;
+
+  /* Spacing */
+  --itatti-space-xs: 4px;
+  --itatti-space-sm: 8px;
+  --itatti-space-md: 16px;
+  --itatti-space-lg: 24px;
+  --itatti-space-xl: 32px;
+  --itatti-space-2xl: 48px;
+  --itatti-space-3xl: 64px;
+
+  /* Radii */
+  --itatti-radius-sm: 6px;
+  --itatti-radius-md: 8px;
+  --itatti-radius-lg: 12px;
+  --itatti-radius-pill: 20px;
+
+  /* Yashiro brand palette */
+  --yashiro-ink-blue: #25395e;
+  --yashiro-gold: #b8963c;
+  --yashiro-crimson: #641015;
+
   /* Yashiro-specific override: dark/primary text colour */
   --color-dark: #641015;
 
-  /* Yashiro brand palette */
-  --yashiro-ink-blue:    #25395e;
-  --yashiro-gold:        #b8963c;
-  --yashiro-crimson:     #641015;
+  /* Annotation type colors (match rs-text-annotation-type color attrs) */
+  --itatti-annotation-person: #25395e;
+  --itatti-annotation-place: #b8963c;
+  --itatti-annotation-entity: #641015;
 
   /* Text annotation accent colours — one token per annotation type */
-  --annotation-person-accent:  var(--yashiro-ink-blue);
-  --annotation-place-accent:   var(--yashiro-gold);
-  --annotation-entity-accent:  var(--yashiro-crimson);
+  --annotation-person-accent: var(--yashiro-ink-blue);
+  --annotation-place-accent: var(--yashiro-gold);
+  --annotation-entity-accent: var(--yashiro-crimson);
 }

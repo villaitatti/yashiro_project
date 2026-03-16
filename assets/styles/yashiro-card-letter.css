@@ -1,39 +1,131 @@
-#yashiro-container .letter-card{
-  padding: 15px;
-  width: 50vw;
-  height: fit-content;
-  background: white;
-  max-width:900px;
-  border-radius: 5px;
-  border: 1px solid var(--project-border, #e2e2e2);
-}
+/* =============================================================================
+   YASHIRO — LETTER CARD (tuple-template in semantic-table)
 
-#yashiro-container .letter-card * {
-  color: black !important
-}
-#yashiro-container #search-results .griddle-custom-row{
-  gap: 30px;
-}
+   Clean tabular row:
+   [ sender → receiver               |  place  |  date ]
 
-#yashiro-container .contentExcerpt{
-  height: 13vh !important;
-}
-#yashiro-container div#search-results {
-  width: 80%;
-  margin-left: 16%;
-}
+   Rendered DOM:
+   a.no-underline
+     div.letter-card
+       div.letter-card-inner               ← CSS grid row
+         div.letter-card-correspondents    ← sender → receiver
+         div.letter-card-place
+         div.letter-card-date
+   ============================================================================= */
 
-#yashiro-container .letter-card .image-thumbnail {
+/* ── Card wrapper (the <a> tag) ── */
+#yashiro-container a.no-underline,
+#simple-search a.no-underline {
+  display: block;
   width: 100%;
-  max-width: 300px;
+  text-decoration: none !important;
 }
 
-#yashiro-container .role-text{
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--project-accent) !important;
-    text-align: right;
-}
-#yashiro-container a.no-underline:hover{
+#yashiro-container a.no-underline:hover {
   text-decoration: none !important;
+}
+
+/* ── Card outer shell ── */
+#yashiro-container .letter-card {
+  background: var(--itatti-card);
+  border: none;
+  border-bottom: 1px solid var(--itatti-border);
+  border-radius: 0;
+  transition: background 0.15s;
+  margin: 0;
+}
+
+#yashiro-container .letter-card:hover {
+  background: var(--itatti-accent-bg2);
+}
+
+/* ── Grid row ── */
+#yashiro-container .letter-card-inner {
+  display: grid;
+  grid-template-columns: 40px 1fr 140px 160px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 28px;
+}
+
+/* ── Thumbnail ── */
+#yashiro-container .letter-card-thumb {
+  width: 40px;
+  height: 52px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 0.5px solid var(--itatti-border);
+  background: var(--itatti-warm);
+}
+
+#yashiro-container .letter-card-thumb .image-thumbnail {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#yashiro-container .letter-card-thumb svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Title (e.g. "Yashiro (in Paris) to Mary Berenson") ── */
+#yashiro-container .letter-card-title {
+  font-family: var(--itatti-font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--itatti-text) !important;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Place ── */
+#yashiro-container .letter-card-place {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-sub) !important;
+}
+
+/* ── Date ── */
+#yashiro-container .letter-card-date {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-hint) !important;
+  text-align: right;
+}
+
+/* ── Griddle container (scoped to Letters table #grid-result) ── */
+#yashiro-container #grid-result .griddle-custom-row,
+#simple-search .griddle-custom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: var(--itatti-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--itatti-border);
+}
+
+#yashiro-container div#search-results {
+  width: 100%;
+  margin-left: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #yashiro-container .letter-card-inner {
+    grid-template-columns: 40px 1fr;
+    gap: 4px 12px;
+    padding: 14px 16px;
+  }
+
+  #yashiro-container .letter-card-place,
+  #yashiro-container .letter-card-date {
+    grid-column: 2;
+  }
+
+  #yashiro-container .letter-card-date {
+    text-align: left;
+  }
 }

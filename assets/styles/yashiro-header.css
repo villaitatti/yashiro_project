@@ -1,13 +1,13 @@
 /* =============================================================================
    YASHIRO — HEADER + CONTAINER
-   Navbar layout and interaction are handled by .itatti-navbar in
-   collection/navbar.css. This file handles Yashiro-specific sizing,
-   the logo image, and the container top-offset.
    ============================================================================= */
 
-/* ── Container offset: RS bar (84px) + project nav (100px) ── */
-#yashiro-container {
-  margin-top: 184px;
+/* Override Bootstrap .container max-width so background gradients
+   can span the full viewport. */
+#yashiro-container.container {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: clip;
 }
 
 #yashiro-container .iframe-section {
@@ -15,17 +15,139 @@
 }
 
 #yashiro-container #editorRow {
-  margin-top: -33px;
+  margin-top: 0;
 }
 
-/* ── Navbar logo image ── */
-#yashiro-menu .nav-logo img {
-  height     : 52px;
-  width      : auto;
-  object-fit : contain;
-}
-
-/* ── Toolbar hidden in content area ── */
+/* ── Toolbar hidden ── */
 div[role="toolbar"] {
   display: none;
+}
+
+/* ── Navbar container ── */
+#yashiro-menu.itatti-navbar {
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid var(--itatti-border);
+  box-shadow: none;
+  min-height: 64px;
+}
+
+#yashiro-menu .rs-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+/* ── Logo ── */
+#yashiro-menu .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none !important;
+}
+
+#yashiro-menu .nav-logo img {
+  display: none;
+}
+
+#yashiro-menu .nav-logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+#yashiro-menu .nav-logo-title {
+  font-family: var(--itatti-font-heading);
+  font-size: 17px;
+  color: var(--itatti-text);
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+#yashiro-menu .nav-logo-subtitle {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-hint);
+}
+
+/* ── Nav items — uppercase, spaced ── */
+#yashiro-menu .nav > li > a,
+#yashiro-menu bs-nav-item a,
+#yashiro-menu bs-nav-dropdown > a {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--itatti-text-sub);
+  padding: 8px 16px;
+  border-radius: var(--itatti-radius-sm);
+  transition: all 0.15s;
+}
+
+#yashiro-menu .nav > li > a:hover {
+  color: var(--itatti-text);
+  background: var(--itatti-warm);
+}
+
+#yashiro-menu .nav > li.active > a,
+#yashiro-menu .nav > li.open > a {
+  color: var(--itatti-text);
+  font-weight: 600;
+  background: var(--itatti-warm-dark);
+  border: none;
+  border-radius: var(--itatti-radius-sm);
+}
+
+/* Dropdown caret */
+#yashiro-menu .nav > li > a .caret {
+  margin-left: 3px;
+  border-top-color: var(--itatti-text-hint);
+}
+
+/* ── Dropdown menus ── */
+#yashiro-menu bs-nav-dropdown .dropdown-menu,
+#yashiro-menu .dropdown-menu {
+  border: 1px solid var(--itatti-border);
+  border-radius: var(--itatti-radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  margin-top: 4px;
+}
+
+#yashiro-menu .dropdown-menu bs-menu-item a,
+#yashiro-menu .dropdown-menu li a {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 8px 14px;
+  border-radius: var(--itatti-radius-sm);
+  color: var(--itatti-text);
+}
+
+#yashiro-menu .dropdown-menu bs-menu-item a:hover,
+#yashiro-menu .dropdown-menu li a:hover {
+  background: var(--itatti-accent-bg2);
+}
+
+#yashiro-menu .nav-group-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--itatti-text-hint) !important;
+  padding: 12px 14px 4px !important;
+  pointer-events: none;
+}
+
+#yashiro-menu .nav-group-label a {
+  pointer-events: none;
+  color: var(--itatti-text-hint) !important;
+  text-transform: uppercase;
 }

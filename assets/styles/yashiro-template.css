@@ -1,22 +1,344 @@
-#yashiro-container .rs-grid-element{
-    width: 100%!important;
-    margin-top: 10px;
+/* =============================================================================
+   YASHIRO — STATIC TEMPLATE PAGES (prose content)
+   ============================================================================= */
+
+#yashiro-container .rs-grid-element {
+  width: 100% !important;
+  margin-top: 10px;
 }
 
-#yashiro-container img.thumbnail{
-    width: 100px!important;
-    margin-bottom: 0px !important;
+#yashiro-container img.thumbnail {
+  width: 100px !important;
+  margin-bottom: 0px !important;
 }
 
-#yashiro-container .grid-demo{
-    font-size: 16px;
+#yashiro-container .grid-demo {
+  font-family: var(--itatti-font-body);
+  font-size: 14px;
 }
 
-#yashiro-container div[data-flex-self="size-1of3"]{
-    min-width: 450px;
+#yashiro-container div[data-flex-self="size-1of3"] {
+  min-width: 450px;
 }
 
-#yashiro-container div.semantic-facet-holder{
-    position: fixed;
-    background-color: white;
+#yashiro-container div.semantic-facet-holder {
+  position: fixed;
+}
+
+/* Static content pages (#main-container) */
+#main-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: var(--itatti-space-2xl) var(--itatti-space-xl);
+}
+
+#main-container header h1 {
+  font-family: var(--itatti-font-heading);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  line-height: 1.2;
+  color: var(--itatti-ink);
+}
+
+#main-container article {
+  font-family: var(--itatti-font-heading);
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--itatti-text);
+}
+
+#main-container article p {
+  margin: 0 0 20px;
+}
+
+.cockerell-subtitles {
+  font-family: var(--itatti-font-body);
+  font-size: 14px;
+  color: var(--itatti-text-sub);
+  margin-top: 32px;
+}
+
+/* ── Sub-navigation pills (shared across static pages) ── */
+.yashiro-subnav {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--itatti-border);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.yashiro-subnav-pill {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: var(--itatti-radius-pill);
+  border: 1px solid var(--itatti-border);
+  color: var(--itatti-text-sub) !important;
+  text-decoration: none !important;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.yashiro-subnav-pill:hover {
+  border-color: var(--itatti-border-strong);
+  background: var(--itatti-warm);
+  text-decoration: none !important;
+}
+
+.yashiro-subnav-pill.active {
+  background: var(--itatti-accent);
+  color: #fff !important;
+  border-color: var(--itatti-accent);
+}
+
+/* ── Breadcrumbs ── */
+.yashiro-breadcrumb {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-hint);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.yashiro-breadcrumb a {
+  color: var(--itatti-text-sub) !important;
+  text-decoration: none !important;
+}
+
+.yashiro-breadcrumb a:hover {
+  color: var(--itatti-accent) !important;
+  text-decoration: none !important;
+}
+
+/* ── Static page with sidebar layout ── */
+.yashiro-static-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── Sidebar navigation ── */
+.yashiro-sidebar {
+  position: sticky;
+  top: 180px;
+}
+
+.yashiro-sidebar-heading {
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--itatti-text);
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--itatti-accent);
+}
+
+.yashiro-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.yashiro-sidebar-link {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-sub) !important;
+  text-decoration: none !important;
+  padding: 8px 12px;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  border-radius: 0 var(--itatti-radius-sm) var(--itatti-radius-sm) 0;
+}
+
+.yashiro-sidebar-link:hover {
+  color: var(--itatti-accent) !important;
+  background: var(--itatti-warm);
+  text-decoration: none !important;
+}
+
+.yashiro-sidebar-link.active {
+  color: var(--itatti-text) !important;
+  font-weight: 600;
+  border-left-color: var(--itatti-accent);
+  background: var(--itatti-warm);
+}
+
+.yashiro-sidebar-link-secondary {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: var(--itatti-text-hint) !important;
+  text-decoration: none !important;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.yashiro-sidebar-link-secondary:hover {
+  color: var(--itatti-accent) !important;
+}
+
+/* ── Static article content ── */
+.yashiro-static-content {
+  min-width: 0;
+}
+
+.yashiro-static-content h1 {
+  font-family: var(--itatti-font-heading);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--itatti-ink);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.yashiro-static-meta {
+  font-family: var(--itatti-font-body);
+  font-size: 14px;
+  color: var(--itatti-text-hint);
+  font-style: italic;
+  margin-bottom: 32px;
+}
+
+.yashiro-static-content article {
+  font-family: var(--itatti-font-heading);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--itatti-text);
+}
+
+.yashiro-static-content article p {
+  margin: 0 0 20px;
+}
+
+/* ── PDF download card ── */
+.yashiro-pdf-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--itatti-warm);
+  border-radius: var(--itatti-radius-md);
+  margin-bottom: 24px;
+}
+
+.yashiro-pdf-icon {
+  width: 40px;
+  height: 40px;
+  background: #C62828;
+  border-radius: var(--itatti-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.yashiro-pdf-info {
+  flex: 1;
+}
+
+.yashiro-pdf-name {
+  font-family: var(--itatti-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--itatti-text);
+}
+
+.yashiro-pdf-size {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: var(--itatti-text-hint);
+}
+
+.yashiro-pdf-download {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--itatti-accent) !important;
+  text-decoration: none !important;
+}
+
+/* ── Single-column prose page (chapters, essays) ── */
+.yashiro-prose-page {
+  max-width: 780px;
+}
+
+.yashiro-prose-title {
+  font-family: var(--itatti-font-heading);
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--itatti-ink);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.yashiro-prose-article {
+  font-family: var(--itatti-font-heading);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--itatti-text);
+  margin-top: 32px;
+}
+
+.yashiro-prose-article p {
+  margin: 0 0 24px;
+}
+
+.yashiro-prose-article blockquote {
+  border-left: 3px solid var(--itatti-accent-light);
+  margin: 32px 0;
+  padding: 4px 0 4px 24px;
+  font-style: italic;
+  color: var(--itatti-accent);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .yashiro-static-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .yashiro-sidebar {
+    position: static;
+  }
+}
+
+/* Blockquote / pull quote styling */
+#yashiro-container article blockquote,
+#main-container article blockquote {
+  border-left: 2px solid var(--itatti-accent-light);
+  margin: 32px 0;
+  padding: 4px 0 4px 24px;
+  font-style: italic;
+  color: var(--itatti-accent);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* Prose article links */
+#yashiro-container article a,
+#main-container article a {
+  color: var(--itatti-accent);
+  text-decoration: underline;
+}
+
+#yashiro-container article a:hover,
+#main-container article a:hover {
+  color: var(--itatti-accent-mid);
 }

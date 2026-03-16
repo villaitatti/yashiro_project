@@ -9,11 +9,15 @@
 
   <link href="/assets/styles/annotation.css" rel="stylesheet" />
 
-      <header>
-        <h1>Letters</h1>
-      </header>
+      <div class="yashiro-page-content">
+        <header class="yashiro-page-header">
+          <div class="yashiro-section-label">Correspondence</div>
+          <h1>The Letters</h1>
+          <p class="yashiro-page-description">Transcription of 114 letters between Yashiro and the Berensons, spanning nearly four decades of friendship and scholarly exchange.</p>
+        </header>
+      </div>
 
-
+      <div class="yashiro-page-content">
       <semantic-context repository="yashiro">
         <semantic-search
           categories='{
@@ -241,92 +245,12 @@
           </div>
         </semantic-search>
       </semantic-context>
-
+      </div>
 
   <!-- main container end -->
 </div>
 </div>
 
 <style>
-  .show-facet-button {
-    display: none;
-  }
-  .nav-tabs {
-    display: none;
-  }
-  .facet,
-  .semantic-facet-holder {
-    width: 100% !important;
-    position: relative !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .facet__category-selector-holder li {
-    border: none !important;
-    margin: 5px !important;
-  }
-
-  .facet__relation__content__category-image {
-    width: 20px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-
-  .facet__category-selector-holder .category-selector .category-item-holder {
-    min-width: 30px;
-  }
-
-  .FacetSlider--range input.form-control {
-    width: 60px !important;
-    min-width: 0 !important;
-    padding: 4px !important;
-  }
-  .facet__category-selector-holder {
-    display: none !important;
-  }
-
-  .facet__relation__header {
-    border: 1px solid rgb(221, 221, 221);
-    margin-top: 5px;
-  }
-
-  .facet__relation__header:hover,
-  .facet__relation__header:focus {
-    text-decoration: none;
-    color: #000000;
-    background-color: rgba(162, 51, 56, 0.06);
-  }
-
-  header h1 {
-    font-family: Georgia, Serif;
-  }
-
-  .rc-slider.FacetSlider--slider {
-    width: 80%;
-    margin-left: 10%;
-  }
-
-  .facet__relation__values__filter {
-    margin: 0;
-  }
-
-  .contentExcerpt {
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: fade;
-    height: 65px;
-    margin-top: 10px;
-  }
-
-  .contentExcerpt:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(transparent 50px, white);
-  }
+  /* Inline overrides now handled by yashiro-search.css */
 </style>

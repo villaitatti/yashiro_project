@@ -1,48 +1,341 @@
-:root{
-    /* Yashiro brand palette */
-  --yashiro-ink-blue:    #25395e;
-  --yashiro-gold:        #b8963c;
-  --yashiro-crimson:     #641015;
+/* =============================================================================
+   YASHIRO — ANNOTATION / SINGLE LETTER PAGE
+   Styles for the TextDocument template, IIIF viewer, annotation workspace,
+   sidebar, and tooltip.
+   ============================================================================= */
 
-  /* Text annotation accent colours — one token per annotation type */
-  --annotation-person-accent:  var(--yashiro-ink-blue);
-  --annotation-place-accent:   var(--yashiro-gold);
-  --annotation-entity-accent:  var(--yashiro-crimson);
-}
+/* Variables are defined in yashiro-global.css */
 
+/* ── Page structure ── */
 #yashiro-container .page__body.yashiro-editor-page {
-  margin-left: 50px;
+  margin-left: 0;
   padding-bottom: 0;
   width: auto;
 }
 
-#yashiro-container .annotation-subtitle {
-  text-align: left;
-  color:black !important;
-  padding: 15px;
+.yashiro-editor-page {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
 }
 
+.TextAnnotationWorkspace--component {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  margin: 0 !important;
+  min-height: 60vh;
+}
+
+/* Left panel: transcription text */
+.TextAnnotationWorkspace--editorPanel {
+  flex: 1 1 65%;
+  min-width: 0;
+  padding: 0 20px 48px 0;
+  font-family: var(--itatti-font-heading);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--itatti-text);
+  overflow-y: auto;
+}
+
+/* Right panel: annotation sidebar — compact */
+.TextAnnotationWorkspace--annotationsPanel {
+  flex: 0 0 280px;
+  max-width: 300px;
+  border-left: 1px solid var(--itatti-border);
+  padding-left: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 80vh;
+  position: sticky;
+  top: 180px;
+}
+
+#main-container {
+  margin-top: -21px;
+}
+
+#editorRow {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#editorRow::before {
+  display: block;
+}
+
+/* ── Splitpane: constrain IIIF sidebar width ── */
+#yashiro-container .SplitPane .Pane1 {
+  max-width: 28vw !important;
+}
+
+/* ── IIIF Image sidebar (dark, narrower) ── */
+#metadataColumn {
+  background: var(--itatti-ink);
+  border-radius: 0;
+  height: 100%;
+  color: #aaaaaa;
+  padding: 0;
+  overflow: hidden;
+}
+
+#metadataContainer {
+  height: 100%;
+}
+
+#metadataContainer a {
+  color: #cccccc !important;
+}
+
+/* IIIF sidebar tab bar — remove all default borders to prevent double lines */
+#metadataContainer .nav-tabs {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 0 8px;
+  margin: 0;
+  box-shadow: none !important;
+}
+
+#metadataContainer .nav-tabs > li {
+  margin-bottom: -1px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#metadataContainer .nav-tabs > li > a {
+  color: var(--itatti-accent-light) !important;
+  font-family: var(--itatti-font-body);
+  font-size: 10px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 10px;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+#metadataContainer .nav-tabs > li.active {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+#metadataContainer .nav-tabs > li.active > a,
+#metadataContainer .nav-tabs > li > a:hover {
+  color: #ffffff !important;
+  border-bottom: 2px solid var(--itatti-accent-light) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Image viewer */
+#imageContainer {
+  background: var(--itatti-ink);
+  position: relative;
+}
+
+/* Page indicator */
+.page-indicator {
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--itatti-accent-light);
+  font-family: var(--itatti-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+}
+
+/* Thumbnail strip */
+.super-thumbnail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px;
+  background: var(--itatti-ink);
+}
+
+.thumb-item {
+  cursor: pointer;
+}
+
+.super-thumbnail {
+  display: block;
+  height: 48px;
+  width: auto;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  border-radius: 2px;
+}
+
+.thumb-item:hover .super-thumbnail {
+  opacity: 1;
+}
+
+/* ── Letter column ── */
+#letterColumn {
+  padding: 24px 32px 64px;
+  max-width: 960px;
+  background: var(--itatti-bg);
+}
+
+/* ── Pagination nav ── */
+.pagination-letters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--itatti-border);
+}
+
+.pagination-letters a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--itatti-text) !important;
+  text-decoration: none !important;
+  transition: opacity 0.15s ease;
+}
+
+.pagination-letters a:hover {
+  opacity: 0.5;
+}
+
+.letter-nav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ── Metadata strip — less bottom margin ── */
+.yashiro-letter-metadata {
+  display: flex;
+  background: var(--itatti-warm);
+  border-radius: var(--itatti-radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: none;
+}
+
+.meta-cell {
+  padding: 12px 16px;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  flex: 1;
+  min-width: 0;
+}
+
+.meta-cell:last-child {
+  border-right: none;
+}
+
+.meta-label {
+  font-family: var(--itatti-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--itatti-text-hint);
+  margin-bottom: 3px;
+}
+
+.meta-value {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--itatti-text);
+  line-height: 1.4;
+}
+
+.meta-value a {
+  color: var(--itatti-text) !important;
+  text-decoration: none !important;
+}
+
+.meta-value a:hover {
+  text-decoration: underline !important;
+}
+
+/* ── Misc ── */
+div#main-container {
+  padding-bottom: 0 !important;
+}
+
+#templateFooter {
+  margin-top: 0 !important;
+}
+
+/* ── Annotation sidebar images ── */
+#yashiro-container .annotation-subtitle {
+  font-family: var(--itatti-font-body);
+  font-size: 10px;
+  color: var(--itatti-text-hint) !important;
+  text-align: left;
+  padding: 2px 0;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+
 #yashiro-container #letterColumn {
-  margin-top: 60px;
+  margin-top: 0;
 }
+
 #yashiro-container .person-img {
-   margin-right: 5px;
-  border-right: 10px solid var(--annotation-person-accent);
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  border-right: none;
+  flex-shrink: 0;
+  color: transparent;
+  font-size: 0;
 }
+
 #yashiro-container .place-img {
-  margin-right: 5px;
-  border-right: 10px solid var(--annotation-place-accent);
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  opacity: 0.5;
+  margin: 0;
+  border-right: none;
+  flex-shrink: 0;
 }
+
+/* Placeholder person image — show as initial circle */
 #yashiro-container .person-img--placeholder {
-  opacity: 0.35;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--itatti-warm);
+  opacity: 1;
+  object-position: -9999px -9999px;
 }
+
 #yashiro-container .person-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
 }
+
 #yashiro-container .place-img + .yashiro-annotation-template > .yashiro-annotation-type-icon {
   display: none !important;
 }
 
+/* Mirador overrides */
 #yashiro-container a.change-layout.mainmenu-button,
 #yashiro-container .mirador-viewer .bottomPanel,
 #yashiro-container a.mirador-osd-toggle-bottom-panel.hud-control {
@@ -60,28 +353,32 @@
 #yashiro-container a.mirador-btn.mirador-icon-metadata-view.mirador-tooltip {
   display: none !important;
 }
+
 #yashiro-container .mirador-main-menu-bar {
   display: none !important;
 }
+
 #yashiro-container .mirador-viewer {
-  /* min-width: 450px; */
-  min-width: 34vw;
+  min-width: 100%;
   top: 0 !important;
 }
-#yashiro-container .mirador .mirador-container .mirador-pan-zoom-controls{
-  right:20px !important;
+
+#yashiro-container .mirador .mirador-container .mirador-pan-zoom-controls {
+  right: 12px !important;
 }
 
 #yashiro-container i.fa.fa-lg.fa-fw.fa-expand {
-  color: black;
+  color: white;
   position: relative;
   bottom: 5px;
 }
+
 #yashiro-container i.fa.fa-lg.fa-fw.fa-compress {
-  color: black !important;
+  color: white !important;
   position: relative;
   bottom: 5px;
 }
+
 #yashiro-container h3.window-manifest-title {
   display: none;
 }
@@ -93,30 +390,21 @@
   border: none;
   background: none !important;
 }
-#yashiro-container .TextAnnotationWorkspace--component p {
-  font-size: 18px;
-}
 
-#yashiro-container .super-thumbnail-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-left: 5px;
+#yashiro-container .TextAnnotationWorkspace--component p {
+  font-size: 16px;
+  line-height: 1.9;
 }
 
 #yashiro-container .openseadragon-canvas {
-  background: black !important;
-}
-
-#yashiro-container img.super-thumbnail {
-  height: 90px;
-  cursor: pointer;
+  background: var(--itatti-ink) !important;
 }
 
 #yashiro-container #imageContainer .mirador {
-  height: 64vh !important;
-  min-height: 500px;
+  height: 55vh !important;
+  min-height: 380px;
 }
+
 #yashiro-container #imageContainer > h1 {
   color: white !important;
   font-size: 24px;
@@ -126,45 +414,78 @@
 
 #yashiro-container .yashiro-editor-container .AnnotationSidebar--tabIcon {
   opacity: 0.5;
+  width: 14px;
+  height: 14px;
 }
 
-/* sidebar annotation */
+/* ── Sidebar annotation template — compact ── */
 #yashiro-container .yashiro-annotation-template {
-  padding: 10px;
+  padding: 0;
   display: flex;
-  gap: 5px;
-  justify-content: start;
-  overflow-x: hidden;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Name link inside template */
+#yashiro-container .yashiro-annotation-template > a,
+#yashiro-container .yashiro-annotation-template > span {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--itatti-text) !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* "Place:" label */
+#yashiro-container .yashiro-annotation-template > span {
+  font-size: 11px;
+  color: var(--itatti-text-hint) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 #yashiro-container .yashiro-annotation-template div.btn-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  opacity: 0;
-  margin-left: 20px;
+  display: none;
+  flex-direction: row;
+  gap: 2px;
+  margin-top: 2px;
 }
 
+/* Show btn-group on card hover */
+#yashiro-container .AnnotationSidebar--annotation:hover .yashiro-annotation-template div.btn-group {
+  display: flex;
+}
+
+/* Hide the type icon — the person-img/place-img already shows the type */
 #yashiro-container .yashiro-annotation-type-icon {
-  min-width: 30px;
-  min-height: 30px;
-  width: 30px;
-  height: 30px;
-  opacity: 0.5;
-  align-self: center;
-  margin-left: 10px;
-  margin-right: 20px;
+  display: none;
 }
 
 #yashiro-container .yashiro-ctrl-buttons-style {
   border: none;
   outline: none;
   background-color: transparent;
-  opacity: 0.5;
+  opacity: 0.35;
   margin: 0;
-  padding: 0;
+  padding: 2px 4px;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
 }
-#yashiro-container .yashiro-ctrl-buttons-style:hover,
+
+#yashiro-container .yashiro-ctrl-buttons-style:hover {
+  opacity: 0.8;
+  background-color: var(--itatti-warm) !important;
+  border-radius: 3px;
+}
+
 #yashiro-container .yashiro-ctrl-buttons-style:visited,
 #yashiro-container .yashiro-ctrl-buttons-style:focus,
 #yashiro-container .yashiro-ctrl-buttons-style:active,
@@ -176,20 +497,42 @@
   align-self: center;
   width: 100%;
 }
+
 #yashiro-container .yashiro-annotation-content.concept button[name="edit"] {
-  margin-right: 15px;
+  margin-right: 4px;
 }
 
+/* Annotation content takes remaining space */
+#yashiro-container .yashiro-annotation-content {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Annotation concept cards — compact, no overflow */
 #yashiro-container .yashiro-annotation-content.concept {
   display: flex;
   align-items: center;
-  margin-bottom:5px !important;
-  margin-top: 5px !important;
+  gap: 8px;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: none;
+  margin: 0 !important;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
 }
 
-#yashiro-container .yashiro-annotation-content.concept span:first-child {
-  display: flex;
-  align-items: center;
+/* Annotation content link text */
+#yashiro-container .yashiro-annotation-content.concept a {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--itatti-text) !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #yashiro-container .yashiro-editor-container
@@ -209,76 +552,91 @@
   display: flex;
 }
 
-/* ── Hover tooltip popup ─────────────────────────────────────────── */
+/* ── Hover tooltip popup ── */
 #yashiro-container div#text-annotation-editor-tooltip {
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: var(--itatti-radius-md);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
   border: none;
   padding: 0;
   overflow: hidden;
-  max-width: 340px;
+  max-width: 320px;
 }
 
 /* accent top-border by annotation type */
 #yashiro-container div#text-annotation-editor-tooltip:has(.person-img) {
-  border-top: 4px solid var(--annotation-person-accent);
+  border-top: 3px solid var(--annotation-person-accent);
 }
+
 #yashiro-container div#text-annotation-editor-tooltip:has(.place-img) {
-  border-top: 4px solid var(--annotation-place-accent);
+  border-top: 3px solid var(--annotation-place-accent);
 }
 
 /* inner content padding */
 #yashiro-container div#text-annotation-editor-tooltip .popover-content {
-  padding: 12px 14px;
+  padding: 10px 12px;
 }
 
-/* thumbnail images inside tooltip: no border stripe, fixed size */
+/* thumbnail images inside tooltip */
 #yashiro-container div#text-annotation-editor-tooltip .person-img,
 #yashiro-container div#text-annotation-editor-tooltip .place-img {
   border-right: none;
-  height: 52px;
-  width: 52px;
+  height: 40px;
+  width: 40px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 50%;
   margin-right: 10px;
   flex-shrink: 0;
+  color: transparent;
+  font-size: 0;
+}
+
+.yashiro-annotation-tooltip-info {
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  color: var(--itatti-text-sub);
+  display: flex;
+  align-items: center;
 }
 
 /* annotation-type icon buttons row */
 #yashiro-container #text-annotation-editor-tooltip .popover-content button {
-  width: 36px !important;
-  height: 36px !important;
-  font-size: 16px;
-  border-radius: 4px;
-  background: #f7f7f7;
-  border: 1px solid #e0e0e0 !important;
-  margin-left: 6px;
-  margin-right: 6px;
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 14px;
+  border-radius: var(--itatti-radius-sm);
+  background: var(--itatti-warm);
+  border: 1px solid var(--itatti-border) !important;
+  margin-left: 4px;
+  margin-right: 4px;
   transition: background 180ms ease;
 }
+
 #yashiro-container #text-annotation-editor-tooltip .popover-content button:hover {
-  background: #ececec;
+  background: var(--itatti-warm-dark);
 }
 
+/* Add annotation button */
 #yashiro-container button.TextAnnotationEditor--addAnnotationButton.btn.btn-default {
-  /* background: var(--project-accent); */
-  color: var(--project-accent);
+  color: var(--itatti-accent);
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  font-size: 19px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  border-radius: 5px;
+  border-radius: 50%;
   -moz-osx-font-smoothing: grayscale;
 }
+
 #yashiro-container button.TextAnnotationEditor--addAnnotationButton.btn.btn-default::before {
   content: "\f055";
 }
+
 #yashiro-container span.TextAnnotationEditor--addAnnotationIcon {
   display: none;
 }
+
 #yashiro-container .AnnotationEditForm--formContent {
   min-width: 45vw;
   height: fit-content;
@@ -306,7 +664,7 @@
 
 /* Annotation template inline styles */
 #yashiro-container .yashiro-annotation-type-icon[style*="border-left"] {
-  border-left-width: 10px;
+  border-left-width: 3px;
   border-left-style: solid;
 }
 
@@ -319,47 +677,51 @@
 #yashiro-container .yashiro-annotation-person-container {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
 }
 
 #yashiro-container .yashiro-annotation-person-info {
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  padding: 0 10px 6px;
 }
 
-/* Text document editor styles */
+/* ── Text document editor styles ── */
 #yashiro-container .yashiro-editor-sidebar {
-  min-height: 100vh;
-  border-right: 1px solid #a2a2a2;
-  background: var(--project-main);
+  min-height: auto;
+  border-right: none;
+  background: var(--itatti-ink);
   height: auto;
+  max-width: 28vw;
 }
 
 #yashiro-container .yashiro-toggle-button-on {
   border: none;
   background: transparent;
-  padding: 15px 2px;
+  padding: 12px 2px;
   outline: none;
   width: 100%;
-  color: white;
+  color: var(--itatti-accent-light);
 }
 
 #yashiro-container .yashiro-toggle-button-on .fa-angle-double-right {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #yashiro-container .yashiro-toggle-button-off {
   border: none;
-  border-bottom: 1px solid var(--project-main-dark);
-  background: var(--project-main);
-  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--itatti-ink);
+  padding: 12px;
   outline: none;
   width: 100%;
 }
 
 #yashiro-container .yashiro-toggle-button-off .fa-angle-double-left {
-  font-size: 20px;
+  font-size: 18px;
   margin-left: auto;
-  color: white;
+  color: var(--itatti-accent-light);
 }
 
 #yashiro-container .yashiro-splitpane-sidebar {
@@ -369,16 +731,89 @@
 }
 
 #yashiro-container .yashiro-letter-metadata {
-  padding: 20px;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-#yashiro-container .yashiro-annotation-tooltip-info {
-  display: flex;
-  align-items: center;
+  padding: 0;
+  border-bottom: none;
 }
 
 #yashiro-container .yashiro-annotation-tooltip .fa-pencil,
 #yashiro-container .yashiro-annotation-tooltip .fa-trash {
   pointer-events: none;
+}
+
+/* ── Sidebar type filter tabs — compact ── */
+.AnnotationSidebar--component .nav-tabs {
+  border-bottom: 1px solid var(--itatti-border);
+  padding: 0 2px;
+  margin-bottom: 10px;
+  display: flex !important;
+}
+
+.AnnotationSidebar--component .nav-tabs > li > a {
+  font-family: var(--itatti-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--itatti-text-hint);
+  padding: 6px 8px;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.AnnotationSidebar--component .nav-tabs > li.active > a {
+  color: var(--itatti-text);
+  border-bottom-color: var(--itatti-accent);
+}
+
+.AnnotationSidebar--tabHeader {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Annotation cards in sidebar — compact */
+.AnnotationSidebar--annotationList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.AnnotationSidebar--annotation {
+  border-radius: var(--itatti-radius-sm);
+  border: 1px solid var(--itatti-border);
+  overflow: hidden;
+  transition: all 0.15s;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.AnnotationSidebar--annotation:hover {
+  border-color: var(--itatti-border-strong);
+  background: var(--itatti-accent-bg2);
+}
+
+.AnnotationSidebar--annotation.AnnotationSidebar--focused {
+  border-color: var(--itatti-accent-light);
+  background: var(--itatti-accent-bg2);
+  box-shadow: none;
+}
+
+.AnnotationSidebar--annotation.AnnotationSidebar--highlighted {
+  opacity: 1;
+}
+
+.AnnotationSidebar--annotation:not(.AnnotationSidebar--highlighted) {
+  opacity: 0.4;
+}
+
+/* ── Text editor panel ── */
+.TextAnnotationEditor--component {
+  position: relative;
+}
+
+.TextAnnotationEditor--textEditor {
+  font-family: var(--itatti-font-heading);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--itatti-text);
 }

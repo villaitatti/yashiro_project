@@ -1,4 +1,8 @@
-/* Search page styles */
+/* =============================================================================
+   YASHIRO — SEARCH / FACETS (Letters list page)
+   ============================================================================= */
+
+/* Hide elements */
 #yashiro-container .show-facet-button,
 #simple-search .show-facet-button {
   display: none;
@@ -9,6 +13,7 @@
   display: none;
 }
 
+/* Facet holder */
 #yashiro-container .facet,
 #yashiro-container .semantic-facet-holder,
 #simple-search .facet,
@@ -50,10 +55,18 @@
   display: none !important;
 }
 
+/* Facet accordion items */
 #yashiro-container .facet__relation__header,
 #simple-search .facet__relation__header {
-  border: 1px solid rgb(221, 221, 221);
-  margin-top: 5px;
+  background: var(--itatti-warm);
+  border: none;
+  border-radius: var(--itatti-radius-md);
+  padding: 10px 12px;
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  transition: background 0.15s;
 }
 
 #yashiro-container .facet__relation__header:hover,
@@ -61,10 +74,11 @@
 #simple-search .facet__relation__header:hover,
 #simple-search .facet__relation__header:focus {
   text-decoration: none;
-  color: #000000;
-  background-color: rgba(37, 57, 94, 0.06);
+  color: var(--itatti-text);
+  background: var(--itatti-warm-dark);
 }
 
+/* Page header */
 #yashiro-container header h1,
 #simple-search header h1 {
   font-family: var(--itatti-font-heading);
@@ -81,6 +95,7 @@
   margin: 0;
 }
 
+/* Content excerpt */
 #yashiro-container .contentExcerpt,
 #simple-search .contentExcerpt {
   display: inline-block;
@@ -98,16 +113,16 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(transparent 50px, white);
+  background: linear-gradient(transparent 50px, var(--itatti-card));
 }
 
 /* No results styles */
 #yashiro-container .search-no-results,
 #simple-search .search-no-results {
-  background: #f4f4f4;
+  background: var(--itatti-warm);
   padding: 15px;
   position: relative;
-  border-radius: 5px;
+  border-radius: var(--itatti-radius-md);
 }
 
 #yashiro-container .search-no-results img,
@@ -121,7 +136,103 @@
   text-decoration: underline;
 }
 
-/* Letters page filter column */
+/* =====================================================================
+   Letters page two-column layout.
+
+   Rendered DOM (from yashiro:Letters.html):
+   div#simple-search
+     div#yashiro-container.container
+       semantic-context > semantic-search
+         div.row                          ← THIS is the layout row
+           div.col-sm-3.letters-filter-column   ← sidebar
+           div.col-sm-9                          ← results
+
+   We turn this .row into a flex container so the sidebar
+   and results sit side by side. The key is targeting ONLY
+   this specific .row (the one with .letters-filter-column),
+   not the inner .row elements inside letter cards.
+   ===================================================================== */
+
+/* The layout row — override Bootstrap's float grid with flexbox.
+   Target the .row that contains .letters-filter-column as a direct child.
+   Specificity is kept high enough to override Bootstrap defaults. */
+#simple-search #yashiro-container .row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  gap: 32px;
+}
+
+/* Filter sidebar column */
+#simple-search .letters-filter-column,
 #yashiro-container .letters-filter-column {
-  margin-top: 8px;
+  flex: 0 0 220px !important;
+  width: 220px !important;
+  float: none !important;
+  padding: 0 !important;
+  position: sticky;
+  top: 180px;
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+/* Results column — takes all remaining space.
+   Use .letters-filter-column sibling selector to target only the layout .col-sm-9,
+   not inner .col-sm-* inside letter cards. */
+#simple-search .letters-filter-column ~ .col-sm-9 {
+  flex: 1 1 0% !important;
+  width: auto !important;
+  max-width: none !important;
+  float: none !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+#yashiro-container .letters-filter-column h4,
+#simple-search .letters-filter-column h4 {
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--itatti-text-sub);
+  margin-bottom: 12px;
+  margin-top: 89px;
+}
+
+/* Results container: render letter cards as a continuous list.
+   Scoped to #simple-search / #grid-result to not affect People page. */
+#simple-search .griddle-custom-row,
+#simple-search #grid-result .griddle-custom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: var(--itatti-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--itatti-border);
+}
+
+/* Griddle filter input */
+#simple-search .griddle-filter .form-control,
+#yashiro-container .griddle-filter .form-control {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  border: 1px solid var(--itatti-border);
+  border-radius: var(--itatti-radius-sm);
+  padding: 8px 14px;
+  background: var(--itatti-card);
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+
+#simple-search .griddle-filter .form-control:focus,
+#yashiro-container .griddle-filter .form-control:focus {
+  border-color: var(--itatti-accent-light);
+  box-shadow: 0 0 0 2px rgba(120, 53, 15, 0.08);
+  outline: none;
+}
+
+/* Hide griddle settings toggle */
+#simple-search .griddle-settings-toggle,
+#yashiro-container .griddle-settings-toggle {
+  display: none;
 }

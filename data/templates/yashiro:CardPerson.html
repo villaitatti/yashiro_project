@@ -1,158 +1,68 @@
+<semantic-link class="no-underline" iri="{{subject.value}}">
 <div class="person-card">
-  <div class="panel-body">
-    <bs-col md="4">
-      <div class="grid-demo">
-        <semantic-query
-          query='SELECT ?localImage WHERE {<{{subject.value}}> crm:P138i_has_representation ?filename.
-            BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
-            BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
-          template='{{> thumbTemplate }}'>
-           <template id='thumbTemplate'>
-             {{#each bindings}}
-              <img src="{{localImage.value}}"/>
-             {{/each}}
-           </template>
-        </semantic-query>
-      </div>
-    </bs-col>
-    <bs-col md="8">
-      <div data-flex-layout="row md-column center-stretch">
-        <bs-row>
-          <bs-col md="12">
-            <h2>
-              <semantic-link iri="{{subject.value}}"></semantic-link>
-            </h2>
-          </bs-col>
-          <bs-col md="12">
-              <semantic-query
-                query='SELECT DISTINCT ?info WHERE { <{{subject.value}}>  <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
-                ?subtitle_node rdf:value ?info .}LIMIT 10'
-                template='{{> documentedIn }}'>
-                 <template id='documentedIn'>
-                   {{#each bindings}}
-                    <div class="subtitle">{{info.value}}</div>
-                   {{/each}}
-                 </template>
-              </semantic-query>
-        </bs-col>
-        <bs-col md="12">
-          <semantic-query
-            query='SELECT DISTINCT ?sender ?letterLink ?letterLabel  WHERE { 
-                  ?subject crm:P1_is_identified_by ?letter.
-                  ?activity crm:P16_used_specific_object ?letter.
-                  ?letter rdfs:label ?label.
-                  ?letterLink crm:P1_is_identified_by ?letter.
-                  ?activity crm:P01_has_domain ?sender_carry.
-                  ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
-                  ?sender_role rdfs:label "Sender".
-                  ?sender_carry crm:P02_has_range <{{subject.value}}>
-                  BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-                  BIND(<{{subject.value}}> as ?sender)
-                }'
-            template='{{> sent }}'>
-             <template id='sent'>
-                 <div style="margin-top: 15px;
-                 display: flex;
-                 gap: 5px;
-                 margin-bottom: 5px;">Sent   <semantic-query
-                  query='SELECT (COUNT(DISTINCT (?letter)) as ?count)  WHERE { 
-                        ?subject crm:P1_is_identified_by ?letter.
-                        ?activity crm:P16_used_specific_object ?letter.
-                        ?letter rdfs:label ?label.
-                        ?letterLink crm:P1_is_identified_by ?letter.
-                        ?activity crm:P01_has_domain ?sender_carry.
-                        ?sender_carry crm:P14.1_in_the_role_of ?sender_role.
-                        ?sender_role rdfs:label "Sender".
-                        ?sender_carry crm:P02_has_range <{{bindings.0.sender.value}}>
-                        BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-                      }'></semantic-query> letter(s):</div>
-                 <div style="display: flex;
-                      flex-wrap: wrap;
-                      max-width: 35vw;
-                      gap: 8px;">
-                    {{#each bindings}}
-                      <semantic-link iri="{{letterLink.value}}"  class="letter-link">{{letterLabel.value}}</semantic-link>
-                    {{/each}}
-                 </div>
-             </template>
-          </semantic-query>
-            <semantic-query
-            query='SELECT DISTINCT ?receiver ?letterLink ?letterLabel WHERE { 
-              ?subject crm:P1_is_identified_by ?letter.
-              ?activity crm:P16_used_specific_object ?letter.
-              ?letter rdfs:label ?label.
-              ?letterLink crm:P1_is_identified_by ?letter.
-              ?activity crm:P01_has_domain ?receiver_carry.
-              ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
-              ?receiver_role rdfs:label "Receiver".
-              ?receiver_carry crm:P02_has_range <{{subject.value}}>
-              BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-              BIND(<{{subject.value}}> as ?receiver)
-            }'
-            template='{{> receive }}'>
-            <template id='receive'>
-              <div style="margin-top: 15px; 
-              display: flex;
-              gap: 5px;
-              margin-bottom: 5px;">Received  <semantic-query
-            query='SELECT (COUNT(DISTINCT (?letter)) as ?count) WHERE { 
-              ?subject crm:P1_is_identified_by ?letter.
-              ?activity crm:P16_used_specific_object ?letter.
-              ?letterLink crm:P1_is_identified_by ?letter.
-              ?activity crm:P01_has_domain ?receiver_carry.
-              ?receiver_carry crm:P14.1_in_the_role_of ?receiver_role.
-              ?receiver_role rdfs:label "Receiver".
-              ?receiver_carry crm:P02_has_range <{{bindings.0.receiver.value}}>
-            }'></semantic-query>letter(s):</div>
-              <div style="    display: flex;
-              flex-wrap: wrap;
-              max-width: 35vw;
-              gap: 8px;">
-                  {{#each bindings}}
-                    <semantic-link iri="{{letterLink.value}}" class="letter-link">{{letterLabel.value}}</semantic-link>
-                  {{/each}}
-              </div>
-            </template>
-            </semantic-query>
-            <semantic-query
-            query='SELECT DISTINCT ?mentioned ?letter ?letterLabel WHERE { 
-              ?a oa:hasTarget ?target.
-              ?target oa:hasSource ?letter. 
-              ?a oa:hasBody ?body.
-              ?body crm:P1_is_identified_by <{{subject.value}}>.
-              ?letter rdfs:label ?label.
-              BIND(REPLACE(?label,"Letter_","") as ?letterLabel)
-              BIND(<{{subject.value}}> as ?mentioned)
-            }'
-            template='{{> annotation }}'>
-            <template id='annotation'>
-              <div style="margin-top: 15px; 
-              display: flex;
-              gap: 5px;
-              margin-bottom: 5px;">Mentioned in    <semantic-query
-                query='SELECT (COUNT(DISTINCT(?letter)) as ?count) WHERE { 
-                  ?a oa:hasTarget ?target.
-                  ?target oa:hasSource ?letter. 
-                  ?a oa:hasBody ?body.
-                  ?body crm:P1_is_identified_by <{{bindings.0.mentioned.value}}>.
-                  ?letter rdfs:label ?label.
-                }'></semantic-query> letter(s):</div>
-              <div style="    display: flex;
-                flex-wrap: wrap;
-                max-width: 35vw;
-                gap: 8px;">
-                  {{#each bindings}}
-                    <semantic-link iri="{{letter.value}}" class="letter-link">{{letterLabel.value}}</semantic-link>
-                  {{/each}}
-              </div>
-            </template>
-          </semantic-query>
-         </bs-col>
-        </bs-row>
-      </div>
-    </bs-col>
+  <div class="person-card-inner">
+
+    <div class="person-card-avatar">
+      <div class="person-card-initial">{{initial.value}}</div>
+      <semantic-query
+        query='SELECT ?localImage WHERE {
+          <{{subject.value}}> crm:P138i_has_representation ?filename.
+          BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+          BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage)
+        } LIMIT 1'
+        template='{{> thumbTemplate }}'>
+        <template id='thumbTemplate'>
+          {{#each bindings}}
+            <img class="person-card-photo" src="{{localImage.value}}" alt="" />
+          {{/each}}
+        </template>
+      </semantic-query>
+    </div>
+
+    <div class="person-card-body">
+      <h2 class="person-card-name">
+        <semantic-link iri="{{subject.value}}"></semantic-link>
+      </h2>
+
+      <semantic-query
+        query='SELECT DISTINCT ?info WHERE {
+          <{{subject.value}}> <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
+          ?subtitle_node rdf:value ?info .
+        } LIMIT 10'
+        template='{{> documentedIn }}'>
+        <template id='documentedIn'>
+          {{#each bindings}}
+            <div class="person-card-subtitle">{{info.value}}</div>
+          {{/each}}
+        </template>
+      </semantic-query>
+
+      <semantic-query
+        query='SELECT (COUNT(DISTINCT ?letter) as ?count) WHERE {
+          {
+            ?subject crm:P1_is_identified_by ?letter .
+            ?activity crm:P16_used_specific_object ?letter .
+            ?activity crm:P01_has_domain ?carry .
+            ?carry crm:P02_has_range <{{subject.value}}>
+          } UNION {
+            ?a oa:hasTarget ?target .
+            ?target oa:hasSource ?letter .
+            ?a oa:hasBody ?body .
+            ?body crm:P1_is_identified_by <{{subject.value}}>
+          }
+        }'
+        template='{{> mentionCount }}'>
+        <template id='mentionCount'>
+          {{#each bindings}}
+            {{#ifCond count.value "!==" "0"}}
+              <div class="person-card-mentions">Mentioned in {{count.value}} letters</div>
+            {{/ifCond}}
+          {{/each}}
+        </template>
+      </semantic-query>
+
+    </div>
+
   </div>
 </div>
-
-
-
+</semantic-link>

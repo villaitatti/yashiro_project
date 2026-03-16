@@ -1,75 +1,85 @@
 [[> yashiro:header ]]
 
 <!-- main container open -->
+<div class="yashiro-people">
 <div id="yashiro-container" class="container">
   <!-- /main container open -->
 
   <link rel="stylesheet" href="../../assets/styles/template.css" />
-  <header>
-    <h1>People</h1>
-  </header>
 
-  <semantic-context
-    repository="yashiro"
-  >
-  <semantic-search categories="{}" relations="{}" search-profile="{}">
-    <semantic-search-query-constant
-      domain="<crm:E21_Person>"
-      query="
-          SELECT ?subject WHERE {
-            ?subject a crm:E21_Person .
-          }"
+  <div class="yashiro-page-content">
+    <header class="yashiro-page-header">
+      <div class="yashiro-section-label">Index</div>
+      <h1>People</h1>
+      <p class="yashiro-page-description">Individuals mentioned in the correspondence, from the two principal correspondents to friends, diplomats, and scholars in their circle.</p>
+    </header>
+
+    <semantic-context
+      repository="yashiro"
     >
-    </semantic-search-query-constant>
+    <semantic-search categories="{}" relations="{}" search-profile="{}">
+      <semantic-search-query-constant
+        domain="<crm:E21_Person>"
+        query="
+            SELECT ?subject WHERE {
+              ?subject a crm:E21_Person .
+            }"
+      >
+      </semantic-search-query-constant>
 
-    <div data-flex-layout="row stretch-stretch">
-      <!--div data-flex-self="size-1of3">
-                    <semantic-search-facet open-by-default="true"></semantic-search-facet>
-                </div-->
+      <div data-flex-layout="row stretch-stretch">
+        <semantic-search-result-holder>
+          <div data-flex-self="md-full">
+            <bs-tabs unmount-on-exit="true" id="search-results" animation="false">
+              <bs-tab event-key="1" title="table">
+                <semantic-table
+                  id="table-result"
+                  query='
+                  SELECT ?subject ?initial ?mentionCount WHERE {
+                      ?subject a crm:E21_Person .
+                      ?subject rdfs:label ?label .
+                      BIND(SUBSTR(?label, 1, 1) AS ?initial)
+                      {
+                        SELECT ?subject (COUNT(DISTINCT ?letter) AS ?mentionCount) WHERE {
+                          ?subject a crm:E21_Person .
+                          OPTIONAL {
+                            ?subj crm:P1_is_identified_by ?letter .
+                            ?activity crm:P16_used_specific_object ?letter .
+                            ?activity crm:P01_has_domain ?carry .
+                            ?carry crm:P02_has_range ?subject
+                          }
+                          OPTIONAL {
+                            ?a oa:hasTarget ?target .
+                            ?target oa:hasSource ?letter .
+                            ?a oa:hasBody ?body .
+                            ?body crm:P1_is_identified_by ?subject
+                          }
+                        } GROUP BY ?subject
+                      }
+                  } ORDER BY DESC(?mentionCount)'
 
-      <semantic-search-result-holder>
-        <div data-flex-self="md-full">
-          <bs-tabs unmount-on-exit="true" id="search-results" animation="false">
-            <bs-tab event-key="1" title="table">
-              <semantic-table
-                id="table-result"
-                query='
-                SELECT DISTINCT ?subject WHERE {
-                    ?subject a crm:E21_Person .
-                }'
-              
-              tuple-template="{{>tupleTemplate}}"
-              >
-                <template id="tupleTemplate">
-                  [[> yashiro:CardPerson]]
-                </template>
-              </semantic-table>
-            </bs-tab>
-          </bs-tabs>
-        </div>
-      </semantic-search-result-holder>
-    </div>
-  </semantic-search>
-  </semantic-context>
-
+                tuple-template="{{>tupleTemplate}}"
+                number-of-displayed-rows="12"
+                >
+                  <template id="tupleTemplate">
+                    [[> yashiro:CardPerson]]
+                  </template>
+                </semantic-table>
+              </bs-tab>
+            </bs-tabs>
+          </div>
+        </semantic-search-result-holder>
+      </div>
+    </semantic-search>
+    </semantic-context>
+  </div>
 
   <style>
-    .personImg {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-    }
-
-    .nav-tabs {
-      display: none;
-    }
-
-    th[data-title^="mp-custom-column"]:first-child {
-      width: 50px !important;
-    }
+    /* Inline overrides now handled by yashiro-people.css */
   </style>
 
   <!-- main container end -->
 </div>
 <!-- /main container end -->
+</div>
 

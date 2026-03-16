@@ -1,4 +1,8 @@
-#yashiro-container .icon-holder{
+/* =============================================================================
+   YASHIRO — FOOTER
+   ============================================================================= */
+
+#yashiro-container .icon-holder {
   display: flex;
 }
 
@@ -13,24 +17,43 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background: var(--project-main);
+  background: var(--itatti-ink);
   height: 100%;
   min-height: 185px;
 }
+
 #yashiro-container #logout-Link + #login-Link {
   display: none;
 }
 
-#yashiro-container .footer *{
-  background:  none !important;
-  color:  white;
+#yashiro-container .footer * {
+  background: none !important;
+  color: white;
 }
-#yashiro-container footer a{
+
+#yashiro-container footer a {
   transition: 0.3s;
 }
+
 #yashiro-container footer a:hover {
   filter: opacity(0.7);
 }
+
 #yashiro-container .footer h3 {
   font-size: 18px;
+}
+
+/* Shared footer (coll-footer from collection app) */
+.coll-footer {
+  border-top: 0.5px solid var(--itatti-border);
+  padding: 56px 32px;
+  margin-top: 96px;
+}
+
+.coll-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: var(--itatti-text-hint);
 }
