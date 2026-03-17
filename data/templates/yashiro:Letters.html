@@ -170,8 +170,8 @@
                 ?receiver_role rdfs:label "Receiver".
 
                 ?letter crm:P128_carries ?content.
-                ?content rdf:value ?contentvalue.
-                BIND(str(?contentvalue) as ?contentvalue).
+                ?content rdf:value ?contentvalue_raw.
+                BIND(str(?contentvalue_raw) as ?contentvalue).
               }'
           >
           </semantic-search-query-constant>
@@ -227,8 +227,8 @@
                                                         ?receiver_role rdfs:label "Receiver".
 
                                                         ?letter crm:P128_carries ?content.
-                                                        ?content rdf:value ?contentvalue.
-                                                        BIND(str(?contentvalue) as ?contentvalue).
+                                                        ?content rdf:value ?contentvalue_raw.
+                                                        BIND(str(?contentvalue_raw) as ?contentvalue).
                                                       }
                                       ORDER BY ?date '
                         tuple-template="{{>tupleTemplate}}"
