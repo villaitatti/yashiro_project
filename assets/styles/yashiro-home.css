@@ -1,0 +1,423 @@
+/* =============================================================================
+   YASHIRO — HOME PAGE (Start.html)
+   ============================================================================= */
+
+/* ── Home page layout ── */
+.yashiro-home {
+  max-width: 100%;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+#yashiro-container:has(.yashiro-home) {
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+#yashiro-container:has(.yashiro-home) + #templateFooter,
+#yashiro-container:has(.yashiro-home) ~ footer,
+#yashiro-container:has(.yashiro-home) ~ .coll-footer {
+  margin-top: 0 !important;
+}
+
+/* ── Kill the RS page-container min-height on the home page so no gap appears ── */
+body:has(.yashiro-home) .page-container {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* ── Hero — cinematic full-background ── */
+.yashiro-hero {
+  position: relative;
+  height: calc(100vh - 164px);
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  padding: 80px 48px 140px;
+  overflow: hidden;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0 !important;
+}
+
+/* Background image layers */
+.yashiro-carousel-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: 0;
+}
+
+.yashiro-carousel-bg.active {
+  opacity: 1;
+}
+
+/* Gradient overlay — dark left, transparent right */
+.yashiro-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    108deg,
+    rgba(18, 13, 8, 0.88) 0%,
+    rgba(18, 13, 8, 0.65) 38%,
+    rgba(18, 13, 8, 0.28) 65%,
+    rgba(18, 13, 8, 0.05) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hero text */
+.yashiro-hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+}
+
+.yashiro-hero .yashiro-section-label {
+  color: var(--itatti-accent-light);
+  margin-bottom: 16px;
+}
+
+.yashiro-hero-title {
+  font-family: var(--itatti-font-heading);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1.12;
+  color: #fff !important;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+
+.yashiro-hero-description {
+  font-family: var(--itatti-font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.70);
+  margin: 0 0 32px;
+  max-width: 440px;
+}
+
+.yashiro-hero-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.yashiro-btn-primary {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  padding: 20px 28px;
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--itatti-radius-sm);
+  text-decoration: none !important;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s;
+}
+
+.yashiro-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.28);
+  text-decoration: none !important;
+}
+
+.yashiro-btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.80) !important;
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  padding: 20px 28px;
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--itatti-radius-sm);
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+
+.yashiro-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+  text-decoration: none !important;
+}
+
+/* Caption + controls — bottom right */
+.yashiro-carousel-controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 500px;
+  padding: 28px 40px 32px;
+  background: rgba(12, 8, 5, 0.68);
+  backdrop-filter: blur(14px);
+  border-radius: var(--itatti-radius-lg) 0 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.yashiro-carousel-caption {
+  margin-bottom: 20px;
+}
+
+.yashiro-carousel-title {
+  font-family: var(--itatti-font-heading);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 6px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.yashiro-carousel-desc {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+}
+
+.yashiro-carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Minimal bare arrows — no box */
+.yashiro-carousel-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.2s;
+  letter-spacing: -0.04em;
+}
+
+.yashiro-carousel-btn:hover {
+  color: rgba(255, 255, 255, 0.90);
+  background: none;
+}
+
+.yashiro-carousel-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex: 1;
+}
+
+.yashiro-carousel-dot {
+  width: 18px;
+  height: 1px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.20);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+  flex-shrink: 0;
+}
+
+.yashiro-carousel-dot.active {
+  background: rgba(255, 255, 255, 0.80);
+  width: 28px;
+}
+
+/* ── Stats bar ── */
+.yashiro-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--itatti-border);
+  border-radius: var(--itatti-radius-md);
+  overflow: hidden;
+  max-width: 1120px;
+  margin: 32px auto 60px;
+}
+
+.yashiro-stat {
+  background: var(--itatti-card);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.yashiro-stat-number {
+  font-family: var(--itatti-font-heading);
+  font-size: 24px;
+  color: var(--itatti-text);
+  margin-bottom: 4px;
+}
+
+.yashiro-stat-label {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: var(--itatti-text-hint);
+}
+
+/* ── Navigation cards ── */
+.yashiro-home-nav {
+  padding: 0 24px 60px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.yashiro-home-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.yashiro-home-nav-header h2 {
+  font-family: var(--itatti-font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.yashiro-home-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.yashiro-nav-card {
+  display: block;
+  background: var(--itatti-card);
+  border: 0.5px solid var(--itatti-border);
+  border-radius: var(--itatti-radius-md);
+  padding: 24px;
+  text-decoration: none !important;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.yashiro-nav-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-decoration: none !important;
+}
+
+.yashiro-nav-card-label {
+  font-family: var(--itatti-font-body);
+  font-size: 11px;
+  color: var(--itatti-accent) !important;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.yashiro-nav-card-title {
+  font-family: var(--itatti-font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--itatti-text) !important;
+  margin-bottom: 8px;
+}
+
+.yashiro-nav-card-desc {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: var(--itatti-text-hint) !important;
+  line-height: 1.5;
+}
+
+.yashiro-nav-card-arrow {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: var(--itatti-text-hint) !important;
+  font-size: 16px;
+}
+
+/* ── Timeline — full-viewport-width breakout ── */
+.yashiro-timeline {
+  background: var(--itatti-ink);
+  padding: 64px 24px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.yashiro-timeline-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.yashiro-timeline-title {
+  font-family: var(--itatti-font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff !important;
+  margin: 0 0 32px;
+}
+
+.yashiro-timeline-track {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.yashiro-timeline-item {
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.yashiro-timeline-year {
+  font-family: var(--itatti-font-heading);
+  font-size: 28px;
+  color: var(--itatti-accent-light);
+  margin-bottom: 8px;
+}
+
+.yashiro-timeline-text {
+  font-family: var(--itatti-font-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+.yashiro-timeline-text em {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .yashiro-hero {
+    height: calc(100vh - 164px);
+    min-height: 420px;
+    padding: 60px 24px 120px;
+  }
+
+  .yashiro-hero-title {
+    font-size: 32px;
+  }
+
+  .yashiro-carousel-controls {
+    width: 100%;
+    border-radius: 0;
+    padding: 20px 24px 24px;
+  }
+
+  .yashiro-stats {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 24px 16px 40px;
+  }
+
+  .yashiro-home-nav-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -110,13 +110,18 @@ div[role="toolbar"] {
 }
 
 /* ── Dropdown menus ── */
+/* Open dropdowns on hover and bridge the gap */
+#yashiro-menu .nav > li.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
 #yashiro-menu bs-nav-dropdown .dropdown-menu,
 #yashiro-menu .dropdown-menu {
   border: 1px solid var(--itatti-border);
   border-radius: var(--itatti-radius-lg);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   padding: 8px;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 #yashiro-menu .dropdown-menu bs-menu-item a,

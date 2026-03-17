@@ -342,3 +342,89 @@
 #main-container article a:hover {
   color: var(--itatti-accent-mid);
 }
+
+/* ── Section break (paragraphs containing only ***) ── */
+.yashiro-section-break {
+  text-align: center !important;
+  color: var(--itatti-text-hint) !important;
+  letter-spacing: 0.4em;
+  margin: 40px 0 !important;
+  font-family: var(--itatti-font-body) !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* ── Title visibility — ensure all content pages clear the fixed navbar ── */
+.yashiro-page-content {
+  padding-top: 40px;
+}
+
+.yashiro-page-content:first-child > .yashiro-section-label:first-child,
+.yashiro-page-content > .yashiro-section-label:first-child {
+  padding-top: 40px;
+}
+
+/* ── Floating Table of Contents ── */
+.yashiro-toc {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 196px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  z-index: 90;
+  background: var(--itatti-card);
+  border: 0.5px solid var(--itatti-border);
+  border-radius: var(--itatti-radius-md);
+  padding: 14px 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+.yashiro-toc-label {
+  font-family: var(--itatti-font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--itatti-text-hint);
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--itatti-border);
+}
+
+.yashiro-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.yashiro-toc-item {
+  margin-bottom: 2px;
+}
+
+.yashiro-toc-h3 {
+  padding-left: 10px;
+}
+
+.yashiro-toc-link {
+  font-family: var(--itatti-font-body);
+  font-size: 12px;
+  color: var(--itatti-text-hint) !important;
+  text-decoration: none !important;
+  line-height: 1.45;
+  display: block;
+  padding: 3px 0;
+  transition: color 0.15s;
+}
+
+.yashiro-toc-link:hover,
+.yashiro-toc-link.active {
+  color: var(--itatti-accent) !important;
+}
+
+
+@media (max-width: 1280px) {
+  .yashiro-toc {
+    display: none;
+  }
+}

@@ -1,157 +1,167 @@
-<div id="printableInfo" class="workAndProductionInfo">
-  <!-- Fields for Work (Artwork or photograph) -->
+<div class="yashiro-person-layout">
 
-  <div class="image-container">
+  <!-- ── Left aside: photo + bio ── -->
+  <aside class="yashiro-person-aside">
+
     <semantic-query
-      query='SELECT ?localImage WHERE {?? crm:P138i_has_representation ?filename.
-    BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
-    BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage) }LIMIT 1'
-      template="{{> imageTemplate }}"
-    >
+      query='SELECT ?localImage WHERE {
+        ?? crm:P138i_has_representation ?filename.
+        BIND(REPLACE(STR(?filename),"https://yashiro.itatti.harvard.edu/","/assets/") as ?localImageNorm)
+        BIND(REPLACE(?localImageNorm,"/assets/resource/assets/","/assets/") as ?localImage)
+      } LIMIT 1'
+      template="{{> imageTemplate}}">
       <template id="imageTemplate">
-        <img class="thumbnailImage" src="{{bindings.0.localImage.value}}" />
+        {{#each bindings}}
+          <img class="yashiro-person-photo" src="{{localImage.value}}" alt="" />
+        {{/each}}
       </template>
     </semantic-query>
-  </div>
-  <div class="workInfoContainer">
-    <!-- Fields for Production -->
-  <h1>Letters</h1>
-  <bs-tab-container
-    id="tab-container"
-    class="page__body-navtabs--borderless"
-    default-active-key="sent"
-  >
-    <div>
-          [[> yashiro:LetterSearch]]
-    </div>
-  </bs-tab-container>
 
+    <semantic-query
+      query='SELECT DISTINCT ?info WHERE {
+        ?? <http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in> ?subtitle_node .
+        ?subtitle_node rdf:value ?info .
+      } LIMIT 10'
+      template='{{> bioTemplate}}'>
+      <template id='bioTemplate'>
+        {{#each bindings}}
+          <p class="yashiro-person-bio">{{info.value}}</p>
+        {{/each}}
+      </template>
+    </semantic-query>
+
+  </aside>
+
+  <!-- ── Right: letters ── -->
+  <div class="yashiro-person-letters">
+    <h2 class="yashiro-person-section-title">Letters</h2>
+    [[> yashiro:LetterSearch]]
   </div>
+
 </div>
+
 <style>
-    #simple-search .griddle-custom-row {
+  .yashiro-person-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    align-items: start;
+    padding: 32px 0;
+  }
+
+  .yashiro-person-aside {
+    position: sticky;
+    top: 120px;
+  }
+
+  .yashiro-person-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--itatti-radius-md);
+    display: block;
+    margin-bottom: 16px;
+    background: var(--itatti-warm);
+  }
+
+  .yashiro-person-bio {
+    font-family: var(--itatti-font-body);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--itatti-text-sub);
+    margin: 0 0 10px;
+  }
+
+  .yashiro-person-section-title {
+    font-family: var(--itatti-font-heading);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--itatti-ink);
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--itatti-border);
+  }
+
+  .yashiro-person-letters #simple-search,
+  .yashiro-person-letters #main-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  #simple-search .griddle-custom-row {
     justify-content: flex-start !important;
   }
 
   div#search-results {
     width: 100% !important;
     margin-left: 0 !important;
-}
-  .workAndProductionInfo {
-    display: grid;
-    grid-template-columns: minmax(300px, 25%) 1fr;
-    margin-top: 20px;
   }
 
-  .workAndProductionInfo .workInfoContainer {
-    max-width: 75vw;
-    margin: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 20px 1px #f8f8f8;
-  }
-
-  .workAndProductionInfo .productionInfoContainer {
-    width: 45%;
-    margin: 10px;
-    padding: 20px;
-    min-width: 500px;
-    box-shadow: 0px 0px 20px 1px #f8f8f8;
-  }
-  .workAndProductionInfo .image-container {
-    margin-left: 2vw;
-  }
-
-  .workAndProductionInfo .image-container img.thumbnailImage {
-    height: 50vh;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .rs-application .semantic-carousel > .slick-slider .slick-next:before,
-  .rs-application .semantic-carousel > .slick-slider > .slick-prev:before {
-    color: #000000 !important;
-  }
-
-  .slick-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f5f5f5;
-  }
-  .workAndProductionInfo ul.slick-dots {
-    top: unset;
-  }
-  .slick-prev {
-    top: 15px;
-    left: 0;
-  }
-  .slick-next {
-    top: 15px;
-    left: 30px;
-  }
-  .rs-application .semantic-carousel > .slick-slider .slick-next:before,
-  .rs-application .semantic-carousel > .slick-slider > .slick-prev:before {
-    color: #aa182b !important;
-    background: white;
-    border-radius: 100%;
-    opacity: 1;
-  }
-  .workAndProductionInfo
-    .image-container
-    img.thumbnailImage:hover
-    + .zoom-option.fa.fa-search-plus {
-    opacity: 1;
-  }
-  .zoom-option.fa.fa-search-plus:hover {
-    opacity: 1;
-  }
-  .zoom-option.fa.fa-search-plus {
-    cursor: pointer;
-    transition: 0.4s;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 23px;
-    opacity: 0;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(0deg, #00000080, #ffffff00);
-  }
-  .slick-slide {
-    position: relative;
-  }
-  ul.slick-dots {
+  .contentExcerpt {
+    display: inline-block;
     overflow: hidden;
-    position: relative;
+    text-overflow: fade;
+    height: 65px;
+    margin-top: 10px;
   }
 
-  @media (max-width: 1480px) {
-    .workAndProductionInfo .productionInfoContainer {
-      width: 100% !important;
-    }
+  .contentExcerpt:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(transparent 50px, white);
   }
-  @media (max-width: 800px) {
-    .workAndProductionInfo{
-      display: flex;
-    flex-wrap: wrap;
-    }
 
+  .show-facet-button { display: none; }
 
-    .workAndProductionInfo .workInfoContainer {
-    max-width: 95vw;
-      min-width: unset !important;
-      margin: 0 !important;
-      padding: 10px !important;
+  #search-results .nav-tabs { display: none; }
+
+  .facet,
+  .semantic-facet-holder {
+    width: 100% !important;
+    position: relative !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .facet__category-selector-holder { display: none !important; }
+
+  .FacetSlider--range input.form-control {
+    width: 60px !important;
+    min-width: 0 !important;
+    padding: 4px !important;
+  }
+
+  .facet__relation__header {
+    border: 1px solid var(--itatti-border);
+    margin-top: 5px;
+  }
+
+  .facet__relation__header:hover,
+  .facet__relation__header:focus {
+    text-decoration: none;
+    color: var(--itatti-text);
+    background-color: var(--itatti-warm);
+  }
+
+  .rc-slider.FacetSlider--slider {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  @media (max-width: 900px) {
+    .yashiro-person-layout {
+      grid-template-columns: 1fr;
     }
-    .workAndProductionInfo .productionInfoContainer {
-      width: 100vw !important;
-      min-width: unset !important;
-      margin: 0 !important;
-      padding: 10px !important;
+    .yashiro-person-aside {
+      position: static;
+    }
+    .yashiro-person-photo {
+      aspect-ratio: 16 / 9;
     }
   }
 </style>
