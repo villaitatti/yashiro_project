@@ -71,11 +71,7 @@
   margin-bottom: -96px!important;
 }
 
-/* ── RS page-holder chrome: remove extra padding when templates handle their own ── */
-#yashiro-container .page-holder-container,
-#yashiro-container .page-holder {
-  padding: 0;
-}
+
 
 /* ── Annotation sidebar layout fix ── */
 #yashiro-container .AnnotationSidebar--annotationList > div > div {

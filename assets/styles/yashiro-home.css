@@ -11,6 +11,13 @@
   line-height: 0;
 }
 
+/* ── RS page-holder chrome: remove extra padding/min-height when templates handle their own ── */
+body:has(#yashiro-container) .page-holder-container,
+body:has(#yashiro-container) .page-holder {
+  padding: 0;
+  min-height: unset !important;
+}
+
 #yashiro-container:has(.yashiro-home) {
   padding: 0 !important;
   margin-top: 0 !important;

@@ -50,10 +50,8 @@
                                 {{#if clickedImageIri}}
                                   <rs-iiif-mirador
                                     image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
-                                    image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
-                                                    BIND("image" AS ?type)
-                                                    BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)
-                                                    BIND(?imageIRI AS ?carrierImageIRI)'
+                                    image-id-pattern='VALUES (?imageIRI ?type ?carrierImageIRI) { (<{{clickedImageIri}}> "image" <{{clickedImageIri}}>) }
+                                                    BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
                                     iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                     >
                                   </rs-iiif-mirador>
@@ -69,10 +67,8 @@
                                 {{else}}
                                   <rs-iiif-mirador
                                   image-or-region='{"{{bindings.0.image.value}}":["{{bindings.0.image.value}}"]}'
-                                  image-id-pattern='BIND( <{{bindings.0.image.value}}> AS ?imageIRI)
-                                                  BIND("image" AS ?type)
-                                                  BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)
-                                                  BIND(?imageIRI AS ?carrierImageIRI)'
+                                  image-id-pattern='VALUES (?imageIRI ?type ?carrierImageIRI) { (<{{bindings.0.image.value}}> "image" <{{bindings.0.image.value}}>) }
+                                                  BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
                                   iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                   >
                                 </rs-iiif-mirador>
@@ -116,10 +112,8 @@
                                 {{#if clickedImageIri}}
                                   <rs-iiif-mirador
                                     image-or-region='{"{{clickedImageIri}}":["{{clickedImageIri}}"]}'
-                                    image-id-pattern='BIND( <{{clickedImageIri}}> AS ?imageIRI)
-                                                    BIND("image" AS ?type)
-                                                    BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)
-                                                    BIND(?imageIRI AS ?carrierImageIRI)'
+                                    image-id-pattern='VALUES (?imageIRI ?type ?carrierImageIRI) { (<{{clickedImageIri}}> "image" <{{clickedImageIri}}>) }
+                                                    BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
                                     iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                     >
                                   </rs-iiif-mirador>
@@ -136,10 +130,8 @@
                                 {{else}}
                                   <rs-iiif-mirador
                                   image-or-region='{"{{bindings.0.image.value}}":["{{bindings.0.image.value}}"]}'
-                                  image-id-pattern='BIND( <{{bindings.0.image.value}}> AS ?imageIRI)
-                                                  BIND("image" AS ?type)
-                                                  BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)
-                                                  BIND(?imageIRI AS ?carrierImageIRI)'
+                                  image-id-pattern='VALUES (?imageIRI ?type ?carrierImageIRI) { (<{{bindings.0.image.value}}> "image" <{{bindings.0.image.value}}>) }
+                                                  BIND(REPLACE(REPLACE(REPLACE(STR(?imageIRI), "/full/full/0/default.jpg", ""), "\\?.*$", ""), "(^.*)\\/(.*)$", "$2") AS ?imageID)'
                                   iiif-server-url="https://iiif.itatti.harvard.edu/iiif/2"
                                   >
                                 </rs-iiif-mirador>
