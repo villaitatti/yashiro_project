@@ -113,6 +113,7 @@
   border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
+  text-decoration: none !important;
   transition: color .15s ease, border-color .15s ease;
 }
 
@@ -688,7 +689,9 @@ div#main-container {
   border-right: none;
   background: var(--itatti-ink);
   height: auto;
-  max-width: 28vw;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 #yashiro-container .yashiro-toggle-button-on {
@@ -723,6 +726,14 @@ div#main-container {
   display: flex;
   flex-direction: row;
   flex: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+#yashiro-container .yashiro-splitpane-sidebar #metadataColumn,
+#yashiro-container .yashiro-splitpane-sidebar #metadataContainer {
+  width: 100%;
+  min-width: 0;
 }
 
 #yashiro-container .yashiro-letter-metadata {
@@ -749,15 +760,38 @@ div#main-container {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--itatti-text-hint);
+  color: var(--itatti-text-hint) !important;
   padding: 6px 8px;
-  border: none;
-  border-bottom: 2px solid transparent;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-.AnnotationSidebar--component .nav-tabs > li.active > a {
-  color: var(--itatti-text);
-  border-bottom-color: var(--itatti-accent);
+.AnnotationSidebar--component .nav-tabs > li > a:hover {
+  color: var(--itatti-text) !important;
+  border-bottom-color: var(--itatti-border-strong) !important;
+  background: transparent !important;
+}
+
+.AnnotationSidebar--component .nav-tabs > li.active > a,
+.AnnotationSidebar--component .nav-tabs > li.active > a:hover,
+.AnnotationSidebar--component .nav-tabs > li.active > a:focus,
+#yashiro-container .AnnotationSidebar--component .nav.nav-tabs > li.active > a,
+#yashiro-container .AnnotationSidebar--component .nav.nav-tabs > li.active a {
+  color: var(--itatti-accent) !important;
+  border-bottom: 2px solid var(--itatti-accent) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+#yashiro-container .AnnotationSidebar--component .nav.nav-tabs > li.active,
+.AnnotationSidebar--component .nav-tabs > li.active,
+#yashiro-container .AnnotationSidebar--component .nav.nav-tabs > li:hover,
+.AnnotationSidebar--component .nav-tabs > li:hover {
+  box-shadow: none !important;
 }
 
 .AnnotationSidebar--tabHeader {

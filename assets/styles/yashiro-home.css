@@ -28,6 +28,11 @@ body:has(.yashiro-home) .page-container {
   height: auto !important;
 }
 
+/* ── Remove footer top margin/padding on home page ── */
+body:has(.yashiro-home) .coll-footer {
+  margin-top: 0 !important;
+}
+
 /* ── Hero — cinematic full-background ── */
 .yashiro-hero {
   position: relative;
