@@ -51,6 +51,10 @@
   position: sticky;
 }
 
+.TextAnnotationEditor--addAnnotationSideline {
+  display: none;
+}
+
 #main-container {
   margin-top: -21px;
 }
